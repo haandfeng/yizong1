@@ -96,10 +96,12 @@ line-height: 200px !important; /* 行高与高度一致使得图片垂直居中 
 }
 
 .menu-ads .swiper-slide a img {
-  width: 100% !important; /* 图片宽度为100%填满容器 */
-  height: 100% !important; /* 图片高度为100%填满容器 */
-  object-fit: cover !important; /* 覆盖整个容器区域，多余的部分会被裁剪 */
-  }
+max-width: 100% !important; /* 图片最大宽度填满容器 */
+max-height: 100% !important; /* 图片最大高度填满链接容器 */
+vertical-align: middle !important; /* 垂直对齐 */
+height: auto !important; /* 图片高度自动，保持比例 */
+object-fit: cover !important; /* 图片覆盖整个容器，不留空白 */
+}
 
 /* 调整Swiper分页器样式，使其适配新的高度 */
 .swiper-pagination-bullet {
