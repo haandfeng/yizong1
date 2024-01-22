@@ -382,21 +382,19 @@ $(function(){
         <div style="height: 8rem; width: 100%"></div>
         <div id="footer">
             <ul>
-                <a href="./"><li class="click"><img src="themesmobile/yshop100com_mobile/yzimages/images/footerz_69.png"><span>首页</span></li></a>
-                <a href="cataclass.php"><li><img src="themesmobile/yshop100com_mobile/yzimages/images/footer_73.png"><span>分类</span></li></a>
+                <a href="./" id="shouye"><li class="click"><img src="themesmobile/yshop100com_mobile/images/Home.png"><span>首页</span></li></a>
+                <a href="cataclass.php"><li><img src="themesmobile/yshop100com_mobile/images/Fenglei.png"><span>分类</span></li></a>
                 <!--<a href="tel:{insert name='ecsmart_tel'}"><li><img src="themesmobile/yshop100com_mobile/yzimages/images/footer_71.png"><span>客服</span></li></a>-->
-                <a href="user.php?act=center"><li><img src="themesmobile/yshop100com_mobile/yzimages/images/20190416112218.png" style="height: 3.8rem; "></li></a>
-<!--                <a href="flow.php"><li><img src="themesmobile/yshop100com_mobile/yzimages/images/footer_75.png"><span>购物车</span></li></a>-->
                 <a  class="gwc" href="#">
                     <li>
-                        <img src="themesmobile/yshop100com_mobile/yzimages/images/footer_75.png">
+                        <img src="themesmobile/yshop100com_mobile/images/Cart.png">
                         <em class="global-nav__nav-shop-cart-num" id="ECS_CARTINFO" style="right:9px;    position: absolute;
-    left: 70%;    top: 1px;    color: #fff;    text-align: center;    font-weight: normal;    font-size: 12px;    font-family: 宋体;    width: 16px;
-    height: 16px;    line-height: 16px;    background-color: #ff5916; border-radius: 10px">{insert name='cart_info'}</em>
+    left: 66%;    top: 1px;    color: #fff;    text-align: center;    font-weight: normal;    font-size: 12px;    font-family: 宋体;    width: 16px;
+    height: 16px;    line-height: 16px;    background-color: #BD8539; border-radius: 10px">{insert name='cart_info'}</em>
                         <span>购物车</span>
                     </li>
                 </a>
-                <a href="user.php"><li><img src="themesmobile/yshop100com_mobile/yzimages/images/footer_77.png"><span>我的</span></li></a>
+                <a href="user.php"><li><img src="themesmobile/yshop100com_mobile/images/profile.png"><span>我的</span></li></a>
             </ul>
         </div>
 		{/if}

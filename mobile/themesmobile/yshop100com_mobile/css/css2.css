@@ -127,8 +127,8 @@ h1 {background-color: #b72f20;color: #fff;font-size: 25px;text-align: center;pad
 .bot-main ul li dd dl{height: 2.2rem;line-height: 2.2rem;padding: 0 5%;}
 .bot-main ul li dd dl a img{height: 2.2rem;float: left;}
 .bot-main ul li dd dl i{float: right;}
-#footer{padding: 0.3rem 0;border-top: 1px solid #d4d3ce;height: 3.8rem;background-color: #e8e6df;position: fixed;bottom: 0;width: 100%;}
-#footer ul li{width: 20%;float: left;text-align: center;}
+#footer{padding: 0.3rem 0;border-top: 1px solid #d4d3ce;height: 3.8rem;background-color: #FFFFFF;position: fixed;bottom: 0;width: 100%;}
+#footer ul li{width: 25%;float: left;text-align: center;}
 #footer ul li img{height: 1.8rem;}
 #footer ul li span{display: block;font-size: 1.2rem;line-height: 2rem;color: #333;}
-#footer ul .click span{color: #aa0b0b;}
+#footer ul .click span{color: #BD8539;}
