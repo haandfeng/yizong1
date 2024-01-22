@@ -63,19 +63,58 @@ h1 {background-color: #b72f20;color: #fff;font-size: 25px;text-align: center;pad
 .slidesjs-pagination li a:hover { background-position: 0 -26px  }
 #slides a:link, #slides a:visited {  display:none; color: #333 }
 #slides a:hover, #slides a:active {  color: #9e2020  }
-#header{padding: 0.5rem 3%;width: 94%; height: 4rem; background-color: #FFF; position: absolute; top: 0; left: 0; z-index: 999;}
+#header{padding: 0.5rem 3%;width: 94%; height: 4rem; background-color: #FFF; position: absolute; top: 0; left: 0; z-index: 999;margin-bottom: 4rem;}
 .header-l{width:22%;float: left;line-height: 3rem;height: 3rem; margin-top: 0.5rem;}
 .header-l img{width:auto; height:auto; max-width:100%; max-height:100%;}
-.header-l span{color: #ff5916;font-size: 1.4rem;padding-left: 3px;display: none;}
+.header-l span{color: #BD8539;font-size: 1.4rem;padding-left: 3px;display: in;}
 .header-m{width: 68%;float: left;}
-.header-m input{width: 81%;border: 1px solid #cacaca;height: 3rem;border-radius: 2rem;padding: 0 3% 0 15%;background: url(../images/logo_06.png) no-repeat 4% center;background-size: 1.4rem; margin-top: 1%; font-size: 14px;}
+.header-m input{width: 81%;border: 1px solid #BD8539;height: 3rem;border-radius: 2rem;padding: 0 3% 0 15%;background: url(../images/logo_06.png) no-repeat 4% center;background-size: 1.4rem; margin-top: 1%; font-size: 14px;}
 .header-r{width: 10%; height: 3rem; float: left;}
 .header-r img{height: 3.6rem; margin: 0.3rem 0 0 25%;}
-
-.menu-ads {width: 98%; height: auto; overflow: hidden; margin: 0 1%;}
+.header-m input::placeholder {
+  color: #BD8539;
+}
+/* .menu-ads {width: 98%; height: auto; overflow: hidden; margin: 5rem 0 1%;}
 .menu-ads ul li {width: 48%; float: left; margin: 0 1%;}
-.menu-ads ul li a {display: block; width: 100%; }
+.menu-ads ul li a {display: block; width: 100%; } */
+.swiper-container {
+  position: relative;
+}
+.swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.swiper-container .swiper-pagination-bullet {
+  background:#BD8539;
+  width: 1.75 rem;
+  height: 0.25 rem;
+}
 
+.swiper-container  .swiper-pagination-bullet-active {
+  background: #FFFFFF;
+}
+.swiper-scrollbar {
+  position: absolute;
+  bottom: 0;
+}
+.menu-ads {
+  width: 98%;
+  margin: 5rem 0 1%;
+  height: 49%;
+  overflow: hidden;
+  }
+  
+.menu-ads .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  }
+    
 #banner{}
 
 .nav ul li{width: 20%;text-align: center;float: left;padding-top: 7px;}

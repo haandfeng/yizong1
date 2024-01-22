@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/css2.css?v=3" />
     <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/scan.css" />
     <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/indexslider.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js" ></script>
     <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/kxbdSuperMarquee.js" ></script>
 <script type="application/javascript" src="themesmobile/yshop100com_mobile/js/jquery.more2.js?v=2"></script>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/cookie.js?v=0.1"></script>
 	<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/TouchSlide.1.1.js"></script>
 <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/touchslider.dev.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <title>{$page_title}</title>
 </head>
 <script>
@@ -33,8 +35,8 @@ $(function(){
 {if $hfxltbapp eq 0}
     <div id="header">
         <div class="header-l">
-            <img src="{$logo}" />
-            <span>宜众易购</span>
+            <img src="themesmobile/yshop100com_mobile/images/logo_1020.png" />
+            <span>李笙百货</span>
         </div>
         <div class="header-m">
             <a href="searchindex.php"><input type="text" placeholder="搜索相关商品"/></a>
@@ -45,17 +47,26 @@ $(function(){
             </a>
         </div>
     </div>
+{else}
+    <!-- 轮播 S-->
+        <!-- #BeginLibraryItem "/library/index_ad.lbi" --> <!-- #EndLibraryItem -->
+    <!-- 轮播 E-->
 {/if}
-
-    {if $wap_menu_ads}
-    <div class="menu-ads">
-        <ul>
-            {foreach from=$wap_menu_ads item=menu_ads name=wap_menu_ads}
-            <li><a href="{$menu_ads.url}"><img src="{$menu_ads.image}" width="100%" /></a></li>
-            {/foreach}
-        </ul>
+{if $wap_menu_ads}
+    <div class="menu-ads swiper-container">
+    <div class="swiper-wrapper">
+    {foreach from=$wap_menu_ads item=menu_ads name=wap_menu_ads}
+    <div class="swiper-slide">
+    <a href="{$menu_ads.url}">
+    <img src="{$menu_ads.image}" />
+    </a >
     </div>
-    {/if}
+    {/foreach}
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+</div>
+{/if}
     <!-- 导航栏 S-->
         <!-- #BeginLibraryItem "/library/index_icon.lbi" --><!-- #EndLibraryItem -->
     <!-- 导航栏 E-->
@@ -405,7 +416,25 @@ $(function(){
 </html>
 <!-- <script src="themesmobile/yshop100com_mobile/js/jquery.slides.min.js"></script> -->
     <script type="text/javascript" src="/mobile/js/transport.js?v=0.04"></script> 
- 
+<script>
+        var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        autoplay: {
+        delay: 3000,
+        },
+        pagination: {
+        el: '.swiper-pagination',
+        clickable:true,
+        },
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+        scrollbar: {
+        el: '.swiper-scrollbar',
+        },
+        });
+</script> 
 <script>
     $(function() {
       $('.gwc').click(function() {
