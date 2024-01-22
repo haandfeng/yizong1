@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--底部-->
+  <div id="footer">
+      <div class="footer-top">
+          <div class="main">
+              <div class="footer-top_1">
+                  <span>客服电话</span>
+                  <div>{$service_phone}</div>
+                  <dl>9：00-22：00</dl>
+                  <button>反馈</button>
+              </div>
+              <div class="footer-top_2">
+                  <span>何为优品</span>
+                  <p>宜众易购是生活类电商品牌，秉承一贯的严谨态度，我们深入世界各地，从源头全程严格把控商品生产环节，力求帮消费者甄选到最优质的商品</p>
+                  <dd><em>关注我们：</em><img src="themes/yshop100/pc/images/footer_65.png"><img src="themes/yshop100/pc/images/footer_68.png"><img src="themes/yshop100/pc/images/footer_70.png"></dd>
+              </div>
+              <div class="footer-top_3">
+                  <span>扫码关注公众号</span>
+                  <div><img src="themes/yshop100/pc/images/ewm_65.jpg"></div>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bot">
+          <div class="main">
+              <p>Copyright © 2018 广州快闪贸易有限公司</p>
+              <p>粤ICP备18074106 号 粤B2-20201458 粤-经营性-2020-0480</p>
+          </div>
+      </div>
+  </div>
+<img src="api/cron.php?t=<?php gmtime(); ?>" alt="" style="width:0px;height:0px;display:none;" />
+<!-- footer end  -->
+<script type="text/javascript">
+Ajax.call('api/okgoods.php', '', '', 'GET', 'JSON');
+//预售
+Ajax.call('pre_sale.php?act=check_order', '', '', 'GET', 'JSON');
+</script>
+<script type="text/javascript" src="themes/yshop100/js/base.js" ></script>
+<!-- WPA start -->
+<!--<script src="//wp.qiye.qq.com/qidian/2852152107/e140a006e6e768fcfaba98d82eec1292" charset="utf-8"></script>-->
+<!-- WPA end -->

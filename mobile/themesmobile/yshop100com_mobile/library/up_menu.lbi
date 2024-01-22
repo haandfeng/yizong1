@@ -1,0 +1,35 @@
+<!--弹出菜单js-->
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/mobile.js" ></script>
+<script type="text/javascript" src="/mobile/js/common.js" ></script>
+<div class="goods_nav hid" id="menu">
+        <div class="Triangle">
+          <h2></h2>
+        </div>
+        <ul>
+          {if $is_h5_app eq 1}
+          <li><a href="javascript:void(0)" onClick="H5ToAppIndex()"><span class="menu1"></span><i>首页</i></a></li>
+          <li><a href="javascript:void(0)" onClick="H5ToAppCatelog()"><span class="menu2"></span><i>分类</i></a></li>
+          <li><a href="javascript:void(0)" onClick="H5ToAppCart()"><span class="menu3"></span><i>购物车</i></a></li>
+          <li style=" border:0;"><a href="javascript:void(0)" onClick="H5ToAppMember()"><span class="menu4"></span><i>我的</i></a></li>
+          {else}
+          <li><a href="index.php"><span class="menu1"></span><i>首页</i></a></li>
+          <li><a href="cataclass.php"><span class="menu2"></span><i>分类</i></a></li>
+          <li><a href="flow.php"><span class="menu3"></span><i>购物车</i></a></li>
+          <li style=" border:0;"><a href="user.php"><span class="menu4"></span><i>我的</i></a></li>
+          {/if}           
+        </ul>
+      </div>
+{if $is_h5_login eq 0}
+{if $is_h5_app eq 1}
+<script type="text/javascript">
+var uc = navigator.userAgent;
+var isAndroid = uc.indexOf('Android') > -1 || uc.indexOf('Adr') > -1; //android终端
+var isiOS = !!uc.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+if(isAndroid){        
+  window.AndroidWebView.CheckTokenApp();  
+}else if(isiOS){        
+  CheckTokenApp();
+}   
+</script>
+{/if}
+{/if}

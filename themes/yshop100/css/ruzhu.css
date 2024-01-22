@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+/*****入驻列表页*****/
+a{text-decoration:none}
+.supplier-list li{width: 96%; height: 70px; border-bottom: 1px solid #c6c6c6; padding: 15px 0; margin: 0 2%; line-height: 70px;}
+.box1{width: 50%; height: 70px; position: relative; padding-left: 80px;float: left;}
+/*.box1 a{float: left; height: 100%;}*/
+.box1 img{height: 70px; position: absolute;top: 0;left: 0;}
+.box1 .sup-name{display: block; height: 40px; line-height: 40px; color: #dd4400;font-size: 18px; }
+.box1 .sup-star{display: block; height: 30px; line-height: 30px; font-size: 14px; }
+.box2{width: 25%; height: 70px;float: left}
+.box2 .goods-number{display: block; height: 30px; line-height: 30px; font-size: 14px;}
+.box2 .sup-type{display: block; height: 20px; line-height: 20px;font-size: 14px;}
+.box3{width: 18%; height: 70px;;float: left}
+.box3 .heart{display: inline-block; height: 20px; line-height: 20px; font-size: 14px;width: 100%;}
+.box3 .good{display: block; height: 20px; line-height: 20px;font-size: 14px;}
+.box3 .other{display: block; height: 20px; line-height: 20px;font-size: 14px;}
+.box3 .other i{color: #cd1615}
+
+/*信用度*/
+.level-1 { width: 16px; }
+.level-2 { width: 32px; }
+.level-3 { width: 48px; }
+.level-4 { width: 64px; }
+.level-5 { width: 80px; }
+.seller-heart { display: inline-block; height:15px; background: url(../images/heart-seller.gif) repeat-x 0 0; }

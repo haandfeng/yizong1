@@ -1,0 +1,60 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- 订单搜索 -->
+<div class="form-div">
+  <form action="order.php" name="searchForm">
+      <input type="hidden" name="act" value="tlement">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />      
+    结算状态<select name="usetag" id="usetag" ><option value="">选择一项</option><option value="2">未结算</option><option value="1">已结算</option></select>
+    开始日期<input name="date_start" type="text" id="date_start" size="15" maxlength="8" placeholder="格式：20180208">
+    结束日期<input name="date_end" type="text" id="date_end" size="15" maxlength="8" placeholder="格式：20180208">
+    <input type="submit" value="{$lang.button_search}" class="button" />
+	<a href="order.php?act=download_tlement_record&date_start={$date_start}&date_end={$date_end}&usetag={$usetag}" class="button">下载</a>
+  </form>
+  
+</div>
+
+<!-- 订单列表 -->
+
+  <div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+      <th>结算日期</th>
+      <th>交易开始日期</th>
+      <th>交易结束日期</th>
+      <th>划账金额</th>
+      <th>结算币种</th>
+      <th>支付金额</th>
+      <th>退款金额</th>
+      <th>支付净额</th>
+      <th>手续费金额</th>
+      <th>未划账金额</th>
+      <th>付汇批次号</th>
+  <tr>
+  {foreach from=$order_list item=order key=okey}
+  <tr>
+	<td>{$order[0]}</td>
+    <td>{$order[1]}</td>
+    <td>{$order[2]}</td>
+    <td>{$order[3]}</td>
+    <td>{$order[4]}</td>
+    <td>{$order[5]}</td>
+    <td>{$order[6]}</td>
+    <td>{$order[7]}</td>
+      <td>{$order[8]}</td>
+      <td>{$order[9]}</td>
+      <td>{$order[10]}</td>
+  </tr>
+  {/foreach}
+</table>
+
+
+{if $full_page}
+  </div>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

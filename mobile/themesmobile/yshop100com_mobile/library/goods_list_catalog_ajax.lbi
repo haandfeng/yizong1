@@ -1,0 +1,10 @@
+{if $goods.goods_id}
+            <div class="xun_for">
+                <a href="goods.php?id={$goods.goods_id}">
+                <img src='{$goods.goods_thumb}' width='50px' height='50px'/>
+                <span>{$goods.goods_name}</span>
+                <span>{$goods.market_price}</span>
+                </a>
+            </div>
+{/if}
+	

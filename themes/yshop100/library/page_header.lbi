@@ -1,0 +1,115 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/yshop100_common.css" />
+<link rel="stylesheet" href="themes/yshop100/pc/css/index.css">
+<script language="javascript">
+<!--
+/*屏蔽所有的js错误*/
+function killerrors() {
+return true;
+}
+window.onerror = killerrors;
+//-->
+</script>
+<script type="text/javascript" src="themes/yshop100/js/page.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/bubbleup.js"></script>
+{include file='library/user_header.lbi'}
+
+<script type="text/javascript">
+//<![CDATA[
+{literal}
+function checkSearchForm()
+{
+    if(document.getElementById('keyword').value)
+    {
+	var frm  = document.getElementById('searchForm');
+	var type = 0;//parseInt(document.getElementById('searchtype').value);
+	 
+        document.location='search.php?keywords='+document.getElementById('keyword').value;
+    }
+    else
+    {
+	alert("请输入关键词！");
+        return false;
+    }
+}
+function myValue1()
+{
+	document.getElementById('keyword').value = "请输入商品名称或编号...";
+}
+
+function myValue2()
+{
+	document.getElementById('keyword').value = "";
+}
+{/literal}
+//]]>
+$('.search-type li').click(function() {
+    $(this).addClass('cur').siblings().removeClass('cur');
+    $('#searchtype').val($(this).attr('num'));
+});
+$(function(){
+	//图片放大效果
+    $(".header-right img").bubbleup({scale:100});
+
+	//头部搜索
+	$('.search-type').hover(function(){
+		$(this).css({"height":"auto","overflow":"visible"});
+	},function(){
+		$(this).css({"height":32,"overflow":"hidden"});
+	});
+
+});
+
+function _show_(h, b) {
+	if (!h) {
+		return
+	}
+	if (b && b.source && b.target) {
+		var d = (typeof b.source == "string") ? M.$("#" + b.source) : b.source;
+		var e = (typeof b.target == "string") ? M.$("#" + b.target) : b.target;
+		if (d && e && !e.isDone) {
+			e.innerHTML = d.value;
+			d.parentNode.removeChild(d);
+			if (typeof b.callback == "function") {
+				b.callback()
+			}
+			e.isDone = true
+		}
+	}
+	M.addClass(h, "hover");
+	if (b && b.isLazyLoad && h.isDone) {
+		var g = h.find("img");
+		for (var a = 0, c = g.length; a < c; a++) {
+			var f = g[a].getAttribute("data-src_index_menu");
+			if (f) {
+				g[a].setAttribute("src", f);
+				g[a].removeAttribute("data-src_index_menu")
+			}
+		}
+		h.isDone = true
+	}
+}
+function _hide_(a) {
+	if (!a) {
+		return
+	}
+	if (a.className.indexOf("hover") > -1) {
+		M.removeClass(a, "hover")
+	}
+}
+
+
+$('.nav-left-bot ul li').mousemove(function () {
+        $('.nav-left-bot ul li').removeClass('click');
+        $(this).addClass('click');
+        var i = $(this).index();
+        $(this).find('div').show();
+        $(this).siblings('li').find('div').hide();
+
+        $('.nav-left .nav-left-bot ul').mouseleave(function () {
+            $('.nav-left-main').hide();
+            $('.nav-left-bot ul li').removeClass('click');
+            $('.nav-left-bot ul li div.nav-left-main').hide();
+        });
+})
+</script>

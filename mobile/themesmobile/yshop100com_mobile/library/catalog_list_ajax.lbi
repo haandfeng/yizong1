@@ -1,0 +1,6 @@
+
+                <a href="goods.php?id={$goods.goods_id}">
+                <img src='{$goods.goods_thumb}' width='50px' height='50px'/>
+                <span>{$goods.goods_name}</span>
+                <span>{if $goods.is_exchange eq 0}{$goods.shop_price}{else}{$goods.shop_exchange_price}{/if}</span>
+                </a>

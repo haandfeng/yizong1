@@ -1,0 +1,33 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body style='background:red;margin:0;'>
+<style>
+    .eason span:nth-child(1){display:block;width:100%;color:#fff;text-align:center;}
+    .eason span:nth-child(2){display:block;width:100%;margin-top:10px;color:#fff;font-size:14px;text-align:center;}
+    .eason_one{margin-top:40%;width:100%;}
+    .eason_one a{width:198px;height:35px;display:block;line-height:35px;text-align:center;border-radius:5px;text-decoration: none;color:#rdd;background:#fff;margin:0 auto;}
+    .eason_two{width:100%;margin-top:23px;text-align:center;}
+    .eason_two span {font-size:14px;color:#fff;}
+    .eason_three{margin-top:10px;width:100%}
+    .eason_three a{width:198px;height:35px;display:block;line-height:35px;text-align:center;border-radius:5px;text-decoration: none;color:#rdd;background:#red;margin:0 auto;border:1px solid #fff;box-sizing:border-box;}
+</style>
+<div style='margin-top: 30%; color:white; ' class="eason">
+       <span style='font-size:24px;'> 宜众易购 </span>
+       <span>生活类电商品牌</span>
+</div>
+
+<div class="eason_one">
+    <a href = 'weixin_login.php?type=2' title="weixin">生成新账号</a>
+</div>
+<div class="eason_two">
+     <span>已经有账号</span>
+</div>
+<div class="eason_three">
+    <a href='weixin_bang.php?act=bang'>绑定老账号</a>
+<div>
+</body>
+</html>

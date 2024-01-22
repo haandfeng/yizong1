@@ -1,0 +1,48 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $order.order_id}-->
+  <div class="order_list">
+
+          <h2>
+            <a href="supplier.php?suppId={$order.supplier_id}">
+              <em></em>
+              <span>{$order.shopname}</span>
+            </a>
+         {if $order.customers}
+            <i>
+              <a href="javascript:chat_online({chat_order_id: '{$order.order_id}', chat_supp_id: '{$order.supplier_id}'});">
+              </a>{$order.order_sn}</i>{elseif $order.tel}<i><a href="javascript:void(0);" onclick="goService({$is_h5_app})"></a></i>{/if}
+          
+          <strong>{$order.order_status}</strong>{if $order.extension_code eq 'pre_sale'}<strong>[预售]</strong>{/if}</h2>
+         <a href="user.php?act=order_detail&order_id={$order.order_id}">
+       <?php $i = 1;?>
+     {foreach from=$order.goods_list item=goods name=goods}
+       <div class="order_list_goods">
+        <dl>  
+          <dt><img src="{if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'}{$goods.goods_thumb}{else}./themesmobile/yshop100com_mobile/images/flow/libao.png{/if}"></dt>
+          <dd class="name">
+              <strong>{$goods.goods_name|truncate:25}</strong>
+              <span>{if $goods.goods_attr}{$goods.goods_attr|nl2br}{/if}</span>
+          </dd>
+          <dd class="pice" >{if $goods.is_exchange eq 0}{$goods.formated_goods_price}{else}{$goods.exchange_formated_goods_price}{/if}<em>x{$goods.goods_number}</em></dd>
+          </dl>
+          </div>
+             <?php ++$i; ?>
+        {/foreach}
+          </a>
+          <div class="pic">共{$order.count}件商品&nbsp;&nbsp;实付：<strong>{if $order.is_exchange eq 0}{$order.total_fee}{else}{$order.exchange_total_fee}{/if}</strong></div>
+          <div class="anniu" style="width:95%;">
+            <!-- {if ($order.shipping_status eq 0 || $order.shipping_status eq 3) && $order.pay_status eq 2} -->
+                  {if $order.back_can_a == 1 || !isset($order.back_can_a)}
+                    <a href="user.php?act=back_order&order_id={$order.order_id}&order_all=1&x=1" class="main-color" >退款</a>
+                  {else}
+                    <span style="color:red;border: none;">[已申请 退款]</span>
+                  {/if}
+            <!--{else}-->
+
+            <!--{/if}-->
+            {$order.handler}
+        </div>
+    </div>
+<!--{else}-->
+ <div id="list_0_0" class="font12">您还没有任何的订单哦！</div>
+<!--{/if}-->

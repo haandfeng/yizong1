@@ -1,0 +1,133 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{$page_title}</title>
+  <meta name="Keywords" content="{$keywords}" />
+  <meta name="Description" content="{$description}" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+  <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/article.css">
+  <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+<style>
+input[type="submit"], input[type="reset"], input[type="button"], button {
+    -webkit-appearance: none;
+}
+.add_gift_attr {
+    background: #E71F19;
+    text-align: center;
+    line-height: 100%;
+    height: 100%;
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    font-family: 微软雅黑;
+    border: none;
+    border-radius: 0;
+}
+
+.f_foot {
+    background: #E71F19;
+    width: 100%;
+    height: 53px;
+    text-align: center;
+    margin-top: -1.5rem;
+}  
+     .input_agreement_protocol {
+                appearance: none;
+                -webkit-appearance: none;
+                outline: none;
+                display: none;
+            }
+    /*未选中时*/        
+    .input_agreement_protocol  {
+                width: 13px;
+                height: 13px; 
+                display: inline-block;
+                background: url(/mobile/Images/Checkbox_Empty1.png) no-repeat;  
+            }
+   /*选中checkbox时,修改背景图片的位置*/            
+    .input_agreement_protocol:checked {
+                width: 24px;
+                height: 24px;
+                background: url(/mobile/Images/Checkbox_Full1.png) no-repeat;
+            }
+</style>
+</head>
+<body class="body_bj">
+  <!----------------------------------header----------------------------------->
+  <div class="tab_nav">
+    <header class="header">
+      <div class="h-left">
+        <a class="sb-back" href="javascript:void(0)" onclick="window.location.href='/mobile/flow.php?step=checkout';" title="返回"></a>
+      </div>
+      <div class="h-mid">
+        <h6>快闪付分期服务协议</h6>
+      </div>
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more">
+            <a href="javascript:;"></a>
+          </div>
+        </aside>
+      </div>
+    </header>
+  </div>
+  <!-- #BeginLibraryItem "/library/up_menu.lbi" -->
+  <!-- #EndLibraryItem -->
+  <!--弹出菜单-->
+  <form name="formIdentity" action="user_agree_period.php?act=shiming&step=2" method="post"   enctype="multipart/form-data">
+ 
+  <div class="ccontainer">
+     
+    <div id="user_bzzx_1">
+	
+      <div class="brand-con radius">
+        <div class="hot-list" style="border: #e6e6e6 solid 1px; color:#666; font-weight:normal;background: #F6F6F6;font-weight: bold;color: #000;font-size: 14px;padding: 0 10px;" onclick="$('#p1').toggle();">1.快闪付服务协议</div>
+        
+		<iframe src="{$fuyuanurl}webmain/flow/page/view_periodagreement_1.html?v=12" width="100%" height="400px" frameborder="no" border="0" marginwidth="0" marginheight="0" style="display:none;" id="p1"></iframe>
+		
+		<div class="hot-list" style="border: #e6e6e6 solid 1px; color:#666; font-weight:normal;background: #F6F6F6;font-weight: bold;color: #000;font-size: 14px;padding: 0 10px;" onclick="$('#p2').toggle();">2.快闪付额度绑定协议</div>
+		
+		<iframe src="{$fuyuanurl}webmain/flow/page/view_periodagreement_2.html?v=" width="100%" height="400px" frameborder="no" border="0" marginwidth="0" marginheight="0" style="display:none;" id="p2"></iframe>
+		
+		
+		
+		<div class="hot-list" style="border: #e6e6e6 solid 1px; color:#666; font-weight:normal;background: #F6F6F6;font-weight: bold;color: #000;font-size: 14px;padding: 0 10px;" onclick="$('#p3').toggle();">3.快闪付个人信息使用授权书</div>
+		
+		<iframe src="{$fuyuanurl}webmain/flow/page/view_periodagreement_3.html?v=12" width="100%" height="400px" frameborder="no" border="0" marginwidth="0" marginheight="0" style="display:none;" id="p3"></iframe>
+		
+		
+		
+		<div class="hot-list" style="border: #e6e6e6 solid 1px; color:#666; font-weight:normal;background: #F6F6F6;font-weight: bold;color: #000;font-size: 14px;padding: 0 10px;" onclick="$('#p4').toggle();">4.快闪付大数据查询授权书</div>
+		 
+		<iframe src="{$fuyuanurl}webmain/flow/page/view_periodagreement_4.html?v=12" width="100%" height="400px" frameborder="no" border="0" marginwidth="0" marginheight="0" style="display:none;" id="p4"></iframe>
+		
+		<div class="hot-list" style=" font-size: 10px;padding: 0 10px;border:0" > 
+		  
+	 <label class="my_protocol" style="display:inline-block;"> 
+	 <div style="width: 100%; height: 50%; float: left;  "><input class="input_agreement_protocol" id="ck" type="checkbox" />已阅读并同意协议条款</div>
+	 </label>
+	
+		</div>
+		<div class="hot-list"   > 
+		</div>
+		
+		<input name="act" type="hidden" value="period" />
+		<div class="hot-list">
+		<div class="f_foot">
+		<input name="submit" type="button" value="确定" border="0" class="add_gift_attr" onclick="if(document.getElementById('ck').checked){document.location.href='user_agree_period.php?act=shiming&step=2';}else{alert('请同意以上条款！');}" />
+		</div>
+       </div>
+      </div>
+	
+    </div>
+</form>
+{if $comefrom}
+
+{else}
+<!-- #BeginLibraryItem "/library/footer_nav.lbi" --><!-- #EndLibraryItem -->
+{/if}
+</body> 
+  </html>

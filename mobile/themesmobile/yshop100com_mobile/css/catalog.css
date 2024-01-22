@@ -1,0 +1,94 @@
+/*=========index-top========*/
+
+/*分类页面css*/
+.container{ width:100%; padding:0; overflow:hidden; margin:auto;}
+
+.category-box{ height:100%; width:100%; overflow:hidden; }
+.category1{ height:100%; width:25%;background-color:#fff; position: relative; float: left; left: 0; top: 0; overflow: hidden;}
+.category1 ul{width:100%; overflow:hidden;}
+.category1 li{ width:100%;height:auto; background-color: #fff;border-top: 1px solid #f4f4f4;font-size:12px; overflow:hidden; text-align:center; color:#241c1d; position: relative;}
+.category1 li span{ display: block; margin: 5px 0; width: 92%;}
+.category1 li.cur{color:#906b51; border-left:3px solid #906b51;background:#dddddd}
+.category1 li a{ display: block; margin: 5px 0; width: 92%;}
+.category1 li a .cur{color:#906b51; border-left:3px solid #906b51;background:#dddddd}
+.category1 li i{width: 0;height: 0;border-width: 7px;border-style: solid;border-color: #ff7200 transparent transparent transparent; position: absolute; top: 16px; right: 10px;}
+/*.category1 li.cur1{color:#ff5916;}*/
+.category1 ul div{}
+.category1 ul div li {background-color: #fff9f0; border-top: 1px solid #ddd;}
+#cat_more{border-color: transparent transparent #ff7200 transparent; top: 9px;}
+.cat2{display: none;}
+
+
+.category2{ width:75%; height:100%; float: left;  position: fixed; right: 0; top: 0; }
+.category2 dl{ width:95%; margin:auto;overflow:hidden;}
+.category2 dl span{ display:block; width:100%; height:auto; overflow:hidden; position:relative; margin-top:8px;}
+.category2 dl span img{ display:block; width:100%; height:auto}
+.category2 dl span em{  width:10px; height:100%;   display:block;font-size:12px; position:absolute; right:0px; bottom:0px;
+ padding:0px 10px 0px 10px;background-color:rgba(27,27,27,0.5); color:#FFF; vertical-align:center; font-style:normal; line-height:150%; font-family:'宋体';-webkit-box-align:center;display:-webkit-box;} 
+
+.category2 dt{ width:100%; height:20px;margin-top:10px; margin-bottom:10px;}
+.category2 dt a{ display:block; height:20px;font-size:16px; line-height:20px;color:#666;}
+.category2 dd{ width:100%; overflow:hidden; margin-bottom:10px;}
+
+.fenimg{ width:100%; overflow:hidden;}
+.fen_img{width:33.3%; overflow:hidden;float: left; margin:0px; margin-bottom:5px;}
+.fen_img a{ display:block; width:90%;height:110px; margin:auto;overflow:hidden; background:#FFF; padding-top:3px;}
+.fen_img a span{ display:block; width:100%; height:70px;}
+.fen_img a span img{ display:block; width:70px;height:70px; margin:auto;}
+.fen_img a em{ display:block; width:90%; height:30px; margin:auto; text-align:center;font-size:14px; color:#999; line-height:30px;}
+
+.fen{width:33.3%;float:left; overflow:hidden;text-align:left;margin-bottom:5px; }
+.fen a{display:block; width:90%; height:35px; line-height:35px; border:1px solid #e5e5e5; text-align:center;font-size:14px; color:#999; background:#FFF; margin:auto}
+
+.all{ display:block; width:97%; height:35px; background:transparent; font-size:14px; line-height:35px; text-align:right;  margin:auto;margin-bottom:10px; border-radius:3px; margin-top:10px;color: #666 !important;}
+.xun_for{
+	float: left;
+	display: flex;
+	justify-content: center;
+	margin-bottom:0.5rem;
+	width: 48%; 
+
+}
+.xun_for a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.xun_for a img{
+	width: 100%;
+	height: 140px;
+}
+.category2 .xun_for a span:nth-child(2){display: block;height: 22px;line-height: 22px;color: #666}
+.category2 .xun_for span{font-size: 14px;margin-top: 0;color: #ff5916;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+.category2 .xun_for a div:nth-child(3) span{display: inline-block;width: auto;}
+.xun_for:nth-child(1n){margin-right: 2%}
+.xun_for span>i{color: #ff5916;font-size:18px;}
+
+
+.icon_for{
+	float: left;
+	display: flex;
+	justify-content: center;
+	margin-bottom:0.5rem;
+	width: 30%; 
+
+}
+.icon_for a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.icon_for a img{
+	width: 100%;
+	height: 140px;
+}
+.category2 .icon_for a span:nth-child(2){display: block;height: 22px;line-height: 22px;color: #666}
+.category2 .icon_for span{font-size: 14px;margin-top: 0;color: #ff5916;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+.category2 .icon_for a div:nth-child(3) span{display: inline-block;width: auto;}
+.icon_for:nth-child(1n){margin-right: 2%}
+.icon_for span>i{color: #ff5916;font-size:18px;}
+

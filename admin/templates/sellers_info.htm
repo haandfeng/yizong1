@@ -1,0 +1,71 @@
+<!-- $Id: agency_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.org.js,../js/region.js"}
+<div class="main-div">
+<form method="post" action="sellers.php" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">{$lang.label_sellers_name}</td>
+    <td><input type="text" name="seller_name" maxlength="60" value="{$seller.seller_name}" /></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.label_position}</td>
+    <td><input type="text" name="position" maxlength="60" value="{$seller.position}" /></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.label_stores_name}</td>
+    <td>
+      <select name="store_id">
+        {foreach from=$stores_list item=stores}
+          <option value="{$stores.store_id}" {if $seller.store_id eq $stores.store_id}selected{/if}>{$stores.store_name}</option>
+        {/foreach}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.label_sellers_check}</td>
+    <td>
+      <select name="deleted">
+        <option value="0" {if $seller.deleted eq 0}selected{/if}>启用</option>
+        <option value="1" {if $seller.deleted eq 1}selected{/if}>关闭</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" class="button" value="{$lang.button_submit}" />
+      <input type="reset" class="button" value="{$lang.button_reset}" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$seller.seller_id}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['seller_name'].focus();
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("seller_name",  no_sellers_name);
+    return validator.passed();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/category.css" />
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jquery-lazyload.js" ></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+<script>var jdpts = new Object(); jdpts._st = new Date().getTime();</script>
+<style type="text/css">
+.sup-info{
+  width: 1010px;
+  height: 120px;
+  margin: 5% 0 0 0;
+  border: 1px solid #d9d9d9;
+}
+.sup-logo{
+  margin: 10px 0 0 10px;
+  width: 200px;
+  height: 100px;
+  float: left;
+}
+.sup-name{
+  display: block;
+  width: 500px;
+  padding-left: 20px;
+  float: left;
+  line-height: 120px;
+  font-size: 18px;
+  color: #dd4400;
+}
+.sup-detail{
+  width: 270px;
+  float: left;
+  margin-top: 50px;
+}
+.good{
+  display: block;
+}
+.other i{
+  color: #cd1615;
+}
+.main{
+  width: 1010px !important;
+}
+.list-main ul li{
+  width: 232.5px !important;
+}
+.list-main ul li div{
+  width: 232.5px !important;
+  height: 232.5px !important;
+}
+.list-main ul li div img{
+  min-height: 232.5px !important;
+}
+</style>
+</head><body>{insert name='add_url_uid'}
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="blank"></div>
+<div class="w1210">
+	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <div class="content-wrap category-wrap clearfix">
+    	<div class="aside">
+        	<span class="slide-aside"></span>
+            <div class="aside-inner">
+				<!-- #BeginLibraryItem "/library/category_supplier_tree.lbi" --><!-- #EndLibraryItem -->
+               
+            </div>
+        </div>
+        <div class="main">
+        	<div class="sup-info">
+              <div class="sup-logo">
+                <img src="themes/yshop100/images/suplogo.jpg" width="100%" />
+              </div>
+              <h3 class="sup-name">{if $suppinfo.supplier_name}{$suppinfo.supplier_name|escape:html}{else}香港漢方杏林堂{/if}</h3>
+              <div class="sup-detail">
+                <span class="good">好评率：100%</span>
+                <span class="other">描述:  <i>4.9↑</i>  服务:  <i>4.9↑</i>  物流:  <i>4.9↑</i></span>
+              </div>
+            </div>
+    		<!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+            <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+        </div>
+    </div>
+    <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+</div>
+<!-- #BeginLibraryItem "/library/right_sidebar.lbi" --><!-- #EndLibraryItem --> 
+<div class="site-footer">
+  <div class="footer-related">
+  	<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</div>
+<script type="text/javascript">
+  $(".fore1").hide();
+</script> 
+<script type="text/javascript" src="themes/yshop100/js/compare.js"></script> 
+</body>
+</html>

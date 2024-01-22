@@ -1,0 +1,444 @@
+<!-- $Id: bonus_type_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
+{include file="pageheader.htm"}
+<div class="main-div">
+<form action="bonus.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+<table width="100%">
+  <tr>
+    <td class="label">{$lang.type_name}</td>
+    <td>
+      <input type='text' name='type_name' maxlength="30" value="{$bonus_arr.type_name}" size='20' /><span class="require-field">*</span>   </td>
+  </tr>
+  <tr>
+    <td class="label">
+      <a href="javascript:showNotice('Type_money_a');" title="{$lang.form_notice}">
+      <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.type_money}</td>
+    <td>
+    <input type="text" name="type_money" value="{$bonus_arr.type_money}" size="20" /><span class="require-field">*</span>
+    <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="Type_money_a">{$lang.type_money_notic}</span>    </td>
+  </tr>
+  <tr>
+    <td class="label"><a href="javascript:showNotice('NoticeMinGoodsAmount');" title="{$lang.form_notice}"> <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}" /></a>{$lang.min_goods_amount}</td>
+    <td><input name="min_goods_amount" type="text" id="min_goods_amount" value="{$bonus_arr.min_goods_amount}" size="20" />
+    <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="NoticeMinGoodsAmount">{$lang.notice_min_goods_amount}</span> </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.send_method}</td>
+    <td valign="middle">
+      <input type="radio" name="send_type" value="0" {if $bonus_arr.send_type eq 0} checked="true" {/if} onClick="showunit(0)"/>{$lang.send_by[0]}
+      <input type="radio" name="send_type" value="1" {if $bonus_arr.send_type eq 1} checked="true" {/if} onClick="showunit(1)"/>{$lang.send_by[1]}
+      <input type="radio" name="send_type" value="2" {if $bonus_arr.send_type eq 2} checked="true" {/if} onClick="showunit(2)"/>{$lang.send_by[2]}
+      <input type="radio" name="send_type" value="3" {if $bonus_arr.send_type eq 3} checked="true" {/if} onClick="showunit(3)"/>{$lang.send_by[3]}
+	  <input type="radio" name="send_type" value="4" {if $bonus_arr.send_type eq 4} checked="true" {/if} onClick="showunit(4)"  />{$lang.send_by[4]} 
+       <input type="radio" name="send_type" value="5" {if $bonus_arr.send_type eq 5} checked="true" {/if} onClick="showunit(5)"  />{$lang.send_by[5]} 
+	   <input type="radio" name="send_type" value="6" {if $bonus_arr.send_type eq 6} checked="true" {/if} onClick="showunit(6)"  />线上用户领取 
+    </td>
+  </tr>
+  <tr id="1" style="display:none">
+    <td class="label">
+      <a href="javascript:showNotice('Order_money_a');" title="{$lang.form_notice}">
+      <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.min_amount}</td>
+    <td>
+      <input name="min_amount" type="text" id="min_amount" value="{$bonus_arr.min_amount}" size="20" />
+      <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="Order_money_a">{$lang.order_money_notic}</span>    </td>
+  </tr>
+  <tr  id="start_date">
+    <td class="label">
+      <a href="javascript:showNotice('Send_start_a');" title="{$lang.form_notice}">
+      <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.send_startdate}</td>
+    <td>
+      <input name="send_start_date" type="text" id="send_start_date" size="22" value='{$bonus_arr.send_start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('send_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/>
+      <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="Send_start_a">{$lang.send_startdate_notic}</span>    </td>
+  </tr>
+  <tr id="end_date">
+    <td class="label">{$lang.send_enddate}</td>
+    <td>
+      <input name="send_end_date" type="text" id="send_end_date" size="22" value='{$bonus_arr.send_end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('send_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>    </td>
+  </tr>
+  <tr>
+    <td class="label">
+	  <a href="javascript:showNotice('Use_start_a');" title="{$lang.form_notice}">
+      <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>
+	{$lang.use_startdate}</td>
+    <td>
+      <input name="use_start_date" type="text" id="use_start_date" size="22" value='{$bonus_arr.use_start_date}' readonly="readonly" /><input name="selbtn3" type="button" id="selbtn3" onclick="return showCalendar('use_start_date', '%Y-%m-%d', false, false, 'selbtn3');" value="{$lang.btn_select}" class="button"/>
+	  <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="Use_start_a">{$lang.use_startdate_notic}</span>    </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.use_enddate}</td>
+    <td>
+      <input name="use_end_date" type="text" id="use_end_date" size="22" value='{$bonus_arr.use_end_date}' readonly="readonly" /><input name="selbtn4" type="button" id="selbtn4" onclick="return showCalendar('use_end_date', '%Y-%m-%d', false, false, 'selbtn4');" value="{$lang.btn_select}" class="button"/>    </td>
+  </tr>
+ 
+  
+  
+  
+   <tr id="3">
+    <td class="label">{$lang.user_bonus_max}</td>
+    <td>
+        {* 代码修改 By www.yshop100.com Start *}
+        <input type='text' name='user_bonus_max' size='20' value="{$bonus_arr.user_bonus_max}" onkeyup="this.value=this.value.replace(/[^0-9]/ig,'')" onafterpaste="this.value=this.value.replace(/[^0-9]]/ig,'')" />    <br/>
+        {* 代码修改 By www.yshop100.com End *}
+	  <span class="notice-span" >{$lang.bonus_type4_max_notic}</span>   
+	  </td>
+  </tr>
+  
+
+  
+   <tr id="4">
+    <td class="label">总红包数</td>
+    <td>
+        {* 代码修改 By www.yshop100.com Start *}
+        <input type='text' name='send_maxcount' size='20' value="{$bonus_arr.send_maxcount}" onkeyup="this.value=this.value.replace(/[^0-9]/ig,'')" onafterpaste="this.value=this.value.replace(/[^0-9]]/ig,'')" />    <br/>
+        {* 代码修改 By www.yshop100.com End *}
+	  <span class="notice-span" >默认0为 无限制</span>   
+	  </td>
+  </tr>
+
+  <tr>
+    <td class="label">是否选中商品可用</td>
+    <td>
+        <input name="is_use_link" id="is_use_link" type="checkbox" value="{$bonus_arr.is_use_link}" onclick="showlink()" {if $bonus_arr.is_use_link eq 1}checked{/if} /> 
+		<br/>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">商品范围描述</td>
+    <td>
+		<input type="text" name="remark" id="remark" size="20" value="{$bonus_arr.remark}"   >
+		<br/>
+    </td>
+  </tr>
+
+<!-- 红包关联 -->
+<table width="100%" cellpadding="0" cellspacing="1" id="link_bonus" style="display:none">
+<tr>
+  <td>
+  <div class="main-div" style="background-color: white;padding:10px">
+  <h3><center>红包关联</center></h3>
+  <div>
+      <strong>{$lang.custom_goods_search}</strong>
+      <!-- 分类 -->
+      <select id="cat_id"><option value="0">{$lang.all_category}</option>{$cat_list}</select>
+      <!-- 品牌 -->
+      <select id="brand_id"><option value="0">{$lang.all_brand}</option>{html_options options=$brand_list}</select>
+      <!-- 关键字 -->
+      {$lang.custom_keyword}<input type="text" id="keyword"/>
+      <!-- 搜索 -->
+      <input type="button" class="button"  value="{$lang.button_search}" onclick="return queryGoods(this)" />
+  </div>
+  <table>
+  <tr>
+    <td width="46%"><select name="src_goods_lists" id="src_goods_lists" size="14" style="width:100%">
+              </select></td>
+    <td rowspan="2" width="8%" style="text-align:center;">
+      <p><input type="button" value=">>" id="addAllGoods" class="button" /></p>
+      <p><input type="button" value=">" id="addGoods" class="button" /></p>
+      <p><input type="button" value="<" id="delGoods" class="button" /></p>
+      <p><input type="button" value="<<" id="delAllGoods" class="button" /></p>
+    </td>
+    <td width="46%"><select name="dst_goods_lists" id="dst_goods_lists" size="14" style="width:100%">{$link_goods_list} </select></td>
+              <input name="goods_ids" id="goods_ids" type="hidden" value="{$link_goods_ids}" />
+  </tr>
+  </table>
+  </div>
+  </td>
+</tr>
+</table>
+  <table>
+  <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="act" value="{$form_act}" />
+      <input type="hidden" name="type_id" value="{$bonus_arr.type_id}" />    </td>
+  </tr>
+  </table>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="javascript">
+<!--
+document.forms['theForm'].elements['type_name'].focus();
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+  validator = new Validator("theForm");
+  validator.required("type_name",      type_name_empty);
+  validator.required("type_money",     type_money_empty);
+  validator.isNumber("type_money",     type_money_isnumber, true);
+  validator.islt('send_start_date', 'send_end_date', send_start_lt_end);
+  validator.islt('use_start_date', 'use_end_date', use_start_lt_end);
+    /* 代码增加 By  www.yshop100.com Start */
+    if(document.getElementById("3").style.display == "")
+    {
+        validator.required("user_bonus_max", '用户领取线上红包上限不能为空');
+        validator.isNumber("user_bonus_max", '用户领取线上红包上限必须为数字');
+    }
+    /* 代码增加 By  www.yshop100.com Start */
+  if (document.getElementById(1).style.display == "")
+  {
+    var minAmount = parseFloat(document.forms['theForm'].elements['min_amount'].value);
+    if (isNaN(minAmount) || minAmount <= 0)
+    {
+	  validator.addErrorMsg(invalid_min_amount);
+    }	
+  }
+  if($("#is_use_link").attr("checked")){ 
+    if(document.getElementById("remark").value=="")
+	{
+	validator.required("remark", '商品范围描述不能为空');
+	}
+  } 
+  
+  var goods_ids = "";
+  var goods_lists = Utils.$('dst_goods_lists');
+ for (var i=0,l=goods_lists.options.length; i<l; i++)
+      {
+          var separator = (i==0)?'':',';
+          goods_ids += separator + goods_lists.options[i].value;
+      }
+  $('#goods_ids').val(goods_ids);
+
+  return validator.passed();
+}
+onload = function()
+{
+  {/literal}
+  get_value = '{$bonus_arr.send_type}';
+  {literal}
+	if(document.getElementById('remark').value=='')
+	{
+	document.getElementById('remark').value='全部';
+	}
+  showlink();
+  showunit(get_value)
+  // 开始检查订单
+  startCheckOrder();
+}
+/* 红包类型按订单金额发放时才填写 */
+function gObj(obj)
+{
+  var theObj;
+  if (document.getElementById)
+  {
+    if (typeof obj=="string") {
+      return document.getElementById(obj);
+    } else {
+      return obj.style;
+    }
+  }
+  return null;
+}
+
+function showunit(get_value)
+{
+	gObj("4").style.display = (get_value == 2||get_value == 5) ? "" : "none";
+	if(get_value==0||get_value==3||get_value==5){
+		$("#start_date").hide();
+		$("#end_date").hide();
+	}else{
+		$("#start_date").show();
+		$("#end_date").show();
+	}
+  gObj("1").style.display =  (get_value == 2) ? "" : "none";
+    /* 代码增加 By  www.yshop100.com Start */
+    gObj("2").style.display =  (get_value == 4) ? "" : "none";
+    gObj("3").style.display =  (get_value == 4) ? "" : "none";
+	
+    /* 代码增加 By  www.yshop100.com End */
+  document.forms['theForm'].elements['selbtn1'].disabled  = (get_value != 1 && get_value != 2);
+  document.forms['theForm'].elements['selbtn2'].disabled  = (get_value != 1 && get_value != 2);
+
+  return;
+}
+
+
+function showlink(){
+  if($("#is_use_link").attr("checked")){
+    $("#link_bonus").show();
+    $("#is_use_link").val("1");
+	if(document.getElementById("remark").value=="全部")
+	{
+    $("#remark").val("");
+	}
+  }else{
+    $("#link_bonus").hide();
+    $("#is_use_link").val("0");
+    $("#remark").val("全部");
+  }
+}
+
+
+/* 搜索商品列表 */
+function queryGoods()
+{
+    var filters = new Object;
+    filters.cat_id = $('#cat_id').val();
+    filters.brand_id = $('#brand_id').val();
+    filters.keyword = $('#keyword').val();
+
+    Ajax.call('bonus.php?is_ajax=1&act=new_get_goods_list', filters, queryGoodsResponse , 'POST', 'JSON');
+    return false;
+}
+
+function queryGoodsResponse (result)
+{
+    if (result.error > 0)
+    {
+        alert(result.message);
+        return;
+    }
+    Utils.$('src_goods_lists').innerHTML = '';
+    for (var i=0,l=result.content.length;i<l;++i)
+    {
+        var new_opt = document.createElement('OPTION');
+        new_opt.value = result.content[i].goods_id;
+        new_opt.innerHTML = result.content[i].goods_name;
+        Utils.$('src_goods_lists').appendChild(new_opt);
+    }
+}
+
+/* 操作自定义导出商品的Select Box */
+    var MySelectBox;
+    var MySelectBox2;
+    if (!MySelectBox)
+    {
+        var global = $import("../js/global.js","js");
+        global.onload = global.onreadystatechange= function()
+        {
+            if(this.readyState && this.readyState=="loading")return;
+            var selectbox = $import("js/selectbox.js","js");
+            selectbox.onload = selectbox.onreadystatechange = function()
+            {
+                if(this.readyState && this.readyState=="loading")return;
+                MySelectBox = new SelectBox('src_goods_fields', 'dst_goods_fields');
+                MySelectBox2 = new SelectBox('src_goods_lists', 'dst_goods_lists', true);
+            }
+        }
+    }
+    if (Utils.$('addItem'))
+    {
+        Utils.$('addItem').onclick = function ()
+        {
+            MySelectBox.addItem();
+        }
+    }
+    if (Utils.$('delItem'))
+    {
+        Utils.$('delItem').onclick = function ()
+        {
+            MySelectBox.delItem();
+        }
+    }
+    if (Utils.$('addAllItem'))
+    {
+        Utils.$('addAllItem').onclick = function ()
+        {
+            MySelectBox.addItem(true);
+        }
+    }
+    if (Utils.$('delAllItem'))
+    {
+        Utils.$('delAllItem').onclick = function ()
+        {
+            MySelectBox.delItem(true);
+        }
+    }
+    if (Utils.$('src_goods_fields'))
+    {
+        Utils.$('src_goods_fields').ondblclick = function ()
+        {
+            MySelectBox.addItem();
+        }
+    }
+    if (Utils.$('dst_goods_fields'))
+    {
+        Utils.$('dst_goods_fields').ondblclick = function ()
+        {
+            MySelectBox.delItem();
+        }
+    }
+    if (Utils.$('mvUp'))
+    {
+        Utils.$('mvUp').onclick = function ()
+        {
+            MySelectBox.moveItem('up');
+        }
+    }
+    if (Utils.$('mvDown'))
+    {
+        Utils.$('mvDown').onclick = function ()
+        {
+            MySelectBox.moveItem('down');
+        }
+    }
+
+    if (Utils.$('addGoods'))
+    {
+        Utils.$('addGoods').onclick = function ()
+        {
+            MySelectBox2.addItem();
+        }
+    }
+    if (Utils.$('delGoods'))
+    {
+        Utils.$('delGoods').onclick = function ()
+        {
+            MySelectBox2.delItem();
+        }
+    }
+    if (Utils.$('addAllGoods'))
+    {
+        Utils.$('addAllGoods').onclick = function ()
+        {
+            MySelectBox2.addItem(true);
+        }
+    }
+    if (Utils.$('delAllGoods'))
+    {
+        Utils.$('delAllGoods').onclick = function ()
+        {
+            MySelectBox2.delItem(true);
+        }
+    }
+    if (Utils.$('src_goods_lists'))
+    {
+        Utils.$('src_goods_lists').ondblclick = function ()
+        {
+            MySelectBox2.addItem();
+        }
+    }
+    if (Utils.$('dst_goods_lists'))
+    {
+        Utils.$('dst_goods_lists').ondblclick = function ()
+        {
+            MySelectBox2.delItem();
+        }
+    }
+
+    function copy_search_result(src_obj, dst_obj)
+    {
+        dst_obj.cat_id.value = src_obj.cat_id.value;
+        dst_obj.brand_id.value = src_obj.brand_id.value;
+        dst_obj.keyword.value = src_obj.keyword.value;
+        var goods_lists = Utils.$('dst_goods_lists');
+        for (var i=0,l=goods_lists.options.length; i<l; i++)
+        {
+            var separator = (i==0)?'':',';
+            dst_obj.goods_ids.value += separator + goods_lists.options[i].value;
+        }
+    }
+ 
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

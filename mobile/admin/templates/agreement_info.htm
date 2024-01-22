@@ -1,0 +1,54 @@
+{include file="pageheader.htm"}
+
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
+<div class="main-div">
+<form method="post" action="agreement.php" name="theForm" enctype="multipart/form-data">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">协议名称</td>
+    <td><input type="text" name="agreement_name" maxlength="60" value="{$agreement.agreement_name}" />{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">协议内容</td>
+    <td><textarea  name="content" cols="100" rows="30"  >{$agreement.content}</textarea>{$lang.require_field}</td>
+  </tr>
+
+  <tr>
+    <td class="label">起始时间</td>
+    <td>
+        <input name="start_time" type="text" id="start_time" size="22" value='{$agreement.start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('start_time', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/>
+      </td>
+  </tr>
+
+  <tr>
+    <td class="label">结束时间</td>
+    <td>
+        <input name="end_time" type="text" id="end_time" size="22" value='{$agreement.end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('end_time', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>
+      </td>
+  </tr>
+  
+  <tr>
+    <td class="label">{$lang.sort_order}</td>
+    <td><input type="text" name="sort_order" maxlength="40" size="15" value="{$agreement.sort_order}" /></td>
+  </tr>
+  <tr>
+    <td class="label">是否开启</td>
+    <td><input type="radio" name="enabled" value="1" {if $agreement.enabled eq 1}checked="checked"{/if} /> {$lang.yes}
+        <input type="radio" name="enabled" value="0" {if $agreement.enabled eq 0}checked="checked"{/if} /> {$lang.no}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><br />
+      <input type="submit" class="button" value="{$lang.button_submit}" />
+      <input type="reset" class="button" value="{$lang.button_reset}" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$agreement.agreement_id}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{include file="pagefooter.htm"}

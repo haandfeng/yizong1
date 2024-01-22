@@ -1,0 +1,7 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{$lang.welcome}!
+{if $user_info}
+<span><a href="user.php" target="_top">{$user_info.username}</a> &nbsp;&nbsp; <a href="user.php?act=logout">{$lang.user_logout}</a>  | <a href="register.php" target="_top">免费注册</a></span>
+{else}
+<span><a href="user.php" target="_top">会员登录</a> | <a href="register.php" target="_top">免费注册</a></span>
+{/if}

@@ -1,0 +1,6 @@
+s:1307:"﻿Transaction time,Official account ID(appid),Vendor ID(mch_id),Sub vendor ID(sub_mch_id),Device ID(Device_info),Wechat order number(transaction_id),Vendor order number(out_transaction_id),User tag(openid),Transaction type(trade_type),Transaction status(trade_state),Payment bank(bank_type),Currency type(fee_type),Total amount(total_fee),Coupon amount,Wechat refund number(refund_id),Vendor refund number(out_refund_no),Refund amount(refund_fee),Coupon refund amount,Refund type,Refund status(refund_status_$n),Product name,Vendor's data package(attach),Fee,Rate,Payment Currency type(Cash_fee_type),Cash payment amount(Cash_fee),Settlement currency type,Settlement currency amount,Exchange rate,Refund exchange rate,Payer's Refund amount,Payer's Refund currency type,Refund currency type,Refund settlement currency type,Refund settlement amount
+`2018-02-06 14:21:07,`wxbeb1c2fef7b3ab15,`1493763372,`0,`1000,`4200000085201802068157701977,`2018020669669,`ogOyx03KpOz1GpRSjK4HxeqY0pkM,`APP,`SUCCESS,`CFT,`HKD,`0.10,`0.00,`0,`0,`0.00,`0.00,`,`,`宜众易购-支付编号: 2018020669669,`,`0.00000,`2.00%,`CNY,`0.08,`HKD,`0.10,`80710000,`0,`0,`,`,`,`0.00
+Total transaction count,Total transaction amount,Total refund amount,Total coupon refund amount,Total commission amount
+`1,`0.10,`0.00,`0.00,`0.00000
+";
+

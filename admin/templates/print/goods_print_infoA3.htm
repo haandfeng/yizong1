@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" type="text/css" href="templates/print/css/goods_print.css" />
+  <style type="text/css">
+  page[size="A3"] {
+    background: white;
+    width: 420mm;
+    height: 297mm;
+    display: block;
+    overflow: hidden;
+  }
+  @media print {
+    body,
+    page[size="A3"] {
+      margin: 0;
+      box-shadow: 0;
+    }
+  }
+  .page{
+      width: 390mm;
+      height: 281mm;
+      overflow: hidden;
+      padding: 16mm 0 0 30mm;
+    }
+  </style>
+  <script type="text/javascript" src="templates/print/js/jquery.js" ></script>
+  <script type="text/javascript" src="templates/print/js/jquery.qrcode.min.js" ></script>
+  <body>
+    {foreach from=$goods_list item=goods name=goods_list}
+    {if ($smarty.foreach.goods_list.iteration-1)%20 == 0 || $smarty.foreach.goods_list.iteration == 1}
+    <page size="A3">
+      <div class="page">
+    {/if}
+        <div class="box">
+          <div class="box-info">
+            <div class="thumb">
+              <img src="{$goods.img_path}" width="100%" />
+            </div>
+            <div class="goods-name">
+              <!-- <span class="brand">Lifespace</span>
+              <span class="name">成人肠道益生菌</span> -->
+              <div class="name"><span>{$goods.goods_name}</span></div>
+              <span class="sn">{$goods.suppliers_desc}货号：{$goods.goods_sn}</span>
+            </div>
+            <div class="goods-specs">
+              <div class="title1">规格</div>
+              <div class="info1"><span>{$goods.guige}</span></div>
+            </div>
+            <div class="goods-from">
+              <div class="title1">产地</div>
+              <div class="info1"><span>{$goods.countryname}</span></div>
+            </div>
+            <div class="goods-effect">
+              <div class="title2">详情</div>
+              <div class="info2"><span>{$goods.gongxiao}</span></div>
+            </div>
+            <div class="goods-manual">
+              <div class="title2">使用说明</div>
+              <span class="user_name">{$user_name}</span>
+              <div class="info2"><span>{$goods.shuoming}</span></div>
+            </div>
+            <div class="goods-price">
+              <div class="qcode" id="qcode_{$smarty.foreach.goods_list.iteration}"></div>
+              <script type="text/javascript">
+                $("#qcode_{$smarty.foreach.goods_list.iteration}").qrcode({
+                  correctLevel: 1,
+                  width: 57,
+                  height: 57,
+                  text: "http://{$smarty.server.SERVER_NAME}/mobile/register.php?goods_id={$goods.goods_id}&id={$user_id}|{$invite_code}"
+                });
+                
+              </script>
+              <div class="price">约人民币：{$goods.shop_price}元</div>
+              <div class="ksf">
+                直邮到家，我们用心让你省心
+              </div>
+            </div>
+          </div>
+        </div>
+    {if $smarty.foreach.goods_list.iteration%20 == 0 || $smarty.foreach.goods_list.last}
+      </div>
+    </page>
+    {/if}
+    {/foreach}
+  </body>
+</html>

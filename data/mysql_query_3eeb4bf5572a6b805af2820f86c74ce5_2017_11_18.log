@@ -1,0 +1,521 @@
+INSERT INTO `dbyizong`.`ecs_sessions` (sesskey, expiry, ip, data) VALUES ('5e0101012b21b3d21275d4ed1ca78c1b', '1510977044', '106.11.154.184', 'a:0:{}')
+
+SELECT * FROM `dbyizong`.`ecs_nav`
+            WHERE ifshow = '1' ORDER BY type, vieworder
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '0' AND is_show = 1
+
+SELECT cat_id,cat_name ,parent_id,is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '0' AND is_show = 1 and is_virtual=0 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '1' AND is_show = 1 
+
+SELECT cat_id, cat_name, parent_id, is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '1' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '6' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '4' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '2' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '5' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '3' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '7' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '8' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '9' AND is_show = 1 
+
+SELECT c.cat_id, c.cat_name, c.sort_order, a.article_id, a.title, a.file_url, a.open_type FROM `dbyizong`.`ecs_article` AS a LEFT JOIN `dbyizong`.`ecs_article_cat` AS c ON a.cat_id = c.cat_id WHERE c.cat_type = 5 AND a.is_open = 1 ORDER BY c.sort_order ASC, a.article_id
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('1','6','4','2','5','3','7','8','9') 
+
+SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number FROM `dbyizong`.`ecs_goods` AS g, `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS og WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('1','6','4','2','5','3','7','8','9')  OR g.goods_id IN ('1','2','3','4','5','6','7','8','9','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','70','71','72','74','75','76','77','78','79','80','81','82','83','84','85','86','88','89','90','91','92','93','94','96','97') )    AND g.goods_number > 0  AND og.order_id = o.order_id AND og.goods_id = g.goods_id AND (o.order_status = '1' OR o.order_status = '5') AND (o.pay_status = '2' OR o.pay_status = '1') AND (o.shipping_status = '1' OR o.shipping_status = '2') GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT 8
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=1
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=1
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=60
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=60
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=59
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=59
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=55
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=55
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=32
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=32
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=56
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=56
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=62
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=62
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=97
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=97
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('16') 
+
+SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number FROM `dbyizong`.`ecs_goods` AS g, `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS og WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('16')  OR g.goods_id IN ('') )    AND g.goods_number > 0  AND og.order_id = o.order_id AND og.goods_id = g.goods_id AND (o.order_status = '1' OR o.order_status = '5') AND (o.pay_status = '2' OR o.pay_status = '1') AND (o.shipping_status = '1' OR o.shipping_status = '2') GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT 8
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('81') 
+
+SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number FROM `dbyizong`.`ecs_goods` AS g, `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS og WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('81')  OR g.goods_id IN ('') )    AND g.goods_number > 0  AND og.order_id = o.order_id AND og.goods_id = g.goods_id AND (o.order_status = '1' OR o.order_status = '5') AND (o.pay_status = '2' OR o.pay_status = '1') AND (o.shipping_status = '1' OR o.shipping_status = '2') GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT 8
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('17') 
+
+SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number FROM `dbyizong`.`ecs_goods` AS g, `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS og WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('17')  OR g.goods_id IN ('') )    AND g.goods_number > 0  AND og.order_id = o.order_id AND og.goods_id = g.goods_id AND (o.order_status = '1' OR o.order_status = '5') AND (o.pay_status = '2' OR o.pay_status = '1') AND (o.shipping_status = '1' OR o.shipping_status = '2') GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT 8
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('93') 
+
+SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number FROM `dbyizong`.`ecs_goods` AS g, `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS og WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('93')  OR g.goods_id IN ('') )    AND g.goods_number > 0  AND og.order_id = o.order_id AND og.goods_id = g.goods_id AND (o.order_status = '1' OR o.order_status = '5') AND (o.pay_status = '2' OR o.pay_status = '1') AND (o.shipping_status = '1' OR o.shipping_status = '2') GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT 8
+
+SELECT library, number FROM `dbyizong`.`ecs_template` WHERE theme = 'yshop100' AND filename = 'index' AND remarks='' 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_brief , g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0'  WHERE g.goods_id  IN ('96','95','94','93','82','81','80','97','76','79','84','83','78','77','74','75','92','91','90','89','37','65','9','23','3','64')  ORDER BY g.sort_order, g.last_update DESC
+
+SELECT g.goods_id, g.goods_name,g.goods_brief, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, g.is_best, g.is_new, g.is_hot, g.is_promote, RAND() AS rnd FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND g.is_promote = 1 AND promote_start_date <= '1510977044' AND promote_end_date >= '1510977044'  ORDER BY g.sort_order, g.last_update DESC LIMIT 13 
+
+SELECT b.brand_id, b.brand_name, b.brand_logo, b.brand_desc, COUNT(*) AS goods_num, IF(b.brand_logo > '', '1', '0') AS tag FROM `dbyizong`.`ecs_brand`AS b, `dbyizong`.`ecs_goods` AS g WHERE g.brand_id = b.brand_id  AND is_show = 1  AND g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 GROUP BY b.brand_id HAVING goods_num > 0 ORDER BY tag DESC, b.sort_order ASC LIMIT 3 
+
+SELECT act_id, act_name, act_type, start_time, end_time FROM `dbyizong`.`ecs_goods_activity` WHERE is_finished=0 AND start_time <= '1510977044' AND end_time >= '1510977044'
+
+SELECT act_id, act_range,act_type, act_range_ext, act_name,gift, start_time, end_time FROM `dbyizong`.`ecs_favourable_activity` WHERE start_time <= '1510977044' AND end_time >= '1510977044' 
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页热卖-大图一' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页热卖-大图二' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页热卖-小图上' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页热卖-小图下' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT o.order_sn, o.invoice_no, s.shipping_code FROM `dbyizong`.`ecs_order_info` AS o LEFT JOIN `dbyizong`.`ecs_shipping` AS s ON s.shipping_id = o.shipping_id WHERE invoice_no > '' AND shipping_status = 1 ORDER BY shipping_time DESC LIMIT 10
+
+SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name  FROM `dbyizong`.`ecs_article` AS a, `dbyizong`.`ecs_article_cat` AS ac WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1 ORDER BY a.article_type DESC, a.add_time DESC LIMIT 8
+
+SELECT gb.*,g.*,gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.goods_name, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods_activity` AS gb, `dbyizong`.`ecs_goods` AS g WHERE gb.act_type = '1' AND g.goods_id = gb.goods_id AND gb.start_time <= '1510977044' AND gb.end_time >= '1510977044' AND g.is_delete = 0 ORDER BY gb.act_id DESC LIMIT 3
+
+SELECT a.act_id, a.goods_id, a.goods_name, a.ext_info, g.goods_thumb FROM `dbyizong`.`ecs_goods_activity` AS a,`dbyizong`.`ecs_goods` AS g WHERE a.goods_id = g.goods_id AND a.act_type = '2' AND a.is_finished = 0 AND a.start_time <= '1510977044' AND a.end_time >= '1510977044' AND g.is_delete = 0 ORDER BY a.start_time DESC LIMIT 3
+
+SELECT id, number, type, sort_order, ext_info FROM `dbyizong`.`ecs_template` WHERE filename = 'index' AND type = 1 AND remarks ='' AND theme='yshop100' order by sort_order asc
+
+SELECT link_logo, link_name, link_url FROM `dbyizong`.`ecs_friend_link` ORDER BY show_order
+
+SELECT c.cat_id, c.cat_name, cr.recommend_type FROM `dbyizong`.`ecs_cat_recommend` AS cr INNER JOIN `dbyizong`.`ecs_category` AS c ON cr.cat_id=c.cat_id
+
+SELECT id, number, type, sort_order, ext_info FROM `dbyizong`.`ecs_template` WHERE filename = 'index' AND type > 0 AND remarks ='' AND theme='yshop100' order by sort_order asc
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('5') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('5') OR g.goods_id IN ('1','2','20','22','24','29','52','54','62','79','80','82','91','96') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '5'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('4') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('4') OR g.goods_id IN ('39','47','48','49','51','53','57','59','60','63','64','65','72','78','83','84','85','86') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '4'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('6') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('6') OR g.goods_id IN ('1','18','19','21','80') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '6'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('2') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('2') OR g.goods_id IN ('2','3','4','6','7','8','9','15','16','33','44','82','93','94','97') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '2'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('3') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('3') OR g.goods_id IN ('1','25','27','28','34','38','77','88','89','92') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '3'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('7') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('7') OR g.goods_id IN ('5','15','32','35','37','41','42','50','55','56','58','61','70','71','74','75','81','88','90') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '7'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('8') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('8') OR g.goods_id IN ('17','23','40','76') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '8'
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('9') 
+
+SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.cat_id  IN ('9') OR g.goods_id IN ('26','30','31','36','43','79') ) ORDER BY g.sort_order, g.goods_id DESC LIMIT 4
+
+SELECT cat_name FROM `dbyizong`.`ecs_category` WHERE cat_id = '9'
+
+SELECT * FROM `dbyizong`.`ecs_bonus_type` WHERE send_type = '4'
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '0' AND is_show = 1
+
+SELECT cat_id,cat_name ,parent_id,is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '0' AND is_show = 1 and is_virtual=0 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '1' AND is_show = 1 
+
+SELECT cat_id, cat_name, parent_id, is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '1' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '6' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '4' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '2' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '5' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '3' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '7' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '8' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '9' AND is_show = 1 
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页热销-大图一' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=5
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=5 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID5-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('5') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('5')  OR g.goods_id IN ('1','2','20','22','24','29','52','54','62','79','80','82','91','96') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=4
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=4 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID4-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('4') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('4')  OR g.goods_id IN ('39','47','48','49','51','53','57','59','60','63','64','65','72','78','83','84','85','86') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=6
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=6 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID6-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('6') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('6')  OR g.goods_id IN ('1','18','19','21','80') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=2
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=2 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID2-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('2') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('2')  OR g.goods_id IN ('2','3','4','6','7','8','9','15','16','33','44','82','93','94','97') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=3
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=3 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID3-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('3') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('3')  OR g.goods_id IN ('1','25','27','28','34','38','77','88','89','92') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=7
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=7 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID7-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('7') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('7')  OR g.goods_id IN ('5','15','32','35','37','41','42','50','55','56','58','61','70','71','74','75','81','88','90') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=8
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=8 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID8-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('8') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('8')  OR g.goods_id IN ('17','23','40','76') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+select rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.cat_id=9
+
+select c.*, rc.recommend_type from `dbyizong`.`ecs_category` as c left join `dbyizong`.`ecs_cat_recommend` as rc on c.cat_id = rc.cat_id where c.parent_id=9 order by c.sort_order asc, c.cat_id asc
+
+select ap.ad_width,ap.ad_height,ad.ad_id,ad.ad_name,ad.ad_code,ad.ad_link from `dbyizong`.`ecs_ad_position` as ap left join `dbyizong`.`ecs_ad` as ad on ad.position_id = ap.position_id where ap.position_name='首页-分类ID9-左侧图片' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1 order by ad.ad_id desc limit 1
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods_cat` AS g WHERE g.cat_id  IN ('9') 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_sn,  g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, (select AVG(r.comment_rank) from `dbyizong`.`ecs_comment` as r where r.id_value = g.goods_id AND r.comment_type = 0 AND r.parent_id = 0 AND r.status = 1) AS comment_rank, (select IFNULL(sum(og.goods_number), 0) from `dbyizong`.`ecs_order_goods` as og where og.goods_id = g.goods_id) AS sell_number, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, goods_img, b.brand_name, b.brand_id, g.is_best, g.is_new, g.is_hot, g.is_promote FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_brand` AS b ON b.brand_id = g.brand_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0  AND is_best = 1 AND (g.cat_id  IN ('9')  OR g.goods_id IN ('26','30','31','36','43','79') ) ORDER BY g.sort_order, g.last_update DESC LIMIT 4
+
+SELECT c.*,pa.*,IF(c.extension_code = "package_buy",act_name,g.goods_name) as goods_name,  IF(c.extension_code = "package_buy","package_img",g.goods_thumb) as goods_thumb,g.goods_id,c.goods_number,c.goods_price FROM `dbyizong`.`ecs_cart` AS c  LEFT JOIN `dbyizong`.`ecs_goods` AS g ON g.goods_id=c.goods_id  left join `dbyizong`.`ecs_goods_activity` as pa on pa.act_id=c.goods_id  WHERE c.session_id = '5e0101012b21b3d21275d4ed1ca78c1b' AND c.user_id=0  AND rec_type = '0'
+
+SELECT SUM(goods_number) AS number, SUM(goods_price * goods_number) AS amount FROM `dbyizong`.`ecs_cart` AS c  WHERE c.session_id = '5e0101012b21b3d21275d4ed1ca78c1b' AND c.user_id=0  AND rec_type = '0'
+
+SELECT * FROM `dbyizong`.`ecs_chat_third_customer` WHERE supplier_id = 0 ORDER BY cus_type, cus_name
+
+SELECT c.*,pa.*,IF(c.extension_code = "package_buy",act_name,g.goods_name) as goods_name,  IF(c.extension_code = "package_buy","package_img",g.goods_thumb) as goods_thumb,g.goods_id,c.goods_number,c.goods_price FROM `dbyizong`.`ecs_cart` AS c  LEFT JOIN `dbyizong`.`ecs_goods` AS g ON g.goods_id=c.goods_id  left join `dbyizong`.`ecs_goods_activity` as pa on pa.act_id=c.goods_id  WHERE c.session_id = '5e0101012b21b3d21275d4ed1ca78c1b' AND c.user_id=0  AND rec_type = '0'
+
+SELECT SUM(goods_number) AS number, SUM(goods_price * goods_number) AS amount FROM `dbyizong`.`ecs_cart` AS c  WHERE c.session_id = '5e0101012b21b3d21275d4ed1ca78c1b' AND c.user_id=0  AND rec_type = '0'
+
+UPDATE `dbyizong`.`ecs_sessions` SET expiry = '1510977044', ip = '106.11.154.184', userid = '0', adminid = '0', user_name='0', user_rank='0', discount='1', email='0', data = 'a:3:{s:7:\"from_ad\";i:0;s:7:\"referer\";s:6:\"本站\";s:10:\"login_fail\";i:0;}' WHERE sesskey = '5e0101012b21b3d21275d4ed1ca78c1b' LIMIT 1
+
+DELETE FROM `dbyizong`.`ecs_sessions` WHERE expiry < 1510975244
+
+OPTIMIZE TABLE `dbyizong`.`ecs_sessions`
+
+SELECT userid, adminid, user_name, user_rank, discount, email, data, expiry FROM `dbyizong`.`ecs_sessions` WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27'
+
+SELECT data, expiry FROM `dbyizong`.`ecs_sessions_data` WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE add_time >= '1510976915' AND supplier_id = '0'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE pay_time >= 1510976915 AND supplier_id = '0'
+
+DESC `dbyizong`.`ecs_sessions_data`
+
+INSERT INTO `dbyizong`.`ecs_sessions_data` (sesskey, expiry, data) VALUES ('aac47480d5a044aea9143cd5db715c27', '1510977095', 'a:4:{s:10:\"admin_name\";s:6:\"Nelson\";s:11:\"action_list\";s:1079:\"goods_manage,remove_back,cat_manage,cat_drop,attr_manage,brand_manage,comment_priv,tag_manage,goods_type,goods_auto,picture_batch,goods_export,goods_batch,gen_goods_script,question_manage,shaidan_manage,scan_store,order_comment_priv,article_cat,article_manage,shopinfo_manage,shophelp_manage,vote_priv,article_auto,feedback_priv,integrate_users,sync_users,users_manage,users_drop,user_rank,surplus_manage,account_manage,template_manage,ship_manage,shiparea_manage,area_manage,flash_manage,navigator,affiliate_ck,order_os_edit,order_ps_edit,order_ss_edit,order_edit,order_view,order_view_finished,repay_manage,booking,sale_order_stats,client_flow_stats,delivery_view,back_view,invoice_manage,topic_manage,ad_manage,gift_manage,bonus_manage,auction,favourable,whole_sale,package_manage,exchange_goods,takegoods_list,takegoods_order,attention_list,email_list,magazine_list,view_sendlist,send_mail,template_setup,library_manage,lang_edit,sms_send,weixin_config,weixin_addconfig,weixin_menu,weixin_notice,weixin_keywords,weixin_fans,weixin_news,weixin_addqcode,weixin_qcode,weixin_reg\";s:10:\"last_check\";i:1510977095;s:12:\"suppliers_id\";s:1:\"0\";}')ON DUPLICATE KEY UPDATE expiry = expiry + 1510977095, data = 'a:4:{s:10:\"admin_name\";s:6:\"Nelson\";s:11:\"action_list\";s:1079:\"goods_manage,remove_back,cat_manage,cat_drop,attr_manage,brand_manage,comment_priv,tag_manage,goods_type,goods_auto,picture_batch,goods_export,goods_batch,gen_goods_script,question_manage,shaidan_manage,scan_store,order_comment_priv,article_cat,article_manage,shopinfo_manage,shophelp_manage,vote_priv,article_auto,feedback_priv,integrate_users,sync_users,users_manage,users_drop,user_rank,surplus_manage,account_manage,template_manage,ship_manage,shiparea_manage,area_manage,flash_manage,navigator,affiliate_ck,order_os_edit,order_ps_edit,order_ss_edit,order_edit,order_view,order_view_finished,repay_manage,booking,sale_order_stats,client_flow_stats,delivery_view,back_view,invoice_manage,topic_manage,ad_manage,gift_manage,bonus_manage,auction,favourable,whole_sale,package_manage,exchange_goods,takegoods_list,takegoods_order,attention_list,email_list,magazine_list,view_sendlist,send_mail,template_setup,library_manage,lang_edit,sms_send,weixin_config,weixin_addconfig,weixin_menu,weixin_notice,weixin_keywords,weixin_fans,weixin_news,weixin_addqcode,weixin_qcode,weixin_reg\";s:10:\"last_check\";i:1510977095;s:12:\"suppliers_id\";s:1:\"0\";}'
+
+UPDATE `dbyizong`.`ecs_sessions` SET expiry = '1510977095', ip = '121.32.127.3', userid = '0', adminid = '9', user_name='Nelson', user_rank='0', discount='0', email='0', data = '' WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27' LIMIT 1
+
+SELECT userid, adminid, user_name, user_rank, discount, email, data, expiry FROM `dbyizong`.`ecs_sessions` WHERE sesskey = 'dbb531173e9b27bd0b1de99a384f7ddd'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE add_time >= '1510976990' AND supplier_id = ''
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE pay_time >= 1510976990 AND supplier_id = ''
+
+UPDATE `dbyizong`.`ecs_sessions` SET expiry = '1510977170', ip = '119.137.55.24', userid = '0', adminid = '1', user_name='0', user_rank='0', discount='0', email='0', data = 'a:3:{s:10:\"admin_name\";s:5:\"admin\";s:11:\"action_list\";s:3:\"all\";s:10:\"last_check\";i:1510977170;}' WHERE sesskey = 'dbb531173e9b27bd0b1de99a384f7ddd' LIMIT 1
+
+DELETE FROM `dbyizong`.`ecs_sessions_data` WHERE expiry < 1510975370
+
+OPTIMIZE TABLE `dbyizong`.`ecs_sessions`
+
+DELETE FROM `dbyizong`.`ecs_sessions` WHERE expiry < 1510975370
+
+OPTIMIZE TABLE `dbyizong`.`ecs_sessions`
+
+DESC `dbyizong`.`ecs_searchengine`
+
+INSERT INTO `dbyizong`.`ecs_searchengine` (date, searchengine, count) VALUES ('2017-11-18', 'GOOGLE', '1')ON DUPLICATE KEY UPDATE count = count + 1
+
+SELECT a.attr_id, ga.goods_attr_id FROM `dbyizong`.`ecs_attribute` AS a left join `dbyizong`.`ecs_goods_attr`  AS ga on a.attr_id=ga.attr_id  WHERE a.is_attr_gallery=1 and ga.goods_id='96' order by ga.goods_attr_id 
+
+SELECT act_id FROM `dbyizong`.`ecs_goods_activity` AS b WHERE goods_id = '96' AND is_finished < 2 AND act_type = '5'
+
+select is_virtual from `dbyizong`.`ecs_goods` where goods_id=96
+
+SELECT c.cat_id, c.cat_name, c.sort_order, a.article_id, a.title, a.file_url, a.open_type FROM `dbyizong`.`ecs_article` AS a LEFT JOIN `dbyizong`.`ecs_article_cat` AS c ON a.cat_id = c.cat_id WHERE c.cat_type = 5 AND a.is_open = 1 ORDER BY c.sort_order ASC, a.article_id
+
+SELECT act_id, act_name, act_type, start_time, end_time FROM `dbyizong`.`ecs_goods_activity` WHERE is_finished=0 AND start_time <= '1510977268' AND end_time >= '1510977268' AND goods_id = '96'
+
+SELECT act_id, act_range,act_type, act_range_ext, act_name,gift, start_time, end_time FROM `dbyizong`.`ecs_favourable_activity` WHERE start_time <= '1510977268' AND end_time >= '1510977268'  AND CONCAT(',', user_rank, ',') LIKE '%,0,%'
+
+SELECT cat_id, brand_id FROM `dbyizong`.`ecs_goods`WHERE goods_id = '96'
+
+select region_id, region_name from `dbyizong`.`ecs_region` where parent_id=1
+
+select region_id from `dbyizong`.`ecs_region` where parent_id=2
+
+select * from `dbyizong`.`ecs_shipping` where shipping_code="pups"
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_pickup_point` WHERE supplier_id = 0
+
+SELECT g.*, c.measure_unit, b.brand_id, b.brand_name AS goods_brand, m.type_money AS bonus_money, IFNULL(AVG(r.comment_rank), 0) AS comment_rank, IFNULL(mp.user_price, g.shop_price * '1') AS rank_price FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_category` AS c ON g.cat_id = c.cat_id LEFT JOIN `dbyizong`.`ecs_brand` AS b ON g.brand_id = b.brand_id LEFT JOIN `dbyizong`.`ecs_comment` AS r ON r.id_value = g.goods_id AND comment_type = 0 AND r.parent_id = 0 AND r.status = 1 LEFT JOIN `dbyizong`.`ecs_bonus_type` AS m ON g.bonus_type_id = m.type_id AND m.send_start_date <= '1510977268' AND m.send_end_date >= '1510977268' LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE g.goods_id = '96' AND g.is_delete = 0 GROUP BY g.goods_id
+
+SELECT g.goods_id, g.goods_name, g.goods_thumb, g.goods_img, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, g.market_price, g.promote_price, g.promote_start_date, g.promote_end_date FROM `dbyizong`.`ecs_link_goods` lg LEFT JOIN `dbyizong`.`ecs_goods` AS g ON g.goods_id = lg.link_goods_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0' WHERE lg.goods_id = '96' AND g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 LIMIT 4
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_collect_goods` WHERE user_id='0' AND goods_id = '96'
+
+SELECT COUNT(rec_id) FROM `dbyizong`.`ecs_collect_goods` WHERE goods_id = '96'
+
+SELECT ghost_count FROM `dbyizong`.`ecs_goods` where goods_id=96
+
+select sum(goods_number) from `dbyizong`.`ecs_order_goods` where goods_id=96
+
+SELECT volume_number , volume_price FROM `dbyizong`.`ecs_volume_price` WHERE goods_id = '96' ORDER BY volume_number
+
+SELECT parent_id FROM `dbyizong`.`ecs_category` WHERE cat_id = '1'
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '0' AND is_show = 1
+
+SELECT cat_id,cat_name ,parent_id,is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '0' AND is_show = 1 and is_virtual=0 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '1' AND is_show = 1 
+
+SELECT cat_id, cat_name, parent_id, is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '1' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '6' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '4' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '2' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '5' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '3' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '7' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '8' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '9' AND is_show = 1 
+
+SELECT cat_id, cat_name, parent_id FROM `dbyizong`.`ecs_category`
+
+SELECT * FROM `dbyizong`.`ecs_nav`
+            WHERE ifshow = '1' ORDER BY type, vieworder
+
+SELECT goods_id FROM `dbyizong`.`ecs_goods` WHERE cat_id=1 AND goods_id > 96 AND is_on_sale = 1 AND is_alone_sale = 1 AND is_delete = 0 LIMIT 1
+
+SELECT max(goods_id) FROM `dbyizong`.`ecs_goods` WHERE cat_id=1 AND goods_id < 96 AND is_on_sale = 1 AND is_alone_sale = 1 AND is_delete = 0
+
+SELECT cat_id, cat_name, parent_id FROM `dbyizong`.`ecs_category`
+
+SELECT cat_id, cat_name FROM `dbyizong`.`ecs_category` WHERE parent_id = 0
+
+SELECT attr_group FROM `dbyizong`.`ecs_goods_type` AS gt, `dbyizong`.`ecs_goods` AS g WHERE g.goods_id='96' AND gt.cat_id=g.goods_type
+
+SELECT a.attr_id, a.attr_name, a.attr_group, a.is_linked, a.attr_type, g.goods_attr_id, g.attr_value, g.attr_price FROM `dbyizong`.`ecs_goods_attr` AS g LEFT JOIN `dbyizong`.`ecs_attribute` AS a ON a.attr_id = g.attr_id WHERE g.goods_id = '96' ORDER BY a.sort_order, g.attr_price, g.goods_attr_id
+
+select attr_id from `dbyizong`.`ecs_attribute` where cat_id='0' and is_attr_gallery='1' 
+
+SELECT goods_attr_id, attr_value FROM `dbyizong`.`ecs_goods_attr` WHERE goods_id = '96'
+
+select goods_attr from `dbyizong`.`ecs_products` where product_number>0 and goods_id='96' order by goods_attr
+
+SELECT act_id, act_name, act_type, start_time, end_time FROM `dbyizong`.`ecs_goods_activity` WHERE is_finished=0 AND start_time <= '1510977268' AND end_time >= '1510977268' AND goods_id = '96'
+
+SELECT act_id, act_range,act_type, act_range_ext, act_name,gift, start_time, end_time FROM `dbyizong`.`ecs_favourable_activity` WHERE start_time <= '1510977268' AND end_time >= '1510977268'  AND supplier_id=0 AND CONCAT(',', user_rank, ',') LIKE '%,0,%'
+
+SELECT cat_id, brand_id FROM `dbyizong`.`ecs_goods`WHERE goods_id = '96'
+
+SELECT a.article_id, a.title, a.file_url, a.open_type, a.add_time FROM `dbyizong`.`ecs_goods_article` AS g, `dbyizong`.`ecs_article` AS a WHERE g.article_id = a.article_id AND g.goods_id = '96' AND a.is_open = 1 ORDER BY a.add_time DESC
+
+SELECT gg.parent_id, ggg.goods_name AS parent_name, gg.goods_id, gg.goods_price, g.goods_name, g.goods_thumb, g.goods_img, g.shop_price AS org_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price FROM `dbyizong`.`ecs_group_goods` AS gg LEFT JOIN `dbyizong`.`ecs_goods`AS g ON g.goods_id = gg.goods_id LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = gg.goods_id AND mp.user_rank = '0' LEFT JOIN `dbyizong`.`ecs_goods` AS ggg ON ggg.goods_id = gg.parent_id WHERE gg.parent_id  IN ('96')  AND g.is_delete = 0 AND g.is_on_sale = 1 ORDER BY gg.parent_id, gg.goods_id
+
+SELECT rank_id, IFNULL(mp.user_price, r.discount * 80.00 / 100) AS price, r.rank_name, r.discount FROM `dbyizong`.`ecs_user_rank` AS r LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = '96' AND mp.user_rank = r.rank_id WHERE r.show_price = 1 OR r.rank_id = '0'
+
+SELECT img_id, img_original, img_url, thumb_url, img_desc FROM `dbyizong`.`ecs_goods_gallery` WHERE goods_id = '96' and goods_attr_id='' order by img_sort,img_id LIMIT 100
+
+SELECT library, number FROM `dbyizong`.`ecs_template` WHERE theme = 'yshop100' AND filename = 'goods' AND remarks='' 
+
+SELECT g.goods_id, g.goods_name, g.goods_name_style,g.goods_brief , g.market_price, g.shop_price AS org_price, g.promote_price, IFNULL(mp.user_price, g.shop_price * '1') AS shop_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd FROM `dbyizong`.`ecs_goods` AS g LEFT JOIN `dbyizong`.`ecs_member_price` AS mp ON mp.goods_id = g.goods_id AND mp.user_rank = '0'  WHERE g.goods_id  IN ('96','95','94','93','82','81','80','97','76','79','37','65','9','23','3','64','38','25','36','40','92','91','90')  ORDER BY g.sort_order, g.last_update DESC
+
+SELECT IFNULL(SUM(g.goods_number), 0) FROM `dbyizong`.`ecs_order_info` AS o, `dbyizong`.`ecs_order_goods` AS g WHERE o.order_id = g.order_id AND o.order_status = '1' AND o.shipping_status  IN ('1','2')  AND o.pay_status  IN ('2','1')  AND g.goods_id = '96'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_comment` where comment_type=0 and id_value ='96' and status=1
+
+SELECT tag_id, user_id, tag_words, COUNT(tag_id) AS tag_count FROM `dbyizong`.`ecs_tag` WHERE goods_id = '96' GROUP BY tag_words
+
+SELECT pg.goods_id, ga.act_id, ga.act_name, ga.act_desc, ga.goods_name, ga.start_time,
+                   ga.end_time, ga.is_finished, ga.ext_info
+            FROM `dbyizong`.`ecs_goods_activity` AS ga, `dbyizong`.`ecs_package_goods` AS pg
+            WHERE pg.package_id = ga.act_id
+            AND ga.start_time <= '1510977268'
+            AND ga.end_time >= '1510977268'
+            AND pg.goods_id = 96
+            GROUP BY ga.act_id
+            ORDER BY ga.act_id 
+
+SELECT ga.act_id,ga.ext_info
+            FROM `dbyizong`.`ecs_goods_activity` AS ga, `dbyizong`.`ecs_package_goods` AS pg
+            WHERE pg.package_id = ga.act_id
+            AND ga.start_time <= '1510977268'
+            AND ga.end_time >= '1510977268'
+            AND pg.goods_id = 96
+            GROUP BY pg.package_id
+            ORDER BY ga.act_id
+
+SELECT id, number, type, sort_order, ext_info FROM `dbyizong`.`ecs_template` WHERE filename = 'goods' AND type > 0 AND remarks ='' AND theme='yshop100' order by sort_order asc
+
+SELECT `volume_number` , `volume_price` FROM `dbyizong`.`ecs_volume_price` WHERE `goods_id` = '96' AND `price_type` = '1' ORDER BY `volume_number`
+
+SELECT COUNT(*) AS num FROM `dbyizong`.`ecs_comment` WHERE id_value = '96' AND status = 1 AND comment_rank in (5,4)
+
+SELECT COUNT(*) AS num FROM `dbyizong`.`ecs_comment` WHERE id_value = '96' AND status = 1 AND comment_rank in (3,2)
+
+SELECT COUNT(*) AS num FROM `dbyizong`.`ecs_comment` WHERE id_value = '96' AND status = 1 AND comment_rank = 1
+
+SELECT COUNT(*) AS num FROM `dbyizong`.`ecs_shaidan` WHERE goods_id = '96' AND status = 1
+
+SELECT * FROM `dbyizong`.`ecs_goods_tag` WHERE goods_id = '96' AND state = 1
+
+UPDATE `dbyizong`.`ecs_goods` SET click_count = click_count + 1 WHERE goods_id = '96'
+
+SELECT goods_number FROM`dbyizong`.`ecs_goods` WHERE goods_id = '96'
+
+SELECT * FROM `dbyizong`.`ecs_bonus_type` WHERE send_type = '4'
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '0' AND is_show = 1
+
+SELECT cat_id,cat_name ,parent_id,is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '0' AND is_show = 1 and is_virtual=0 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '1' AND is_show = 1 
+
+SELECT cat_id, cat_name, parent_id, is_show FROM `dbyizong`.`ecs_category`WHERE parent_id = '1' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '6' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '4' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '2' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '5' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '3' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '7' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '8' AND is_show = 1 
+
+SELECT count(*) FROM `dbyizong`.`ecs_category` WHERE parent_id = '9' AND is_show = 1 
+
+SELECT c.*,pa.*,IF(c.extension_code = "package_buy",act_name,g.goods_name) as goods_name,  IF(c.extension_code = "package_buy","package_img",g.goods_thumb) as goods_thumb,g.goods_id,c.goods_number,c.goods_price FROM `dbyizong`.`ecs_cart` AS c  LEFT JOIN `dbyizong`.`ecs_goods` AS g ON g.goods_id=c.goods_id  left join `dbyizong`.`ecs_goods_activity` as pa on pa.act_id=c.goods_id  WHERE c.session_id = 'SESS_ID' AND c.user_id=0  AND rec_type = '0'
+
+SELECT SUM(goods_number) AS number, SUM(goods_price * goods_number) AS amount FROM `dbyizong`.`ecs_cart` AS c  WHERE c.session_id = 'SESS_ID' AND c.user_id=0  AND rec_type = '0'
+
+SELECT * FROM `dbyizong`.`ecs_chat_third_customer` WHERE supplier_id = 0 ORDER BY cus_type, cus_name
+
+SELECT c.*,pa.*,IF(c.extension_code = "package_buy",act_name,g.goods_name) as goods_name,  IF(c.extension_code = "package_buy","package_img",g.goods_thumb) as goods_thumb,g.goods_id,c.goods_number,c.goods_price FROM `dbyizong`.`ecs_cart` AS c  LEFT JOIN `dbyizong`.`ecs_goods` AS g ON g.goods_id=c.goods_id  left join `dbyizong`.`ecs_goods_activity` as pa on pa.act_id=c.goods_id  WHERE c.session_id = 'SESS_ID' AND c.user_id=0  AND rec_type = '0'
+
+SELECT SUM(goods_number) AS number, SUM(goods_price * goods_number) AS amount FROM `dbyizong`.`ecs_cart` AS c  WHERE c.session_id = 'SESS_ID' AND c.user_id=0  AND rec_type = '0'
+
+SELECT userid, adminid, user_name, user_rank, discount, email, data, expiry FROM `dbyizong`.`ecs_sessions` WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27'
+
+SELECT data, expiry FROM `dbyizong`.`ecs_sessions_data` WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE add_time >= '1510977095' AND supplier_id = '0'
+
+SELECT COUNT(*) FROM `dbyizong`.`ecs_order_info` WHERE pay_time >= 1510977095 AND supplier_id = '0'
+
+DESC `dbyizong`.`ecs_sessions_data`
+
+INSERT INTO `dbyizong`.`ecs_sessions_data` (sesskey, expiry, data) VALUES ('aac47480d5a044aea9143cd5db715c27', '1510977275', 'a:4:{s:10:\"admin_name\";s:6:\"Nelson\";s:11:\"action_list\";s:1079:\"goods_manage,remove_back,cat_manage,cat_drop,attr_manage,brand_manage,comment_priv,tag_manage,goods_type,goods_auto,picture_batch,goods_export,goods_batch,gen_goods_script,question_manage,shaidan_manage,scan_store,order_comment_priv,article_cat,article_manage,shopinfo_manage,shophelp_manage,vote_priv,article_auto,feedback_priv,integrate_users,sync_users,users_manage,users_drop,user_rank,surplus_manage,account_manage,template_manage,ship_manage,shiparea_manage,area_manage,flash_manage,navigator,affiliate_ck,order_os_edit,order_ps_edit,order_ss_edit,order_edit,order_view,order_view_finished,repay_manage,booking,sale_order_stats,client_flow_stats,delivery_view,back_view,invoice_manage,topic_manage,ad_manage,gift_manage,bonus_manage,auction,favourable,whole_sale,package_manage,exchange_goods,takegoods_list,takegoods_order,attention_list,email_list,magazine_list,view_sendlist,send_mail,template_setup,library_manage,lang_edit,sms_send,weixin_config,weixin_addconfig,weixin_menu,weixin_notice,weixin_keywords,weixin_fans,weixin_news,weixin_addqcode,weixin_qcode,weixin_reg\";s:10:\"last_check\";i:1510977275;s:12:\"suppliers_id\";s:1:\"0\";}')ON DUPLICATE KEY UPDATE expiry = expiry + 1510977275, data = 'a:4:{s:10:\"admin_name\";s:6:\"Nelson\";s:11:\"action_list\";s:1079:\"goods_manage,remove_back,cat_manage,cat_drop,attr_manage,brand_manage,comment_priv,tag_manage,goods_type,goods_auto,picture_batch,goods_export,goods_batch,gen_goods_script,question_manage,shaidan_manage,scan_store,order_comment_priv,article_cat,article_manage,shopinfo_manage,shophelp_manage,vote_priv,article_auto,feedback_priv,integrate_users,sync_users,users_manage,users_drop,user_rank,surplus_manage,account_manage,template_manage,ship_manage,shiparea_manage,area_manage,flash_manage,navigator,affiliate_ck,order_os_edit,order_ps_edit,order_ss_edit,order_edit,order_view,order_view_finished,repay_manage,booking,sale_order_stats,client_flow_stats,delivery_view,back_view,invoice_manage,topic_manage,ad_manage,gift_manage,bonus_manage,auction,favourable,whole_sale,package_manage,exchange_goods,takegoods_list,takegoods_order,attention_list,email_list,magazine_list,view_sendlist,send_mail,template_setup,library_manage,lang_edit,sms_send,weixin_config,weixin_addconfig,weixin_menu,weixin_notice,weixin_keywords,weixin_fans,weixin_news,weixin_addqcode,weixin_qcode,weixin_reg\";s:10:\"last_check\";i:1510977275;s:12:\"suppliers_id\";s:1:\"0\";}'
+
+UPDATE `dbyizong`.`ecs_sessions` SET expiry = '1510977275', ip = '121.32.127.3', userid = '0', adminid = '9', user_name='Nelson', user_rank='0', discount='0', email='0', data = '' WHERE sesskey = 'aac47480d5a044aea9143cd5db715c27' LIMIT 1
+

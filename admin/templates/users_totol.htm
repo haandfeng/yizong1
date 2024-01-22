@@ -1,0 +1,40 @@
+ 
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- 订单搜索 -->
+<div class="form-div">
+  <form action="users.php" name="searchForm">
+      <input type="hidden" name="act" value="newuserscount">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />      
+    开始日期<input name="date_start" type="text" id="date_start" size="15" maxlength="8" placeholder="格式：20180208">
+    结束日期<input name="date_end" type="text" id="date_end" size="15" maxlength="8" placeholder="格式：20180208">
+    <input type="submit" value="{$lang.button_search}" class="button" />  
+  </form>
+  
+</div>
+
+<!-- 订单列表 -->
+
+  <div class="list-div" id="listDiv">
+ 
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+      <th>门店</th>
+      <th>注册数</th>
+  <tr>
+  {foreach from=$user_list item=user key=okey}
+  <tr>
+	<td align="center">{$user.user_name}</td>
+    <td>{$user.cc}个</td>
+  </tr>
+  {/foreach}
+</table>
+
+
+{if $full_page}
+  </div>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

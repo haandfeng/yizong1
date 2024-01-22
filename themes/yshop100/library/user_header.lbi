@@ -1,0 +1,81 @@
+<head>
+    <meta charset="UTF-8">
+    {insert_scripts files='utils.js,common.min.js'}
+</head>
+<body style="background-color: #f6f6f6">
+<div id="header">
+    <div class="header-top">
+        <div class="main">
+            {insert name='member_info'}
+        </div>
+    </div>
+    <style>
+        .sousou{position: absolute;width: 45px;height: 43px;right: 525px;top: 75px; cursor:pointer;}
+    </style>
+    <div class="header-center">
+        <div class="main">
+            <div class="logo"><img src="{$logo}"></div>
+            <div class="search">
+            <form class="mallSearch-form" method="get" name="searchForm" id="searchForm" action="search.php" onSubmit="return checkSearchForm()">
+                <input type="text" name="keywords" id="keyword" tabindex="9" accesskey="s" onkeyup="STip(this.value, event);" autocomplete="off"  value="{if $search_keywords}{$search_keywords|escape}{else}请输入关键词{/if}" onFocus="if(this.value=='请输入关键词'){this.value='';}else{this.value=this.value;}" onBlur="if(this.value=='')this.value='请输入关键词'">
+                <div class="sousou"></div>
+                <input type="submit" value="搜索" id="ssou" style="display:none;" >
+            </form>
+                <a href="flow.php" target="_top"><img src="themes/yshop100/pc/images/logo_08.png">购物车</a>
+            </div>
+        </div>
+    </div>
+    <div id="nav">
+        <div class="main">
+            <div class="nav-left">
+                <a class="a" href="catalog.php" title="查看全部商品分类">全部分类</a>
+                <div class="nav-left-bot" >
+                    <!--{foreach from=get_categories_tree(0) item=cat name=cat0}-->
+                    <ul>
+                        <li>
+                            <i class="icon1"></i>
+                            <a href="{$cat.url}" target="_blank" title="进入{$cat.name}频道">{$cat.name}</a>
+                            {if $cat.cat_id}
+                            <div  class="nav-left-main" >
+                                <ul>
+                                    <!--{foreach from=$cat.cat_id item=child name=namechild}-->
+                                        <div><a href="{$child.url}" target="_blank" title="{$child.name|escape:html}">{$child.name|escape:html}<i style="float:right;">&gt;</i></a></div>
+                                        <!--{foreach from=$child.cat_id item=childer name=childername}-->
+                                            <a href="{$childer.url}" target="_blank" title="{$childer.name|escape:html}">{$childer.name|escape:html}</a>
+                                        <!--{/foreach}-->
+                                    <!--{/foreach}-->
+                                </ul>
+                            </div>
+                            {/if}
+                        </li>
+                     </ul>
+                     <!--{/foreach}-->
+                 </div>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="index.php" title="首页">首页</a></li>
+                    <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav } -->
+                    <li><a class="{if $nav.active eq 1}current{/if}" href="{$nav.url}" title="{$nav.name}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
+                    <!-- {/foreach} -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.sousou').click(function(){
+        $('#ssou').click();
+    })
+
+    header_login();
+    function header_login()
+    {
+        Ajax.call('login_act_ajax.php', '', loginactResponse, 'GET', 'JSON', '1', '1');
+    }
+    function loginactResponse(result)
+    {
+        var MEMBERZONE =document.getElementById('login-info');
+        MEMBERZONE.innerHTML= result.memberinfo;
+    }
+</script>

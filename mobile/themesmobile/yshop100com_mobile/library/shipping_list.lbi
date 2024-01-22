@@ -1,0 +1,45 @@
+<!-- {if $shipping_list} -->
+<ul class="shipping_jm">
+	<li>
+		<input type="hidden" name="pay_ship[{$suppid}]" id='pay_ship_{$suppid}' class='shipping' value="{$checkedid}">
+		<!-- {foreach from=$shipping_list item=shipping} 循环配送方式 -->
+		<a id="ship_{$suppid}_{$shipping.shipping_id}" title="{$shipping.shipping_desc} {if $shipping.shipping_fee}订单金额满CNY260 - 包邮<br>订单金额不满CNY260 - 收取运费 {$shipping.format_shipping_fee}{elseif $shipping.shipping_code eq 'sf_express_daofu'}顺丰到付{else}免邮{/if}" class="shipping_type{if $shipping.selected neq ''} shipping_type_curr{/if} pay_ship{$suppid}" onclick="$('#pay_ship_{$suppid}').val({$shipping.shipping_id});selectShipping({$shipping.shipping_id},{$suppid});$('.pay_ship{$suppid}').removeClass('shipping_type_curr');$(this).addClass('shipping_type_curr');{if $shipping.shipping_id eq 33} $('.address').css('display','');{/if}{if $shipping.shipping_id neq 33} $('.address').css('display','none');{/if} ">
+			<!--注意：如果选中的是当前的配送，注意a标签的变化，变化为<a class="shipping_type shipping_type_curr">-->
+			<!-- {if $shipping.shipping_code eq 'sf_express_daofu'} -->
+			<label>
+				顺丰快递邮费到付
+			</label>
+			<!-- {elseif $shipping.shipping_code != 'tc_express' && $shipping.shipping_code != 'pups'} -->
+			<label>
+				<!-- {$lang.common_express } -->
+			</label>
+			<!-- {else} -->
+			<label>
+				<!-- {$shipping.shipping_name } -->
+			</label>
+			<!-- {/if} -->
+		</a>
+		<!-- {/foreach} -->
+		<!-- {if $no_consignee eq true } -->
+		<a href="flow.php?step=consignee" class="shipping_type pay_ship"><label>自选地址</label></a>
+		<script type="text/javascript">
+		$(function(){
+			$(".address").hide();
+		});
+		</script>
+		<!-- {/if} -->
+	</li>
+</ul>
+<!-- {if $no_consignee eq true } -->
+<div class="pickup_mobile">
+	<label>联系人电话：</label><input type="type" name="mobile" id="mobile" placeholder="手机(必填)" value="{$pre_mobile}" /><br>
+</div>
+<!-- {/if}-->
+<!-- {else} -->
+<ul class="shipping_jm">
+	<li>
+		<input type="hidden" name="pay_ship[{$suppid}]" id='pay_ship_{$suppid}' class='shipping' value="0">
+		<span>暂不支持收货地址配送</span>
+	</li>
+</ul>
+<!-- {/if} -->

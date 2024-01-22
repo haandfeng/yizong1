@@ -1,0 +1,154 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/catalog.css?v=1"/>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<!-- 头部 start -->
+<header class="header" style=" position:fixed; top:0">
+  <div class="tab_nav">
+      <div class="h-left">
+          <!--{if $comefrom != 'app'}-->
+          <a class="sb-back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a>
+          <!--{/if}-->
+      </div>
+      <div class="h-mid">全部分类</div>
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+        </aside>
+      </div>
+  </div>
+</header>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+<!--分类切换--> 
+<div class="container">    
+  <div class="category-box">
+    <div class="category1" style="outline: none;" tabindex="5000">
+      <ul class="clearfix" style=" padding-top:45px;">
+
+       	<!--{foreach from=$categories item=cat name=name}-->
+       	{if $cat.cat_id}
+        <li {if $ceid=="" and $smarty.foreach.name.first} class="cur cat1"{else}class="cat1"{/if} id="{$cat.id}">
+        	<span>{$cat.name|escape:html}</span>
+        </li>
+        <div id="cat2_{$cat.id}" style="display:none">
+        	{foreach from=$cat.cat_id item=cat2 name=cat2}
+				<li {if $ceid=="" and $smarty.foreach.name.first and $smarty.foreach.cat2.first}class="cur1"{/if} {if $ceid==$cat2.id}class="cur1"{/if} id="{$cat2.id}"><span>{$cat2.name|escape:html}</span></li>
+				{if $ceid==$cat2.id}<script>$('#{$cat.id}').addClass('cur')</script>{/if}
+        	{/foreach}
+        </div>
+        {else}
+		<li {if $ceid=="" and $smarty.foreach.name.first}class="cur cur1"{/if} {if $ceid==$cat.id}class="cur cur1"{/if} id="{$cat.id}">
+        	<span>{$cat.name|escape:html}</span>
+        </li>
+        {/if}
+
+		<!--{/foreach}-->
+
+
+      </ul>
+    </div>
+    <div class="category2" style=" outline: none; overflow-y:scroll" tabindex="5001">
+   <dl style="display: none; padding-top:45px;display: block;" id="list"> 
+                  <a href="#" class="all" style=" color:#FFF"></a>  
+      </dl>
+ 
+    </div>
+  </div>
+</div>
+<!---切换js----->
+
+<script src="themesmobile/yshop100com_mobile/js/jquery.nicescroll.min.js"></script> 
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.endless-scroll.js"></script>
+<script>
+	var id="";
+	var idtext="";
+	var page=0;
+    //点击切换2 3级分类
+	var array=new Array();
+	$('.category1 li').each(function(){ 
+		array.push($(this).position().top-45);
+	});
+	
+	id=$('.cur1').attr('id');
+	idtext=$('.cur1').text();
+	$('.all').text("进入"+$('.cur1').text()+"频道 >");
+	$('.all').attr('href','category.php?id='+$('.cur1').attr('id')); 
+$(window).load(function ()
+{ 
+	var url = 'cataloggoods.php?f=1&act=ajax&size=100&page='+page+'&catid='+id; 
+	$.ajax({
+		 type: "GET",
+		 url: url,
+		 dataType: "json",
+		 success: function(data){
+					 for(var i=0;i<data.length;i++){
+						$('dl#list').append(data[i].info);
+					 }
+				  }
+
+	 });
+
+});		 
+		$(document).ready(function(){
+			
+			var cat1 = $('#'+id).parents();console.log(cat1);
+			$(cat1).show();
+		
+			$(document).endlessScroll({
+				bottomPixels: 450,
+				fireDelay: 10,
+				callback: function(i,p,d){console.log(i, p, d);
+					if(d=='next'&&p>0){
+					page++;
+						var url = 'cataloggoods.php?act=ajax&size=100&page='+page+'&catid='+id; 
+						
+						$.ajax({
+							 type: "GET",
+							 url: url,
+							 dataType: "json",
+							 success: function(data){
+											if(data!=null){
+												 for(var i=0;i<data.length;i++){
+													$('dl#list').append(data[i].info);
+												 }
+											 }
+									  }
+
+						 });
+					}
+				}
+			});
+			
+			$('.category1 li').click(function() {
+				if($(this).is('.cat1')){
+					var catid = $(this).attr('id');
+					if($('#cat2_'+catid).is(":hidden")){
+						$('#cat2_'+catid).slideDown();
+					}
+				}else{
+					document.location="catalog.php?ceid="+$(this).attr('id');
+				}
+			});
+		});
+		
+
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+
+</script>
+<a href="javascript:goTop();" class="gotop" style=" z-index:9999"><img src="themesmobile/yshop100com_mobile/images/topup.png"></a>
+</body>
+</html>

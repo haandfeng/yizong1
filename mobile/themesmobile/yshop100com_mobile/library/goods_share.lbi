@@ -1,0 +1,76 @@
+<style>
+    ::-webkit-scrollbar {width: 0px;}
+    .f_mask {background-color: #000;opacity: 0.9;height: 100%;width: 100%; position: absolute;top: 0;left: 0;z-index: 111;display: none;}
+    .good_canshu { width:96%; overflow-y:scroll;margin-left:2%;}
+    #choose_attr{position:fixed; bottom:0; left:0; height:0px; z-index:99999999; width:100%;}
+    .erweimaimg{ width:100%; overflow:hidden; margin:auto}
+    .erweimaimg span{ display:block; width:100%; height:auto; overflow:hidden}
+    .erweimaimg span img{ display:block; width:100%; height:auto; overflow:hidden}
+    /*提示css*/
+    .font_prompt{ font-size:14px; text-align:center; color:#999; margin-top:50px;}
+</style>
+<!-- 微信 提示分享弹出层 S-->
+<section class="f_mask" style="display: none;"></section>
+<section class="f_block" id="choose_attr" style="height:0; overflow:hidden;">
+    <div class="erweimaimg">
+        <span onclick="close_choose_attr();"><img src="http://localhost/ok/wap/templates/default/resource/images/tishi.png"></span>
+    </div>
+</section>
+<!-- 微信 提示分享弹出层 E-->
+
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+wx.config({
+				debug: false,
+				appId: '{$app.id}',
+				timestamp: {$app.time},
+				nonceStr: '{$app.qian}',
+				signature: '{$app.sign}',
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage',
+					'hideOptionMenu',
+					'showOptionMenu'
+				]
+			});
+
+	wx.ready(function(){
+
+		// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+	window.shareData = {
+		"imgUrl": "themesmobile/yshop100com_mobile/yzimages/images/logo_03.png",
+        "LineLink": 'http://www.ecshop.net/mobile/register.php?goods_id=96&id=2|EoIGv4',
+        "Title": "幸福伤风咳素（特强）",
+        "Content": "233333333333"
+	};
+
+		// 发送给好友
+		WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+			WeixinJSBridge.invoke('sendAppMessage', {
+				"img_url": window.shareData.imgUrl,
+				"img_width": "640",
+				"img_height": "640",
+				"link": window.shareData.LineLink,
+				"desc": window.shareData.Content,
+				"title": window.shareData.Title
+			}, function(res) {
+				//$('.show_zhuan').hide();
+				//_report('send_msg', res.err_msg);
+			})
+		});
+		// 分享到朋友圈
+		WeixinJSBridge.on('menu:share:timeline', function(argv) {
+			WeixinJSBridge.invoke('shareTimeline', {
+				"img_url": window.shareData.imgUrl,
+				"img_width": "640",
+				"img_height": "640",
+				"link": window.shareData.LineLink,
+				"desc": window.shareData.Content,
+				"title": window.shareData.Title
+			}, function(res) {
+				//$('.show_zhuan').hide();
+				//_report('timeline', res.err_msg);
+			});
+		});
+
+</script>

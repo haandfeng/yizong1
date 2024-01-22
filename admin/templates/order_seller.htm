@@ -1,0 +1,43 @@
+<!-- $Id: shipping_area_info.htm 16819 2009-11-25 06:21:17Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.org.js,../js/region.js"}
+<div class="main-div">
+<form method="post" action="order.php" name="theForm" style="background:#FFF">
+<fieldset style="border:1px solid #DDEEF2">
+  <table>
+    <tr>
+      <td class="label">门店:</td>
+      <td><select name="store_id">
+          <option value="0">平台方</option>
+          {foreach from=$store_list item=store}
+          <option value="{$store.store_id}" {if $store.store_id eq $order.store_id}selected{/if}>{$store.store_name}</option>
+          {/foreach}
+        </select></td>
+    </tr> 
+    <tr>
+      <td class="label">导购员:</td>
+      <td><select name="seller_id">
+          <option value="0">平台方</option>
+          {foreach from=$seller_list item=seller}
+          <option value="{$seller.seller_id}" {if $seller.seller_id eq $order.seller_id}selected{/if}>{$seller.seller_name}</option>
+          {/foreach}
+        </select></td>
+    </tr> 
+  </table>
+</fieldset>
+ 
+  <table >
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" /> 
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="order_id" value="{$order.order_id}" />  
+      <input type="hidden" name="old_store_id" value="{$store.store_id}" />  
+      <input type="hidden" name="old_seller_id" value="{$seller.seller_id}" />  
+    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+{include file="pagefooter.htm"}

@@ -1,0 +1,64 @@
+<!-- $Id: agency_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+{/if}
+
+  <table cellpadding="3" cellspacing="1">
+    <tr>
+      <th>{$lang.stores_name}</th>
+      <th>{$lang.position}</th>
+      <th>{$lang.sellers_name}</th>
+      <th>{$lang.sellers_check}</th>
+      <th>{$lang.handler}</th>
+    </tr>
+    {foreach from=$sellers_list item=sellers}
+    <tr>
+      <td align="center">{$sellers.store_name}</td>
+      <td align="center">{$sellers.position}</td>
+      <td align="center">{$sellers.seller_name}</td>
+			<td align="center"><img src="images/{if $sellers.deleted eq 0}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'is_deleted', {$sellers.seller_id})" style="cursor:pointer;"/></td>
+      <td align="center">
+        <a href="sellers.php?act=edit&id={$sellers.seller_id}" title="{$lang.edit}">{$lang.edit}</a> |
+        <a href="javascript:void(0);" onclick="listTable.remove({$sellers.seller_id}, '{$lang.drop_confirm}')" title="{$lang.remove}">{$lang.remove}</a>      </td>
+    </tr>
+    {foreachelse}
+    <tr><td class="no-records" colspan="5">{$lang.no_records}</td></tr>
+    {/foreach}
+  </table>
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+</form>
+
+<script type="text/javascript" language="javascript">
+  <!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+      document.forms['listForm'].reset();
+  }
+  {/literal}
+  //-->
+</script>
+{include file="pagefooter.htm"}
+{/if}

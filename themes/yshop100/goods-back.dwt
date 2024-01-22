@@ -1,0 +1,673 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv=“X-UA-Compatible” content=“IE=9″>
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/goods.css" />
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js" ></script>
+
+<script type="text/javascript" src="themes/yshop100/js/magiczoom.js" ></script>
+<script type="text/javascript" src="themes/yshop100/js/magiczoom_plus.js" ></script>
+
+<script type="text/javascript" src="themes/yshop100/js/scrollpic.js"></script>
+  <script type="text/javascript" src="themes/yshop100/js/gw_totop.js" ></script>
+  <script type="text/javascript" src="themes/yshop100/js/arrive_notice.js" ></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js'}
+
+<!-- #BeginLibraryItem "/library/pricecut_notice.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<link rel="stylesheet" href="themes/yshop100/pc/css/index.css">
+<style>
+
+    .details-r .choose_bor .pickup-point-wrap #pickup_point_list ul li{display: inline-block;height: auto;}
+#MagicZoomPup{width:200px;height:200px;}
+</style>
+<script>
+$(document).ready(function(){
+	$(".jqzoom").jqzoom();
+	$("a.greybox").click(function(){
+          var t = this.title || $(this).text() || this.href;
+          GB_show(t,this.href,500,700);
+          return false;
+        });
+});
+</script>
+<div class="main">
+<div class="list-nav"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
+    <div class="details">
+        <div  id="preview">
+          <a href="{if $pictures.0.img_original}{$pictures.0.img_original}{else}{$goods.original_img}{/if}" class="MagicZoom" id="zoom" rel="zoom-position: right;">
+                <!-- {if $pictures}-->
+                <img  src="{$pictures.0.img_url}" class="goodsimg" id="goods_bimg" width="400" height="400" />
+                <!-- {else} -->
+                <img src="{$goods.goods_img}" class="goodsimg" id="goods_bimg" width="400" height="400" />
+                <!-- {/if}-->
+            </a>
+        </div>
+        <div class="s_lun">
+        <span class="scrleft" onmouseover="moveLeft()" onmousedown="clickLeft()" onmouseup="moveLeft()" onmouseout="scrollStop()"></span>
+        <div class="s_top">
+        <div id="demo">
+        <div class="details-c" id="details-c">
+
+            <ul>
+                <!-- {foreach from=$pictures item=picture}-->
+
+                <li><img rev="{$picture.img_url}" rel='{$picture.img_original}' src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}"></li>
+                <!--{/foreach}-->
+            </ul>
+
+        </div>
+        <div id="demo2" style="display:inline; overflow:visible;"></div>
+        </div>
+        </div>
+        <span class="scrright" onmouseover="moveRight()" onmousedown="clickRight()" onmouseup="moveRight()" onmouseout="scrollStop()" class="spanR"></span>
+        </div>
+        <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+        <div class="details-r">
+            <dd>
+                <strong>{if $goods.suppliers_desc}【{$goods.suppliers_desc}】{/if}{$goods.goods_style_name}</strong>
+                <!-- {if $goods.goods_brief} -->
+                    <p>{$goods.goods_brief}</p>
+                <!-- {/if} -->
+            </dd>
+            <div class="details-info">
+                <ul>
+                <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+                    <li style="height:60px;">
+                        <span>促销价 </span>
+                        <strong style="display: inline-block;" class="p-price" id="ECS_GOODS_AMOUNT"></strong>
+                    </li>
+                <!--{else}-->
+                    <li style="height:60px;">
+                        <span>售价 </span>
+                        <strong style="display: inline-block;" class="p-price" id="ECS_GOODS_AMOUNT"></strong>
+                    </li>
+                <!--{/if}-->
+                <!-- {if $cfg.show_marketprice} 市场价格-->
+                    <li>
+                        <span>市场价 </span>
+                        <s>{$goods.market_price}</s>
+                    </li>
+                <!-- {/if} -->
+                <!-- {if $goods.give_integral_2 eq '-1'} 购买此商品赠送积分-->
+                    <li>
+                        <span>赠送积分 </span>
+                        <span>&nbsp;&nbsp;<font id="ECS_GOODS_AMOUNT_jf">{$goods.give_integral}</font></span>
+                    </li>
+                <!-- {else} -->
+                    <p>赠送积分 &nbsp;&nbsp;<span>{$goods.give_integral}</span></p>
+                <!-- {/if} -->
+                <!-- {if $goods.price_tax} -->
+                  <li id="ECS_GOODS_AMOUNT_TAX">{$goods.price_tax}</li>
+                <!-- {/if} -->
+                </ul>
+            </div>
+
+
+
+
+            <ul id="choose" class="choose_bor">
+                  <!--{if $pups && $ppts}后台安装了门店自提这个配送方式才显示-->
+                  <li class="choose-pickup-point">
+                    <div class="pickup-point-wrap">
+                      <div class="dt">自提</div>
+                      <div id="pickup_point" onmouseenter="show_list()" onmouseleave="hide_list()">自提点列表</div>
+                      <div id="area_label" onmouseenter="show_area()" onmouseleave="hide_area()">所在区域</div>
+                      <div id="pickup_point_list" onmouseenter="show_list()" onmouseleave="hide_list()"> </div>
+                      <div id="area_list_wrap" onmouseenter="show_area()" onmouseleave="hide_area()">
+                        <div id="area_menu"> <a id="province" href="javascript:void(0);">省</a> <a id="city" href="javascript:void(0);">市</a> <a class="hover" id="district" href="javascript:void(0);">区</a>
+                          <div style="clear:both"></div>
+                        </div>
+                        <ul id="area_list">
+                        </ul>
+                      </div>
+                      <div style="clear:both"></div>
+                    </div>
+                  </li>
+                  <!--{/if}-->
+                  <!-- {* 开始循环所有可选属性 *} -->
+                  <!-- {foreach from=$specification item=spec key=spec_key name="name"} -->
+                  <li id="choose-version">
+                    <div class="dt">{$spec.name}</div>
+                    <div class="dd catt">
+                      <!-- {* 判断属性是复选还是单选 *} -->
+                      <!-- {if $spec.attr_type eq 1} -->
+                      <!-- {if $cfg.goodsattr_style eq 1} -->
+                      <!--代码修改_start    注：将 if $cfg.goodsattr_style eq 1 与 对应else 之间的代码修改成下面这个样子-->
+                      <input type="hidden" name="spec_attr_type" value="{$spec_key}">
+                      <input type="hidden" name="attr_types" id="spec_attr_type_{$spec_key}" value="0">
+                      <ul class="ys_xuan" id="xuan_{$spec_key}">
+                        <div class="catt" id="catt_{$spec_key}">
+                          <!-- {foreach from=$spec.values item=value key=key} -->
+                            <a onclick="show_attr_status(this,{$goods.goods_id}, {$attr_id});{if $spec_key eq $attr_id}get_gallery_attr({$id}, {$value.id});{/if}"  href="javascript:" name="{$value.id}" id="xuan_a_{$value.id}"  title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]" {if $value.disabled eq 'disabled' && $spec_count eq 1}class="wuxiao"{/if}>
+                            {if  $value.goods_attr_thumb}
+                          <div class="spec-img"><img src="{$value.goods_attr_thumb}" width=40 height=40 title="{$value.label}" alt="{$value.label}" /></div>
+                          <label class="spec-name">{$value.label}</label>
+                          {else}
+                          <div class="value-label">{$value.label}</div>
+                          {/if}
+                          <input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}" disabled="{$value.disabled}" />
+                          </a>
+                          <!-- {/foreach} -->
+                        </div>
+                      </ul>
+                      <div class="clear"></div>
+                      <input type="hidden" name="spec_list" value="{$key}" />
+                      <!--代码修改_end   -->
+                      <!-- {else} -->
+                      <select name="spec_{$spec_key}">
+                        <!-- {foreach from=$spec.values item=value key=key} -->
+                        <option label="{$value.label}" value="{$value.id}">{$value.label} {if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if}{if $value.price neq 0}{$value.format_price}{/if}</option>
+                        <!-- {/foreach} -->
+                      </select>
+                      <input type="hidden" name="spec_list" value="{$key}" />
+                      <!-- {/if} -->
+                      <!-- {else} -->
+                      <!-- {foreach from=$spec.values item=value key=key} -->
+                      <label for="spec_value_{$value.id}">
+                        <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" />
+                        {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}] </label>
+                      <br />
+                      <!-- {/foreach} -->
+                      <input type="hidden" name="spec_list" value="{$key}" />
+                      <!-- {/if} -->
+                    </div>
+                  </li>
+                  <!-- {/foreach} -->
+                  <!--代码修改_start   -->
+                  <script type="text/javascript">
+					var myString=new Array();
+					{literal}
+					{foreach from=$prod_exist_arr key=pkey item=prod}
+					myString[{$pkey}]="{$prod}";
+					{/foreach}
+					{/literal}
+				  </script>
+                  <!--代码修改_end   -->
+                  <!-- {* 结束循环可选属性 *} -->
+                  <li id="choose-amount">
+                    <div class="dt">数量</div>
+                    <div class="dd">
+                      <div class="wrap-input">
+                        <script language="javascript" type="text/javascript">  function goods_cut(){  var num_val=document.getElementById('number');  var new_num=num_val.value;  var Num = parseInt(new_num);  if(Num>1)Num=Num-1;  num_val.value=Num;  }  function goods_add(){  var num_val=document.getElementById('number');  var new_num=num_val.value;  var Num = parseInt(new_num);  Num=Num+1;  num_val.value=Num;  } </script>
+                        <input class="min" name="" onclick="goods_cut();changePrice();" type="button" value="-" />
+                        <input class="text_box" name="number" type="text" id="number" value="1" onblur="changePrice();" />
+                        <input class="add" name="" type="button" onclick="goods_add();changePrice();" value="+" />
+
+                        <!-- {if $cfg.show_goodsnumber} -->
+                          （库存<font id="shows_number">{$goods.goods_number} </font>）
+                        <!-- {else} -->
+                            <!-- {if $goods.goods_number eq 0} -->
+                                &nbsp;&nbsp;缺货
+                            <!-- {else} -->
+                                &nbsp;&nbsp;有货
+                            <!-- {/if} -->
+                        <!-- {/if} -->
+                      </div>
+                    </div>
+                  </li>
+                  <!--{if $tag eq 1}-->
+                  <li class="padd">
+                    <div>
+                      <div class="dt">限购数量</div>
+                      <div class="dd">{$goods.buymax}</div>
+                    </div>
+                  </li>
+                  <!--{/if}-->
+                </ul>
+                <div class="supp" >
+                  <div class="dd">
+                    <a href="supplier.php?suppId={if $shopuserinfo.supplier_id}{$shopuserinfo.supplier_id}{else}0{/if}">
+                    <div class="supp-name">{if $shopuserinfo.supplier_name}{$shopuserinfo.supplier_name}{else}香港漢方杏林堂{/if}</div>
+                    <div class="supp-other">
+                      <span>描述:  <i>4.9↑</i></span>
+                      <span>服务:  <i>4.9↑</i></span>
+                      <span>物流:  <i>4.9↑</i></span>
+                    </div>
+                    <b>进入店铺</b>
+                  </div>
+                </div>
+
+                <dd id="choose-btns1" style="display: none">
+                    <a onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>到货通知</a>
+                </dd>
+
+                <dd id="choose-btns">
+                    <!--{if $goods_n>0}-->
+                    <button>立即购买</button><a href="javascript:addToCart({$goods.goods_id})" name="bi_addToCart"><img src="themes/yshop100/pc/images/car_10.png"  >加入购物车</a>
+                    <!-- {else}-->
+                    <a href="javascript:void(0);" onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>到货通知</a>
+                    <!-- {/if}-->
+                </dd>
+        </div>
+    </div>
+    <style>
+        .details-main .details-left .details-left-main .details-left-bot img{margin-top: 0px;}
+    </style>
+    <div class="details-main">
+        <div class="details-left">
+            <div class="details-left-nav">
+                <ul>
+                    <li class="click">商品详情</li>
+                    <li>用户评价<i>（{$review_count}）</i></li>
+                </ul>
+            </div>
+            <div class="details-left-main">
+                <div class="details-left-bot">
+                  {if $ishide_path_img eq 0}
+                    {$goods.goods_desc}
+                  {/if}
+                </div>
+                <div class="details-left-bot" style="display: none">
+                    <!-- #BeginLibraryItem "/library/my_comments.lbi" --><!-- #EndLibraryItem -->
+                </div>
+            </div>
+        </div>
+
+        <!-- {if $bought_goods} -->
+        <div class="details-right">
+            <dd>热卖产品</dd>
+            <ul>
+            <!--{foreach from=$bought_goods item=bought_goods_data name=bought_goods}-->
+                <a target="_blank" title="{$bought_goods_data.goods_name|escape:html}" href="{$bought_goods_data.url}">
+                    <li>
+                        <div><img src="{$bought_goods_data.thumb}"></div>
+                        <p>{$bought_goods_data.short_name|truncate:12}</p>
+                        <span><strong class="main-color"><!-- {if $bought_goods.promote_price neq ""} -->{$bought_goods_data.promote_price}<!-- {else}-->{$bought_goods_data.shop_price}<!--{/if}--></strong></span>
+                    </li>
+                </a>
+               <!-- {/foreach} -->
+            </ul>
+        </div>
+        <!-- {/if} -->
+        <div style="clear: both"></div>
+    </div>
+</div>
+</form>
+
+<!--底部-->
+ <!-- #BeginLibraryItem "/library/right_sidebar.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>
+<script>
+        $('.details-r dl ul li').click(function () {
+            $('.details-r dl ul li').removeClass('click')
+            $(this).addClass('click')
+        })
+
+        $('.details-c ul li img').click(function () {
+            var lo = $(this).attr('rev');
+            $('#preview img').attr('src',lo);
+            var lt = $(this).attr('rel');
+           $('#preview img:eq(1)').attr('src',lt);
+        })
+
+
+
+
+
+        $('.details-left-nav ul li').click(function () {
+            $('.details-left-nav ul li').removeClass('click');
+            $(this).addClass('click');
+            var i = $(this).index();
+            $('.details-left-main >div').hide();
+            $('.details-left-main >div').eq(i).show();
+
+        })
+
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+var suppid = {$goods.supplier_id};
+
+window.onload = function(){
+  Compare.init();
+  fixpng();
+}
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+//changePrice();
+changePriceAll();
+fixpng();
+ShowMyComments({$goods.goods_id},0,1);
+try { onload_leftTime(now_time); }
+catch (e) {}
+
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice(){
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res){
+
+  if (res.err_msg.length > 0){
+	if(res.qty==0){
+		document.getElementById('choose-btns').style.display = 'none';
+    	document.getElementById('choose-btns1').style.display = 'block';
+	}
+    alert(res.err_msg);
+	document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+ }else{
+	  document.getElementById('choose-btns').style.display = 'block';
+     document.getElementById('choose-btns1').style.display = 'none';
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+    if (document.getElementById('ECS_GOODS_AMOUNT')){
+
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+	  if (res.result_jf){
+		document.getElementById('ECS_GOODS_AMOUNT_jf').innerHTML = res.result_jf;
+	  }
+    }
+    if(document.getElementById('shows_number')){
+	document.getElementById('shows_number').innerHTML = res.attr_num;
+    }
+    if(document.getElementById('mark_price')){
+	document.getElementById('mark_price').innerHTML = res.result1;
+    }
+  }
+
+
+}
+
+/**
+* 获取商品范围价格
+*/
+function changePriceAll(){
+	var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+	var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+
+	Ajax.call('goods.php', 'act=allprice&id=' + goodsId + '&attr=' + attr + '&number=1', changePriceResponse, 'GET', 'JSON');
+}
+{if !$smarty.session.user_id >0}
+$('.item-operate .collet-btn').click(function(){
+	$('.pop-login,.pop-mask').show();
+})
+{/if}
+</script>
+
+<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" type="text/javascript"></script>
+<script>
+Ajax.call('goods.php', 'act=get_pickup_info&province='+remote_ip_info.province+'&city='+remote_ip_info.city+'&district='+remote_ip_info.district+'&suppid='+suppid,
+	function(res){
+		if(res.error == 0) {
+			var result = '<ul>';
+			for(var i=0; i<res.result.length; i++){
+				result += '<li>店名：'+res.result[i].shop_name+'<br>联系人：'+res.result[i].contact+'&nbsp;&nbsp;联系方式：'+res.result[i].phone + '<br>地址：'+res.result[i].address+'</li>';
+			}
+			result += '</ul>';
+			if(res.result.length > 0){
+				document.getElementById('pickup_point_list').innerHTML = result;
+
+			}else{
+				document.getElementById('pickup_point_list').innerHTML = '<div style="padding:10px 0;text-align:center;">该地区尚未开放自提点</div>';
+
+			}
+			hide_area();
+			show_list();
+			document.getElementById('province').innerHTML = res.city_info.province;
+			document.getElementById('province').onclick = function(){
+				get_area_list({$shop_country}, '');
+			}
+			document.getElementById('city').innerHTML = res.city_info.city;
+			document.getElementById('city').onclick = function(){
+				get_area_list(res.city_info.province_id, res.city_info.province);
+			}
+
+
+			document.getElementById('area_label').innerHTML = res.city_info.province + '&nbsp;' + res.city_info.city;
+			get_area_list(res.city_info.city_id, res.city_info.city);
+		}
+	}, 'GET', 'JSON');
+function show_list(){
+	document.getElementById('pickup_point').style.borderBottom = "1px solid #fff";
+	document.getElementById('pickup_point_list').style.display = "block";
+}
+function hide_list(){
+	document.getElementById('pickup_point').style.borderBottom = "1px solid #ccc";
+	document.getElementById('pickup_point_list').style.display = "none";
+}
+function get_area_list(parent_id, name){
+	Ajax.call('goods.php', 'act=get_area_list&parent_id='+parent_id, function(res) {
+		var result = '';
+		for(var i=0; i<res.length; i++){
+			result += '<li';
+			if(res[i].region_name.length>5)
+				result += ' style="widht:170px;"';
+			result += '><a href="javascript:void(0)" ';
+			if(res[i].region_type == 3)
+				result += 'onclick="get_pickup_point_list('+res[i].region_id+', this)">';
+			else
+				result += 'onclick="get_area_list('+res[i].region_id+', \''+res[i].region_name+'\')">';
+			result+=res[i].region_name+'</a></li>';
+		}
+		result += '';
+		document.getElementById('area_list').innerHTML = result;
+
+		switch(res[0].region_type){
+			case '1':
+				document.getElementById('province').onclick = function(){get_area_list(parent_id, name);};
+				document.getElementById('city').innerHTML = '市';
+				document.getElementById('district').innerHTML = '区';
+				switch_hover('province');
+				break;
+			case '2':
+				document.getElementById('city').onclick = function(){get_area_list(parent_id, name);};
+				document.getElementById('province').innerHTML = name;
+				//document.getElementById('city').innerHTML = '市';
+				document.getElementById('district').innerHTML = '区';
+				switch_hover('city');
+				break;
+			case '3':
+				document.getElementById('city').innerHTML = name;
+				document.getElementById('district').innerHTML = '区';
+				switch_hover('district');
+				break;
+		}
+		hide_list();
+		//show_area();
+	}, 'GET', 'JSON');
+}
+
+function switch_hover(sel){
+	if(sel == 'province'){
+		document.getElementById('city').className = '';
+		document.getElementById('district').className = '';
+		document.getElementById('province').className = 'hover';
+	}else if(sel == 'city'){
+		document.getElementById('city').className = 'hover';
+		document.getElementById('district').className = '';
+		document.getElementById('province').className = '';
+	}else{
+		document.getElementById('city').className = '';
+		document.getElementById('district').className = 'hover';
+		document.getElementById('province').className = '';
+	}
+}
+
+function get_pickup_point_list(region_id, obj){
+	var name = obj.innerHTML;
+	document.getElementById('district').innerHTML = name;
+	var label = document.getElementById('province').innerHTML + '&nbsp;' +
+				document.getElementById('city').innerHTML + '&nbsp;' +
+				document.getElementById('district').innerHTML;
+	document.getElementById('area_label').innerHTML = label;
+
+	Ajax.call('goods.php', 'act=get_pickup_point_list&district_id='+region_id+'&suppid='+suppid, function(res) {
+		var result = '<ul>';
+			if(res.length > 0){
+				for(var i=0; i<res.length; i++){
+					result += '<li>'+res[i].shop_name+'&nbsp;&nbsp;地址：'+res[i].address+
+								'<br>联系人：'+res[i].contact+'&nbsp;&nbsp;联系方式：'+res[i].phone + '</li>';
+				}
+				result += '</ul>';
+				document.getElementById('pickup_point_list').innerHTML = result;
+
+			}else{
+				document.getElementById('pickup_point_list').innerHTML = '<div style="padding:10px 0;text-align:center;">该地区尚未开放自提点</div>';
+
+			}
+			hide_area();
+			show_list();
+
+
+	}, 'GET', 'JSON');
+}
+function show_area(){
+	document.getElementById('area_label').style.borderBottom = "1px #fff solid";
+	document.getElementById('area_list_wrap').style.display = "block";
+}
+function hide_area(){
+	document.getElementById('area_label').style.borderBottom = "1px solid #ccc";
+	document.getElementById('area_list_wrap').style.display = "none";
+}
+</script>
+
+<script>
+      function $gg(id){
+        return (document.getElementById) ? document.getElementById(id): document.all[id]
+      }
+
+      var boxwidth=105;//跟图片的实际尺寸相符
+
+      var box=$gg("demo");
+      var obox=$gg("details-c");
+      var dulbox=$gg("demo2");
+      obox.style.height=obox.getElementsByTagName("li").length*boxwidth+'px';
+      dulbox.style.height=obox.getElementsByTagName("li").length*boxwidth+'px';
+      box.style.height=obox.getElementsByTagName("li").length*boxwidth*4+'px';
+      var canroll = false;
+      if (obox.getElementsByTagName("li").length >= 6) {
+        canroll = true;
+        dulbox.innerHTML=obox.innerHTML;
+      }
+      var step=5;temp=1;speed=50;
+      var awidth=obox.offsetHeight;
+      var mData=0;
+      var isStop = 1;
+      var dir = 1;
+
+      function s(){
+        if (!canroll) return;
+        if (dir) {
+      if((awidth+mData)>=0)
+      {
+      mData=mData-step;
+      }
+      else
+      {
+      mData=-step;
+      }
+      } else {
+        if(mData>=0)
+        {
+        mData=-awidth;
+        }
+        else
+        {
+        mData+=step;
+        }
+      }
+
+      obox.style.marginTop=mData+"px";
+
+      if (isStop) return;
+
+      setTimeout(s,speed)
+      }
+
+
+      function moveLeft() {
+          var wasStop = isStop;
+          dir = 1;
+          speed = 50;
+          isStop=0;
+          if (wasStop) {
+            setTimeout(s,speed);
+          }
+      }
+
+      function moveRight() {
+          var wasStop = isStop;
+          dir = 0;
+          speed = 50;
+          isStop=0;
+          if (wasStop) {
+            setTimeout(s,speed);
+          }
+      }
+
+      function scrollStop() {
+        isStop=1;
+      }
+
+      function clickLeft() {
+          var wasStop = isStop;
+          dir = 1;
+          speed = 25;
+          isStop=0;
+          if (wasStop) {
+            setTimeout(s,speed);
+          }
+      }
+
+      function clickRight() {
+          var wasStop = isStop;
+          dir = 0;
+          speed = 25;
+          isStop=0;
+          if (wasStop) {
+            setTimeout(s,speed);
+          }
+      }
+      $('#demo2 ul li img').on('click',function () {
+                  var lo = $(this).attr('rev');
+                  $('.details-l img').attr('src',lo);
+      })
+
+      $('.nav-left').mousemove(function (){
+                       $('.nav-left-bot').show();
+                   })
+                   $('.nav-left').mouseleave(function(){
+                       $('.nav-left-bot').hide();
+                   })
+      </script>
+      <script>
+      window.onload = function(){
+      console.log($('#MagicZoomPup'));
+                $('#MagicZoomPup').css('width','200px');
+                $('#MagicZoomPup').css('height','200px');
+      }
+      </script>

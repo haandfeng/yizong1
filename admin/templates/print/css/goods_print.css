@@ -1,0 +1,198 @@
+ html,body {
+      margin :0;
+    }
+    div{
+      float: left;
+    }
+    img{
+      display: block;
+    }
+    a{
+      text-decoration: none;
+    }
+    .box{
+      width: 71.7mm;
+      height: 65.4mm;
+      background: url('/admin/templates/print/images/bg.jpg') repeat-y;
+      background-size: 100%;
+      position: relative;
+      margin: 0 0.5mm 0.5mm 0;
+    }
+    .box-info{
+      background-color: #FFF;
+      width: 66.1mm;
+      height: 61.3mm;
+      position: absolute;
+      left: 2.8mm;
+      top: 2mm;
+      border: 1px solid #000;
+    }
+    .thumb{
+      width: 22.9mm;
+      height: 22.9mm;
+    }
+    .goods-name{
+      width: 42.9mm;
+      height: 12.8mm;
+      border-left: 1px solid #000;
+      border-bottom: 1px solid #000;
+      text-align: center;
+      position: relative;
+    }
+    /*.brand{
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .name{
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+    }*/
+    .name{
+      width: 100%;
+      height: 8mm;
+      display:flex;
+       vertical-align:middle;
+      font-size: 10px;
+      font-weight: bold;
+      position: relative;
+      color: #502724;
+      overflow: hidden;
+    }
+    .name span{
+      display: block;
+      width: 94%;
+      text-align: center;
+      vertical-align:middle;
+      margin: auto 3%;
+      overflow: hidden;
+    }
+    .sn{
+      display: block;
+      width: 100%;
+      height: 4.8mm;
+      line-height: 4.8mm;
+      text-align: center;
+      font-weight: normal;
+      font-size: 12px;
+      color: #e71410;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    .goods-specs{
+      width: 42.9mm;
+      height: 4.8mm;
+      border-left: 1px solid #000;
+      border-bottom: 1px solid #000;
+    }
+    .goods-from{
+      width: 42.9mm;
+      height: 4.8mm;
+      border-left: 1px solid #000;
+    }
+    .title1{
+      width: 10.8mm;
+      height: 100%;
+      line-height: 4.8mm;
+      text-align: center;
+      border-right: 1px solid #000;
+      font-size: 12px;
+      font-weight: bold;
+      color: #502724;
+    }
+    .info1{
+      width: 31.8mm;
+      height: 100%;
+      line-height: 4.8mm;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      overflow: hidden;
+      color: #502724;
+    }
+    .goods-effect{
+      width: 66.1mm;
+      height: 11mm;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+    }
+    .title2{
+      width: 13.3mm;
+      height: 100%;
+      line-height: 11mm;
+      text-align: center;
+      border-right: 1px solid #000;
+      font-size: 12px;
+      font-weight: bold;
+      color: #502724;
+      
+    }
+    .user_name{
+      display: block;
+      position: absolute;
+      left: -2%;
+      bottom: -2%;
+      font-size:10px;
+      -webkit-transform:scale(0.6);
+      color: #f08200;
+    }
+    .info2{
+      width: 52.5mm;
+      height: 100%;
+      display:flex;
+       vertical-align:middle;
+      font-size: 10px;
+      /*font-weight: bold;*/
+      position: relative;
+      color: #502724;
+      overflow: hidden;
+    }
+    .info2 span{
+      display: block;
+      width: 96%;
+      text-align: center;
+      vertical-align:middle;
+      margin: auto 2%;
+      line-height: 3.8mm;
+      overflow: hidden;
+    }
+    .goods-manual{
+      width: 66.1mm;
+      height: 11mm;
+      border-bottom: 1px solid #000;
+      position: relative;
+    }
+    .goods-price{
+      width: 66.1mm;
+      height: 15.7mm;
+    }
+    .qcode{
+      width: 16.1mm;
+      height: 100%;
+      text-align: center;
+      border-right: 1px solid #000;
+      padding-top: 1px;
+    }
+    .price{
+      width: 49.7mm;
+      height: 9mm;
+      line-height: 9mm;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e71410;
+      border-bottom: 1px solid #000;
+      overflow: hidden;
+    }
+    .ksf{
+      width: 49.7mm;
+      height: 6.5mm;
+      line-height: 6.5mm;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold; 
+      position: relative;
+      color: #f08200;
+    }

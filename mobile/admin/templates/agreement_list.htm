@@ -1,0 +1,133 @@
+
+
+
+{if $full_page}
+
+{include file="pageheader.htm"}
+
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<form method="post" action="" name="listForm">
+
+<div class="list-div" id="listDiv">
+
+{/if}
+
+
+
+  <table cellpadding="3" cellspacing="1">
+
+    <tr>
+
+      <th>协议名称</th>
+
+      <!-- <th>内容</th> -->
+
+      <th>起始时间</th>
+
+      <th>结束时间</th>
+
+      <th>状态</th>
+
+      <th>排序</th>
+
+      <th>操作</th>
+
+    </tr>
+
+    {foreach from=$agreement_list item=agreement}
+
+    <tr>
+
+      <td align="left">{$agreement.agreement_name}</td>
+
+      <!-- <td>{$agreement.content}</td> -->
+
+      <td align="left">{$agreement.start_date}</td>
+
+      <td align="left">{$agreement.end_date}</td>
+
+      <td align="center"><img src="images/{if $agreement.enabled}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_enabled', {$agreement.agreement_id})" /></td>
+
+      <td align="right"><span onclick="javascript:listTable.edit(this, 'edit_sort_order', {$agreement.agreement_id})">{$agreement.sort_order}</span></td>
+
+      <td align="center">
+
+        <a href="agreement.php?act=edit&id={$agreement.agreement_id}" title="{$lang.edit}">{$lang.edit}</a> |
+
+        <a href="javascript:;" onclick="listTable.remove({$agreement.agreement_id}, '{$lang.drop_confirm}')" title="{$lang.edit}">{$lang.remove}</a> 
+
+      </td>
+
+    </tr>
+
+    {foreachelse}
+
+    <tr><td class="no-records" colspan="11">{$lang.no_records}</td></tr>
+
+    {/foreach}
+
+    <tr>
+
+      <td align="right" nowrap="true" colspan="7">
+
+      {include file="page.htm"}
+
+      </td>
+
+    </tr>
+
+  </table>
+
+
+
+{if $full_page}
+
+<!-- end agreement list -->
+
+</div>
+
+</form>
+
+
+
+<script type="text/javascript" language="javascript">
+
+  <!--
+
+  listTable.recordCount = {$record_count};
+
+  listTable.pageCount = {$page_count};
+
+
+
+  {foreach from=$filter item=item key=key}
+
+  listTable.filter.{$key} = '{$item}';
+
+  {/foreach}
+
+
+
+  {literal}
+
+  onload = function()
+
+  {
+
+      // 开始检查订单
+
+      startCheckOrder();
+
+  }
+
+  {/literal}
+
+  //-->
+
+</script>
+
+{include file="pagefooter.htm"}
+
+{/if}

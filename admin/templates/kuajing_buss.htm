@@ -1,0 +1,45 @@
+ 
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<script>
+	window.onload = function(){ 
+	  bind();  
+	}
+function bind()
+{ 
+var data = eval('({$dat})'); 
+	tableobj=document.getElementById('lista');
+	for(var i=0;i<data.resultData.length;i++)
+	{ 
+		var trobj =document.createElement("tr");
+		trobj.innerHTML=''+
+			'<td align="center">'+data.resultData[i]["ieFlag"]+'</td>'+
+			'<td align="center">'+data.resultData[i]["clientExpressCode"]+'</td>'+
+			'<td align="center">'+data.resultData[i]["businessModelCode"]+'</td>'+ 
+			'<td align="center">'+data.resultData[i]["businessModelName"]+'</td>'+
+			'<td align="center">'+data.resultData[i]["status"]+'</td>';
+		tableobj.appendChild(trobj);
+		 
+	}
+}
+</script>
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+ 
+
+  <table cellpadding="3" cellspacing="1" id="lista">
+    <tr>
+      <th>进出口标识</th>
+      <th>我的快递编码</th>
+      <th>业务模式编码</th>
+      <th>业务模式名称</th>
+      <th>状态</th>
+    </tr> 
+  </table> 
+ 
+</div>
+</form>
+
+{include file="pagefooter.htm"}
+ 

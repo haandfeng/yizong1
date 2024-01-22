@@ -1,0 +1,275 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/user_center.css?v=1.9"/>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+{insert_scripts files='jquery.json.js,transport.js'}
+</head>
+<body>
+
+<div class="container h_bg">
+  <!-- 头部 start -->
+  <div class="header">
+    <a class="back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a>
+    <span>我的VIP会员</span>
+    <a class="setting" href="user.php" title="设置"></a>
+  </div>
+  <!-- 头部 end -->
+  <!-- 会员卡 start -->
+  <div class="card">
+    <img src="../images/user_level/card_bg.jpg" width="100%">
+    <a href="javascript:void(0)" class="user_card_code"></a>
+    <div class="card-thumb">
+      <img src="{if $headimgurl}{$headimgurl}{else}themesmobile/yshop100com_mobile/images/user_level/default_thumb.png{/if}" width="100%">
+    </div>
+    <span class="card-name">{$info.username}</span>
+	{if $birday}
+    <span class="birday">会员生日：{$birday}</span>
+    {/if}
+    <div class="card-num">
+      <span>积分:<b>{$pay_points}</b></span>
+    </div>
+    <div class="card-star">
+      <span>
+        {foreach from=$user_ranks item=user_ranks_item name=user_ranks}
+        {if $smarty.foreach.user_ranks.iteration <= $rank_now}
+        <i></i>
+        {/if}
+        {/foreach}
+      </span>
+    </div>
+  </div>
+  <!-- 会员卡 end -->
+  <!-- 会员等级 start-->
+  <div class="box">
+    
+    <div class="level">
+		<div class="power-form" style="text-align: center">
+		  <img src="../images/user_level/level_top.gif"  />
+		</div>
+      <div class="level-upgrade">
+		{foreach from=$user_ranks item=user_ranks_item name=user_ranks}
+        {if $smarty.foreach.user_ranks.last}
+        <span>{$user_ranks_item.min_points}以上</span>
+        {else}
+        <span>{$user_ranks_item.min_points}~{$user_ranks_item.max_points}</span>
+        {/if}
+		{/foreach}
+      </div>
+      <div class="level-all">
+        <div class="level-box1">
+          <span>
+            <i></i>
+          </span>
+        </div>
+        <div class="level-box2">
+          <span>
+            <i></i><i></i>
+          </span>
+        </div>
+        <div class="level-box3">
+          <span>
+            <i></i><i></i><i></i>
+          </span>
+        </div>
+      </div>
+      <div class="level-progress"style="margin-top:20px;">
+        <i class="star-m"><span><b>X</b>{$rank_l}</span></i>
+        <i class="star-m-r"><span><b>X</b>{$rank_r}</span></i>
+        <div id="progress">
+          <span id="progress_now" style="width: {$levelup_percent}"><i><b>{$levelup_num}</b></i></span>
+        </div>
+      </div>
+      <div class="levelup-num"><br/>积分到账使用期12个月，账户12个月内没有消费记录，积分到期自动清零。</div>
+    </div>
+  </div>
+  <!-- 会员等级 end -->
+  
+  <div class="box" style="border: none">
+    <!-- 会员权益 start-->
+   
+    <div class="power-form">
+      <img src="../images/user_level/power-form4.gif" width="100%" />
+    </div>
+    <div class="power">
+      <a href="javascript:void(0)" class="power-btn" pid="1">
+        <img src="../images/user_level/money4.png" width="100%">
+        <span>积分兑换好礼</span>
+      </a>
+      <a href="javascript:void(0)" class="power-btn" pid="2">
+        <img src="../images/user_level/cake4.png" width="100%">
+        <span>生日专属贺礼</span>
+      </a>
+      <a href="javascript:void(0)" class="power-btn" pid="3">
+        <img src="../images/user_level/sale4.png" width="100%">
+        <span>超级会员月</span>
+      </a>
+      <div class="power-qa" id="qa1">
+        <label>积分兑换好礼</label>
+        <p class="big">特权介绍：</p>
+        <p>会员专享积分商城兑换好礼。</p>
+        <p class="big">权益对象：</p>
+        <p>1钻及以上且完成实名认证的会员。</p>
+        <p class="big">兑换方式：</p>
+        <p>微商城点击积分商城进入，会员可到各个漢方杏林堂实体店自提兑换的礼品，也可自费邮寄。</p>
+      </div>
+      <div class="power-qa" id="qa2">
+        <label>生日专属贺礼</label>
+        <p class="big">权益对象：</p>
+        <p>已实名认证会员生日当月可就近前往体验门店申领专属会员生日贺礼（生日贺卡、贺礼商品、体验装、优惠劵不等），实物以当月到店领取为准。</p>
+        <p class="big">领取方式：</p>
+        <p>请联系会员福利专员电话／微信同号：17322740078预约，生日当月到各“漢方杏林堂”体验门店出示实名认证的本人会员截图领取。<br/> 
+<!-- <a href="http://www.baidu.com">点击线上领取</a>：可线上领取生日专属优惠券66元（满150元可使用）<br/>
+若您在上述领取时间内未领取，不再补发生日礼包哦。</p> -->
+      </div>
+      <div class="power-qa" id="qa3">
+        <label>超级会员月</label>
+        <p class="big">权益介绍：</p>
+        <p>超级会员月将推出限时积分兑换优惠、积分加速等会员权益及福利活动。</p>
+        <p class="big">参与方式：</p>
+        <p>请登录平台商城游览活动海报；留意门店福利群活动分享；关注公众号资讯推送。</p>
+      </div>
+      <a href="javascript:void(0)" class="power-btn" pid="4">
+        <img src="../images/user_level/date4.png" width="100%">
+        <span>会员社区</span>
+      </a>
+      <a href="javascript:void(0)" class="power-btn" pid="5">
+        <img src="../images/user_level/quick.png" width="100%">
+        <span>分期付款</span>
+
+      </a>
+      <a href="javascript:void(0)" class="power-btn" pid="6">
+        <img src="../images/user_level/mic4.png" width="100%">
+        <span>合作共赢</span>
+      </a>
+      <div class="power-qa" id="qa4">
+        <label>会员社区</label>
+        <p class="big">权益介绍:</p>
+        <p>会员社区里组织各项抽奖、限时促销、团购、新品预售等不同形式的会员活动。</p>
+        <p class="big">参与方式：</p>
+        <p>
+		会员通过添加体验门店手机微信或会员福利专员微信或漢方商品顾问微信获邀请，进入所在区域的微信“福利群”，“会员俱乐部”参与活动。
+		<br/>
+		会员福利专员电话/微信同号: 17322740078
+		</p> 
+      </div>
+      <div class="power-qa" id="qa5">
+        <label>分期付款</label>
+        <p class="big">特权介绍：</p>
+        <p>会员可在下单付款时选择分期付款-快闪付</p>
+        <p class="big">权益对象：</p>
+        <p>等级积分达到1000及以上且完成实名认证和通过征信审核的会员。</p>
+        <p class="big">使用方式：</p>
+        <p>单笔订单达到1000元及以上，付款方式选择“快闪付”进行分期付款完成订单支付。</p>
+      </div>
+      <div class="power-qa" id="qa6">
+        <label>合作共赢</label> 
+        <p class="big">权益介绍：</p>
+        <p>２钻及以上会员获享合规资质的平台商城，专业服务团队，质优正品商品线上线下结合的新零售合作模式，包括且不限于会员拓展、分销批发、加盟经营、品牌进驻平台等共赢合作优先权。</p>
+        <p class="big">参与方式：</p>
+        <p>请会员实名认证后联系：18006998412（微信同号）</p>
+      </div>
+    </div>
+    <!-- 会员权益 end -->
+    <!-- 积分 start -->
+    <div class="box-title">
+       <img src="../images/user_level/jfdh.gif" width="100%">
+    </div>
+    <div class="gift">
+      {foreach from=$exchange_goods item=exchange_goods_item name=exchange_goods}
+	  {if $smarty.foreach.exchange_goods.index % 2 == 0}
+		  <a href="/mobile/exchange.php?id={$exchange_goods_item.goods_id}&act=view" class="gift-btn">
+			<div class="gift-l">
+			  <img src="/{$exchange_goods_item.goods_thumb}" width ="300px">
+			</div>
+			<div class="gift-r">
+			  <label>{$exchange_goods_item.goods_name}</label>
+			  <span class="s1">原价：{$exchange_goods_item.shop_price}元</span>
+			  <span>会员兑换：{$exchange_goods_item.exchange_integral}积分</span>
+			  <div class="gift-btnc"> <img src="../images/user_level/duihuan4.png" width="50%"></div>
+			</div>
+		  </a>
+	  {else}
+	  	  <a href="/mobile/exchange.php?id={$exchange_goods_item.goods_id}&act=view" class="gift-btn">
+			<div class="gift-r">
+			  <label>{$exchange_goods_item.goods_name}</label>
+			  <span class="s1">原价：{$exchange_goods_item.shop_price}元</span>
+			  <span>会员兑换：{$exchange_goods_item.exchange_integral}积分</span>
+			  <div class="gift-btnc"> <img src="../images/user_level/duihuan4.png" width="50%"></div>
+			</div>
+			<div class="gift-l">
+			  <img src="/{$exchange_goods_item.goods_thumb}" width ="300px">
+			</div>
+		  </a>
+
+	  {/if}
+      {/foreach}
+      <div class="power-more">
+        <a href="exchange.php">查看更多&nbsp;》</a>
+      </div>
+    </div>
+    <!-- 积分 end -->
+  </div>
+  <div class="box">
+    <div class="box-title1" style="text-align: center;">
+       <img src="../images/user_level/rwjf.gif" width="100%">
+        <a href="user.php?act=my_comment"><img src="../images/user_level/rw1.png" id="pingjia" width="48%" style="margin-left:25%;margin-right:25%;"></a>
+		<div style="text-align: center; margin-top:10px">
+		<div style="position: relative; float: left;width: 30%;text-align: center;margin-left:2%;" ><a href="/mobile/user_shengfen.php?act=shiming"><img src="../images/user_level/rw2.png" id="shiming" width="100%" ></a></div>
+		<div style="position: relative; float: left;width: 30%;text-align: center;" ><a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.h383063879.zgx"><img src="../images/user_level/rw4.png" id="app" width="100%" ></a></div>
+		<div  class="tosbox" style="position: relative; float: left;width: 30%;text-align: center;" ><img src="../images/user_level/rw3.png" id="tosign" width="100%" ></div>
+		<div id="mission_points" ></div>
+		</div>
+    </div>
+     
+  </div>
+  <div id="footer"></div>
+</div>
+<!-- 切换js -->
+<script type="text/javascript">
+$(document).ready(function (){
+  //权益按钮
+    $(".power-btn").click(function(){
+      var pid = $(this).attr('pid');
+      if($("#qa"+pid).is(":hidden")){
+        $("div[id^='qa']").hide();
+        $("#qa"+pid).fadeIn(700);
+        $('body,html').animate({scrollTop: $(this).offset().top}, 700);
+        $("#select").remove();
+        $(this).append('<i id="select"></i>');
+        $("#select").fadeIn(700);
+      }else{
+        $("div[id^='qa']").fadeOut(700);
+        $("#select").fadeOut(700);
+      }
+    });
+
+  //任务中心
+ 
+	 $(".tosbox").click(function(){  
+	  Ajax.call('user.php?act=tosign','sign',change_sign_mission,'GET','TEXT',true,true);
+	});
+	function change_sign_mission(result){ 
+		  $('#mission_points').html('+' + result);
+		  $('#mission_points').show();
+		  $('#mission_points').fadeOut(700);
+    }
+
+});
+ 
+</script>
+
+
+
+<script src="themesmobile/yshop100com_mobile/js/jquery.nicescroll.min.js"></script> 
+</body>
+</html>

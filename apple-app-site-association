@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "9MDV934B96.com.aite.yizhong",
+                "paths": ["*","/appp/*"]
+            }
+        ]
+    }
+}

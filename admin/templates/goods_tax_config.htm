@@ -1,0 +1,56 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<form method="post" action="goods.php" name="listForm" onsubmit="return confirm('{$lang.remove_confirm}')">
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='4' id='listTable'>
+  <tr>
+    <th>税费种类</th>  
+    <th>税率</th>
+    <th>税费折扣</th>
+	  <th>状态</th>
+    <th>操作</th>
+  </tr>
+
+  {foreach from=$tax_list item=area}
+  <tr>
+    <td>
+      {if $area.tax_id==0}<span style="color:red;font-size:20px">{$area.tax_name}</span>{else}{$area.tax_name}{/if}
+    </td>  
+    <td align="center">
+      {$area.rate}
+    </td>
+    <td align="center">
+      {$area.discount}
+    </td>
+    <td align="center">
+      {$area.is_use}
+    </td>
+    <td align="center">
+      <a href="goods.php?act=tax_edit&id={$area.tax_id}">{if $area.tax_id>0}{$lang.edit}{else}<span style="color:red;font-size:20px">{$lang.edit}</span>{/if}</a> 
+    </td>
+  </tr>
+  {/foreach}
+</table>
+<div>税费计算方式为:     <span style="color:red">商品单价 * 商品数量 * 税率 * 税费折扣</span></div>
+
+{if $full_page}
+</div>
+</form>
+{literal}
+<script language="JavaScript">
+<!--
+
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

@@ -1,0 +1,69 @@
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.org.js,../js/region.js"}
+<div class="main-div">
+<form method="post" action="goods.php" name="theForm" onsubmit="return validate()" style="background:#FFF">
+<fieldset style="border:1px solid #DDEEF2">
+  <table >
+    <tr>
+      <td class="label">税费种类:</td>
+      <td><input type="text" name="tax_name" maxlength="60" size="30" value="{$tax_name}"/>{$lang.require_field}</td>
+    </tr> 
+    <tr>
+      <td class="label">税率：</td> 
+      <td><input type="text" name="tax_rate" maxlength="60" size="30" value="{$tax_rate}" /></td>
+    </tr> 
+    <tr>
+      <td class="label">税费折扣：</td> 
+      <td><input type="text" name="tax_discount" maxlength="60" size="30" value="{if $tax_discount neq 0}{$tax_discount}{/if}" />
+      <br/><span class="notice-span">折扣为空表示没有折扣。</span></td>
+
+    </tr>
+    <tr>
+      <td class="label"><input type="checkbox" id="is_use" name="is_use" {if $is_use}checked{/if} /><label>启用</label></td>
+    </tr>
+    <tr>
+      <td class="label">税费计算方式为:   </td>
+      <td style="color: #d20000">商品单价 * 商品数量 * 税率 * 税费折扣</td>
+    </tr>
+ 
+  </table>
+</fieldset>
+ 
+  <table >
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" /> 
+      <input type="hidden" name="act" value="{$form_action}" />
+      {if $tax_id gt 0}
+      <input type="hidden" name="id" value="{$tax_id}" />  
+      {/if}
+    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+<script language="JavaScript"> 
+var flag="{$isuse}"=="1"?true:false;$('#isuse').attr("checked", flag);
+   
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+ 
+	validator.isNullOption('name', "运费大类不能为空", true);  
+     
+    
+    return validator.passed();
+}
+
+/**
+ * 添加一个区域
+ */
+
+ 
+ 
+</script>
+{include file="pagefooter.htm"}

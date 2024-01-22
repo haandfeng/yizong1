@@ -1,0 +1,56 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- 订单搜索 -->
+<div class="form-div">
+  <form action="order.php" name="searchForm">
+      <input type="hidden" name="act" value="bill">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    日期<input name="bill_data" type="text" id="bill_data" size="15" maxlength="8" placeholder="格式：20180208">
+    <input type="submit" value="{$lang.button_search}" class="button" />
+	{if $is_down == 1}<a href="order.php?act=download_bill_record&bill_data={$bill_data}" class="button">下载</a>{/if}
+  </form>
+  
+</div>
+
+<!-- 订单列表 -->
+
+  <div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+      <th>交易时间</th>
+      <th>订单号</th>
+      <th>微信交易号</th>
+      <th>订单金额(CNY)</th>
+      <th>订单金额(HKD)</th>
+      <th>手续费(HKD)</th>
+      <th>实收金额(HKD)</th>
+      <th>订单来源</th>
+      <th>订单状态</th>
+      <th>汇率</th>
+  <tr>
+  {foreach from=$order_list item=order key=okey}
+  <tr>
+	<td>{$order[0]}</td>
+    <td>{$order[6]}</td>
+    <td>{$order[5]}</td>
+    <td>{$order[19]}</td>
+    <td>{$order[21]}</td>
+    <td>{$order[16]}</td>
+    <td>{$order[real_amount]}</td>
+    <td>{$order[8]}</td>
+    <td>{$order[9]}</td>
+    <td>0.{$order[22]}</td>
+  </tr>
+  {/foreach}
+</table>
+
+
+{if $full_page}
+  </div>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

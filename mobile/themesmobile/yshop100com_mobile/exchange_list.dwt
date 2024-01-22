@@ -1,0 +1,114 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>礼品商城</title>
+  <meta name="Keywords" content="{$keywords}" />
+  <meta name="Description" content="{$description}" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/exshangexin.css" />
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.more2.js"></script>
+{insert_scripts files='common.js'}
+
+</head>
+<body class="body_bj">
+      <!----------------------------------header----------------------------------->
+      <div class="tab_nav">
+        <div class="header">
+          <div class="h-left"><a class="sb-back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a></div>
+          <div class="h-mid">礼品商城</div>
+          <div class="h-right">
+            <aside class="top_bar">
+              <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more" ><a href="javascript:;"></a> </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+        <!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+<div id="tbh5v0">
+<script type="text/javascript">
+var url = 'exchange.php?act=ajax_list';
+$(function(){
+  $('#J_ItemList').more({
+        'address': url,
+        'data':{'sort':'{$sort}','order':'{$order}','integral_max':'{$integral_max}','integral_min':'{$integral_min}','keyword':'{$keyword}'},
+});
+});
+</script> 
+  <div class="tab">
+    <ul>
+          <a href="exchange.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=goods_id&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}#list"><li  class=<!-- {if $pager.search.sort == 'goods_id'} -->curr<!-- {/if} -->>上架<b class="br"></b><span class="arrow_up {if $pager.search.sort == 'goods_id' && $pager.search.order == 'ASC'}active_up{/if}"></span><span class="arrow_down {if $pager.search.sort == 'goods_id' && $pager.search.order == 'DESC'}active_down{/if}"></span></li></a>
+          <a href="exchange.php?display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=exchange_integral&order=<!-- {if $pager.sort == 'exchange_integral' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list"><li  class=<!-- {if $pager.search.sort == 'exchange_integral'} -->curr<!-- {/if} -->>积分<b class="br"></b><span class="arrow_up {if $pager.search.sort == 'exchange_integral' && $pager.search.order == 'ASC'}active_up{/if}"></span><span class="arrow_down {if $pager.search.sort == 'exchange_integral' && $pager.search.order == 'DESC'}active_down{/if}"></span></li></a>
+          <!-- <a href="exchange.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=last_update&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}#list"> <li class={if $pager.search.sort == 'last_update'}curr{/if}>更新<b class="br"></b></li></a> -->
+          <a href="exchange.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=click_count&order=<!-- {if $pager.sort == 'click_count' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" ><li class=<!-- {if $pager.search.sort == 'click_count'} -->curr<!-- {/if} -->>人气<span class="arrow_up {if $pager.search.sort == 'click_count' && $pager.search.order == 'ASC'}active_up{/if}"></span><span class="arrow_down {if $pager.search.sort == 'click_count' && $pager.search.order == 'DESC'}active_down{/if}"></span></li></a>
+          <a href="javascript:void(0);" onClick="show_keywords();"> <li style=" border:0px;" >类别<b class="br"></b></li></a>
+        </ul>
+    </div>
+    <div class="keywords_nav hid">
+        <ul>
+          {foreach from=$keywords_list item=keywords name=keywords_list}
+          <li><a href="exchange.php?keyword={$keywords}"><i>{$keywords}</i></a></li>
+          {/foreach}
+        </ul>
+      </div>
+    <div class="tab2">
+    <ul>
+      <a href="exchange.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort={$sort}&order={$pager.order}&integral_min=0&integral_max=5000&keyword={$keyword}"><li>积分:0-5000</li>
+      </a>
+      <a href="exchange.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort={$sort}&order={$pager.order}&integral_min=5000&integral_max=20000&keyword={$keyword}"><li>积分:5000-20000</li>
+      </a>
+      <a href="exchange.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort={$sort}&order={$pager.order}&integral_min=20000&keyword={$keyword}"><li>积分:20000以上</li>
+      </a>
+    </ul>
+    </div>
+
+    <div id="J_ItemList" class="layout_list">
+      <ul class="single_item info">
+      </ul>
+      <a href="javascript:;" class="get_more" style="text-align:center; display:block;"> </a> 
+    </div>
+</div>
+
+{if $comefrom}
+
+{else}
+{if $hfxltbapp eq 0}
+<!-- #BeginLibraryItem "/library/footer_nav.lbi" --><!-- #EndLibraryItem -->
+{/if}
+{/if}
+<!---返回顶部-->
+<script>
+function goTop(){
+  $('html,body').animate({'scrollTop':0},600);
+}
+
+//显示分类
+function show_keywords() {
+  var bd_top = $(document).scrollTop();
+  if($('.keywords_nav').css('display')=='none') {
+    $('.keywords_nav').removeClass('hid');
+    $('.keywords_nav').addClass('show');
+  } else {
+    $('.keywords_nav').removeClass('show');
+    $('.keywords_nav').addClass('hid');
+  }
+ }
+
+(function(){
+   var $nav = $('.keywords_nav');
+   $(window).on("scroll", function() {  
+   $('.keywords_nav').removeClass('show');  
+  $('.keywords_nav').addClass('hid');
+  });
+ })();
+
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/yshop100com_mobile/images/topup.png"></a> 
+</div>
+</body>
+
+</html>

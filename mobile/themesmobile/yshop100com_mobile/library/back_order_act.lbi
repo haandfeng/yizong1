@@ -1,0 +1,41 @@
+<div class="tabmenu">
+    <ul class="tab pngFix">
+        <li class="active">
+            <!-- {if $back_act_w eq 'tuihuo'} -->
+            退货&nbsp;申请已提交
+            <!-- {elseif $back_act_w eq 'tuikuan'} -->
+            退款&nbsp;申请已提交
+            <!-- {elseif $back_act_w eq 'weixiu'} -->
+            维修&nbsp;申请已提交
+            <!-- {/if} -->
+        </li>
+    </ul>
+</div>
+<table cellpadding=5 cellspacing=1 width=100% bgcolor="#eeeeee">
+    <tr>
+        <td bgcolor="#FFFFFF" style="font-size:15px;font-weight:bold;line-height:180%;padding:20px;color:#555">
+            <!-- {if $back_act_w eq 'tuihuo'} -->
+            商品寄回地址：{$back_address}<br>
+            邮政编码：{$back_zipcode}<br>
+            收件人：{$back_consignee}
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF" style="padding:10px 20px 20px 30px"> 1、请尽快将退换货商品寄出<br>
+            2、退货商品寄出后，请您在“用户中心 》退款/退货及维修 》详情”中填写快递信息<br>
+            3、您随时可以在“退款/退货及维修”中查看退货进度<br>
+            4、如果您有其他需要，请随时联系我们的客服。 </td>
+        <!-- {elseif $back_act_w eq 'tuikuan'} -->
+        退款申请已提交，请耐心等待卖家处理。
+        <!-- {elseif $back_act_w eq 'weixiu'} -->
+        维修申请已提交，请耐心等待卖家处理。<br>
+        商品寄回地址：{$back_address}<br>
+        邮政编码：{$back_zipcode}<br>
+        收件人：{$back_consignee}
+        <!-- {/if} -->
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF" align=center><input type="button" value="确定" onclick='location.href="user.php?act=back_list";' style="cursor:pointer;border:none; background:#ED5854;color:#fff;padding:5px 15px"></td>
+    </tr>
+</table>

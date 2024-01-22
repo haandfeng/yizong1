@@ -1,0 +1,52 @@
+<!-- $Id: shipping_area_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- start shipping area list -->
+<form method="post" action="shipping_fee_config.php" name="listForm" onsubmit="return confirm('{$lang.remove_confirm}')">
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='4' id='listTable'>
+  <tr>
+    <th>运费大类</th>  
+	<th>状态</th>
+    <th>操作</th>
+  </tr>
+
+  {foreach from=$list item=area}
+  <tr>
+    <td>
+      {if $area.id==0}<span style="color:red;font-size:20px">{$area.name}</span>{else}{$area.name}{/if}
+    </td>  
+    <td align="center">
+      {$area.isuse}
+    </td>
+    <td align="center">
+      <a href="shipping_fee.php?act=edit&id={$area.id}">{if $area.id>0}{$lang.edit}{else}<span style="color:red;font-size:20px">{$lang.edit}</span>{/if}</a> 
+    </td>
+  </tr>
+  {/foreach}
+
+   
+</table>
+
+{if $full_page}
+</div>
+</form>
+<!-- end shipping area list -->
+{literal}
+<script language="JavaScript">
+<!--
+
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

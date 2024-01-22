@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>{$page_title}</title>
+	<meta name="Keywords" content="{$keywords}"/>
+	<meta name="Description" content="{$description}"/>
+	<script src="themesmobile/yshop100com_mobile/js/modernizr.js"></script>
+	<link rel="shortcut icon" href="themesmobile/yshop100com_mobile/img/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="themesmobile/yshop100com_mobile/img/website_icon.png">
+	<!--    <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/style.css">-->
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/category.css"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/package_1.css"/>
+	<script src="themesmobile/yshop100com_mobile/js/jquery.min.js"></script>
+	<script src="themesmobile/yshop100com_mobile/js/swiper.min.js"></script>
+</head>
+<body id="page_goods">
+<section class="_pre">
+	<div class="tab_nav">
+		<div class="header" style=" position:relative">
+			<div class="h-left"><a class="sb-back" href="javascript:void(0)" onclick="goback(0)" title="返回"></a></div>
+			<div class="h-mid"> 超值礼包</div>
+		</div>
+		<dl>
+			<dd class="top_bar" style=" position:absolute; top:0; right:2%; z-index:999999">
+				<div onclick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a>
+				</div>
+			</dd>
+		</dl>
+	</div>
+	<div class="touchweb-com_searchListBox openList" id="goods_list" style="">
+		<form action="javascript:void(0)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+			<div id="J_ItemList" class="" style="opacity: 1;">
+				{foreach from=$list item=val name=list}
+				<div class="product single_item info " id="more_element_1">
+					<li>
+						<h3 class="libao_title" style="font-size: 16px;">
+							<span
+								style="width: 160px;display: inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipse;line-height: 37px;">
+								{$val.act_name}							</span>
+							<span style="font-size:12px;color:red;">售价</span>
+							<span style="line-height: 17px;color:red;display: inline-block;font-size: 14px;t">
+								{$val.package_price}				</span>
+						</h3>
+						<div class="swiper-container swiper-container-horizontal swiper-container-free-mode">
+							<div class="swiper-wrapper">
+								{foreach from=$val.goods_list item=val2}
+								<div class="item swiper-slide"
+									 style="width: 153px; display: inline-block; margin-right: 40px;">
+									<div class="pic_box">
+									</div>
+									<div class="goods_images">
+										<a href="goods.php?id={$val2.goods_id}"><img
+												src="../../{$val2.goods_thumb}"></a>
+									</div>
+									<dl>
+										<dt><a href="goods.php?id={$val2.goods_id}">{$val2.goods_name}</a></dt>
+										<dd><i style="font-size:12px;line-height: 12px;">{$val2.rank_price}</i>
+										</dd>
+									</dl>
+								</div>
+								{/foreach}
+							</div>
+							<div class="swiper-button-prev1 swiper-button-disabled"></div>
+							<div class="swiper-button-next1"></div>
+						</div>
+						<div class="goods_number">
+							<div>
+								<span style="font-size: 20px;color:#757575;">原价</span>
+								<span
+									style="display: inline-block;font-size: 12px;line-height: 12px;color:#757575;text-decoration:line-through;">{$val.subtotal}</span>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<span
+									style="font-size: 20px;color:#fff;background: #F0D222;border-radius: 3px;">节省</span>
+								<span style="display: inline-block;font-size: 12px;line-height: 12px;color:#F00;">{$val.saving}</span>
+							</div>
+							<input class="num" id="number_3" type="hidden" onblur="changePrice();" value="1"
+								   onfocus="if(value=='1') {value=''}" size="4" maxlength="5">
+						</div>
+						<span class="bug_car">
+							<a href="javascript:addPackageToCart({$val.act_id});">
+								<img src="themesmobile/yshop100com_mobile/images/index_flow.png">
+							</a>
+						</span>
+					</li>
+				</div>
+				{/foreach}
+				<div class="more_loader_spinner" style="display: block;">
+					<div class="jiazai"><em></em><span>亲，已经没有东西了哦！</span><em></em></div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- #BeginLibraryItem "/library/footer_nav.lbi" --> <!-- #EndLibraryItem -->
+	<script src="themesmobile/yshop100com_mobile/js/jquery.slides.min.js"></script>
+</section>
+<script>
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: false,//可选选项，自动滑动
+		slidesPerView: 2,
+		slidesOffsetBefore: 100,
+		freeMode: true,
+		freeModeMomentum: true,
+		spaceBetween: 40,
+		prevButton: '.swiper-button-prev',
+		nextButton: '.swiper-button-next',
+	})
+	function addPackageToCart(packageId) {
+		var number = 1;
+		$.post('flow.php?step=add_package_to_cart', {packageId: packageId, number: number}, function (data) {
+			if (data.error == 0) {
+				var r = confirm(data.message);
+				if (r) {
+					window.location.href = "/mobile/flow.php";
+				} else {
+				}
+			}
+		}, 'json');
+	}
+
+	$(function() {
+		$('#slides').slidesjs({
+			width:940,
+			height:528,
+			navigation: true,
+			play: {
+				active: false,
+				auto: true,
+				interval: 3000,
+				swap: true
+			}
+		});
+
+		$("#marquee2").kxbdSuperMarquee({
+			isAuto:true,
+			distance:16,
+			time:2,
+			btnGo:{up:'#goU',down:'#goD'},
+			direction:'up'
+		})
+
+	});
+
+	function addPackageToCart(packageId)
+	{
+		var number = 1;
+		$.post('flow.php?step=add_package_to_cart',{packageId:packageId,number:number},function (data) {
+			if(data.error == 0){
+				var r = confirm(data.message);
+				if(r){
+					window.location.href="/mobile/flow.php";
+				}else{
+
+				}
+			}
+		},'json');
+	}
+</script>
+</body>
+</html>

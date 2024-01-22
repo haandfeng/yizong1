@@ -1,0 +1,102 @@
+<!-- $Id: goods_batch_add.htm 16544 2009-08-13 07:55:57Z liuhui $ -->
+{include file="pageheader.htm"}
+<link href="styles/zTree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+{insert_scripts files='jquery-1.6.2.min.js,jquery.ztree.all-3.5.min.js,category_selecter.js'}
+<div class="main-div">
+<form action="goods_price.php?act=update" method="post" enctype="multipart/form-data" name="theForm" onsubmit="return formValidate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+<tr>
+    <td class="label">价格比例</td>
+    <td><input type="text" id="bili" name="bili" value="1.00" ><br/></td>
+  </tr>  
+  <tr align="center">
+    <td colspan='2'><input name="submit" type="submit" id="submit" value="{$lang.button_submit}" class="button" />
+	</td>
+  </tr>
+</table> 
+
+</form> 
+
+<form action="goods_price.php?act=chehui" method="post" enctype="multipart/form-data" name="theForm" onsubmit="return confirm('确定要撤回吗？')" >
+   
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="80%">[商品价格]*[价格比例]=[新商品价格](四舍五入)<br/>
+	价格比例：0.01-0.99或1.01-9.99<br/>
+	可以<input name="submit" type="submit" id="submit" value="撤回" class="button" />到上一次商品价格 </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+    var elements;
+    onload = function()
+    {
+        // 文档元素对象
+        elements = document.forms['theForm'].elements;
+
+        // 开始检查订单
+        startCheckOrder();
+    }
+
+    /**
+     * 检查是否底级分类
+     */
+    function checkIsLeaf(selObj)
+    {
+        if (selObj.options[selObj.options.selectedIndex].className != 'leafCat')
+        {
+            alert(goods_cat_not_leaf);
+            selObj.options.selectedIndex = 0;
+        }
+    }
+
+    /**
+     * 检查输入是否完整
+     */
+    function formValidate()
+    {
+    	
+        if ($("#bili").val().length <= 0)
+        {
+        	alert('请填写比例?');
+        	$("#bili").focus();
+            return false;
+        }
+        var bl=$("#bili").val();
+		if(!isNumber(bl))
+    	{
+        	alert('比例不正确');
+        	return false;
+    	}
+		if(bl==1)
+		{
+        	alert('比例不能是　１');
+        	return false;
+		}
+       
+        return true;
+    }
+	function isNumber(val){
+
+		var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+		var regNeg = /^((([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+		if(regPos.test(val) && regNeg.test(val)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+		
+</script>
+
+
+
+{/literal}
+
+{include file="pagefooter.htm"}

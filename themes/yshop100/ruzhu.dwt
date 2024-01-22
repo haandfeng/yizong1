@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/ruzhu.css" />
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js"></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> 
+<div class="w1210">
+    <div class="blank"></div>
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <div class="clearfix">
+        <div >
+        	<div class="right-inner">
+              <div class="supplier-list">
+                <ul>
+                  <li>
+                    <a href="supplier.php?suppId=0" title="{$supplier.supplier_name|escape:html}">
+                      <div class="box1">
+                        <img src="themes/yshop100/images/default_store_avatar.png"/>
+                          <span class="sup-name">香港漢方杏林堂</span>
+                          <span class="sup-star">店铺等级：3星店铺</span>
+                      </div>
+                      <div class="box2">
+                          <span class="goods-number">宝贝数量：{$xlt_goods}</span>
+                          <span class="sup-type">销量领先</span>
+                      </div>
+                      <div class="box3">
+                        <div class="heart">
+                            信用度：
+                            <span class="seller-heart level-5"></span> 
+                        </div>
+                        <span class="good">好评率：100%</span>
+                        <span class="other">描述:4.9<i>↑</i>  服务:4.9<i>↑</i>  物流:4.9<i>↑</i></span>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- {foreach from=$supplier_list item=supplier} -->
+				  {if $supplier.goods_number neq 0} 
+                  <li>
+                    <a href="supplier.php?suppId={$supplier.supplier_id}" title="{$supplier.supplier_name|escape:html}">
+                      <div class="box1">
+                        <img src="themes/yshop100/images/default_store_avatar.png"/>
+                          <span class="sup-name">{$supplier.supplier_name}</span>
+                          <span class="sup-star">店铺等级：3星店铺</span>
+                      </div>
+                      <div class="box2">
+                          <span class="goods-number">宝贝数量：{$supplier.goods_number}</span>
+                          <span class="sup-type">销量领先</span>
+                      </div>
+                      <div class="box3">
+                        <div class="heart">
+                            信用度：
+                            <span class="seller-heart level-5"></span> 
+                        </div>
+                        <span class="good">好评率：100%</span>
+                        <span class="other">宝贝:5<i>↑</i>  快递:5<i>↑</i>  物流:5<i>↑</i></span>
+                      </div>
+                    </a>
+                  </li>
+                  {/if}
+                  <!-- {/foreach} -->
+                </ul> 
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-footer">
+  <div class="footer-related"> 
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> 
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

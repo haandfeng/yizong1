@@ -1,0 +1,164 @@
+<table width="100%" border="1" cellpadding="10" cellspacing="1"  bgcolor="#eeeeee" >
+    <tr>
+        <td width="20%" height=25  bgcolor="#FFFFFF" style="padding-left:10px" >原订单号：</td>
+        <td width="80%" height=25  bgcolor="#FFFFFF" style="padding-left:10px">{$back_shipping.order_sn}</td>
+    </tr>
+    <tr>
+        <td width="20%" height=25  bgcolor="#FFFFFF" style="padding-left:10px">商品名称：</td>
+        <td width="80%" height=25  bgcolor="#FFFFFF" style="padding-left:10px">
+            {foreach from=$back_shipping.goods_list item=goods_info}
+            <a href="goods.php?id={$goods_info.goods_id}">{$goods_info.goods_name}</a><br />
+            {/foreach}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" height=25  bgcolor="#FFFFFF"  style="padding-left:10px">售后类型：
+            </td>
+        <td width="20%" height=25  bgcolor="#FFFFFF"  style="padding-left:10px">
+            {if $back_shipping.back_type eq 1}退货{/if}{if $back_shipping.back_type eq 2}换货{/if}{if $back_shipping.back_type eq 3}申请返修{/if}{if $back_shipping.back_type eq 4}退款（无需退货）{/if}
+        </td>
+    </tr>
+</table>
+<div class="blank"></div>
+{if $list_backgoods.0}
+<table width="100%" border="1" cellpadding="5" cellspacing="1"  bgcolor="#eeeeee">
+    {foreach from= $list_backgoods.0.goods_list item=bgoods}
+    <tr>
+        <td width="15%" align=center bgcolor="#FFFFFF"><font color=#ff3300>退回商品</font></td>
+        <td width="40%" bgcolor="#FFFFFF">{$bgoods.goods_name} </td>
+        {if $bgoods.goods_attr}<td width="25%" bgcolor="#FFFFFF">{$bgoods.goods_attr|nl2br}</td>{/if}
+        <td width="10%" bgcolor="#FFFFFF">数量：{if $bgoods.back_goods_number}{$bgoods.back_goods_number}{/if} </td>
+        <td width="10%" bgcolor="#FFFFFF">类型：退货 </td>
+    </tr>
+    {/foreach}
+    <tr> <td  align=center bgcolor="#FFFFFF">退款金额</td><td colspan=4 bgcolor="#FFFFFF">应退金额：{$bgoods.back_goods_money} </td></tr>
+    <tr><td  align=center bgcolor="#FFFFFF">处理状态</td><td colspan=4 bgcolor="#FFFFFF">{$bgoods.status_back}</td></tr>
+    <tr><td align=center bgcolor="#FFFFFF">退款状态</td><td colspan=4 bgcolor="#FFFFFF">{$bgoods.status_refund} </td></tr>
+</table>
+{/if}
+{if $list_backgoods.3}
+<table width="100%" border="1" cellpadding="5" cellspacing="1" bgcolor="#eeeeee">
+    {foreach from= $list_backgoods.3.goods_list item=bgoods}
+    <tr bgcolor=#ffffff >
+        <td width="15%" align=center><font color=#ff3300>退回商品</font></td>
+        <td width="40%">{$bgoods.goods_name} </td>
+        <td width="25%">{if $bgoods.goods_attr}{$bgoods.goods_attr|nl2br}{/if} </td>
+        <td width="10%">数量：{if $bgoods.back_goods_number}{$bgoods.back_goods_number}{/if} </td>
+        <td width="10%">类型：申请返修 </td></tr>
+    {/foreach}
+    <tr bgcolor=#ffffff ><td align=center>处理状态</td><td colspan=4>{$bgoods.status_back}</td></tr>
+</table>
+{/if}
+{if $list_backgoods.4}
+<table width="100%" border="1" cellpadding="5" cellspacing="1" bgcolor="#eeeeee">
+    <tr bgcolor=#ffffff>
+        <td width="15%" align=center><font color=#ff3300>退回商品</font></td>
+        <td>
+            <table>
+                {foreach from= $list_backgoods.4.goods_list item=bgoods}
+                <tr>
+                    <td width="40%">{$bgoods.goods_name} </td>
+                    <td width="25%">{if $bgoods.goods_attr}{$bgoods.goods_attr|nl2br}{/if} </td>
+                    <td width="10%">数量：{if $bgoods.back_goods_number}{$bgoods.back_goods_number}{/if} </td>
+                </tr>
+                {/foreach}
+            </table>
+        </td>
+        <td width="10%">类型：退款<br />（无需退货） </td></tr>
+    <tr bgcolor=#ffffff ><td  align=center>退款金额</td><td colspan=4>应退金额：{$back_shipping.refund_money_1} </td></tr>
+    <tr bgcolor=#ffffff ><td  align=center>处理状态</td><td colspan=4>{$back_shipping.status_back}</td></tr>
+    <tr bgcolor=#ffffff ><td  align=center>退款状态</td><td colspan=4>{$back_shipping.status_refund} </td></tr>
+</table>
+{/if}
+<div class="blank"></div>
+{if $list_backgoods.1}
+<table width="100%" border="1" cellpadding="5" cellspacing="1" bgcolor="#eeeeee">
+    {foreach from= $list_backgoods.1.goods_list name="list_backgoods_1" item=bgoods}
+    <tr>
+        <td width="15%" align=center bgcolor="#FFFFFF"><font color=#ff3300>{if $smarty.foreach.list_backgoods_1.iteration eq 1}退回{else}换回{/if}商品</font></td>
+        <td width="40%" bgcolor="#FFFFFF">{$bgoods.goods_name}</td>
+        <td width="25%" bgcolor="#FFFFFF">{if $bgoods.goods_attr}属性：{$bgoods.goods_attr}{/if} </td>
+        <td width="10%" bgcolor="#FFFFFF">数量：{if $bgoods.back_goods_number}{$bgoods.back_goods_number}{/if} </td>
+        <td width="10%" bgcolor="#FFFFFF">{if $smarty.foreach.list_backgoods_1.iteration eq 1}类型：换货{/if}</td>
+    </tr>
+    {/foreach}
+    <tr>
+        <td align=center bgcolor="#FFFFFF">退款金额</td>
+        <td colspan=4 bgcolor="#FFFFFF">应退金额：{$bgoods.back_goods_money}</td>
+    </tr>
+    <tr>
+        <td align=center  bgcolor="#FFFFFF">处理状态</td>
+        <td colspan=4 bgcolor="#FFFFFF">{$bgoods.status_back}</td>
+    </tr>
+    <tr>
+        <td align=center bgcolor="#FFFFFF">退款状态</td>
+        <td colspan=4  bgcolor="#FFFFFF">{$bgoods.status_refund} </td>
+    </tr>
+</table>
+<div class="blank"></div>
+<table width="100%" border="1" cellpadding="5" cellspacing="1"  bgcolor="#eeeeee">
+    <tr>
+        <td align=center width="15%"  bgcolor="#FFFFFF">寄回商品<br>
+            收件人信息</td>
+        <td colspan=4  bgcolor="#FFFFFF">商品寄回地址：{$back_shipping.country_name} {$back_shipping.province_name} {$back_shipping.city_name} {$back_shipping.district_name} {$back_shipping.address}<br>
+            邮政编码：{$back_shipping.zipcode}<br>
+            收件人：{$back_shipping.consignee}<br></td>
+    </tr>
+    <tr>
+        <td align=center width="15%"  bgcolor="#FFFFFF">退款信息</td>
+        <td colspan=4  bgcolor="#FFFFFF">应退金额：{$back_shipping.refund_money_1}&nbsp;&nbsp;&nbsp;&nbsp;实退金额：{$back_shipping.refund_money_2}</td>
+    </tr>
+    <tr>
+        <td align=center width="15%"  bgcolor="#FFFFFF">退款形式</td>
+        <td colspan=4  bgcolor="#FFFFFF">{$back_shipping.refund_type_name}</td>
+    </tr>
+    <tr>
+        <td align=center width="15%"  bgcolor="#FFFFFF">退款说明</td>
+        <td colspan=4  bgcolor="#FFFFFF">{$back_shipping.refund_desc}</td>
+    </tr>
+</table>
+{/if}
+<div class="blank"></div>
+{if $back_shipping.back_type neq 4 && ($back_shipping.status_back_1 lt 1 || ($back_shipping.status_back_1 gt 3 && $back_shipping.status_back_1 lt 6))}
+<div class="tabmenu">
+    <ul class="tab pngFix">
+        <li class="active"> <a href="#"> 快递信息（请填写您寄回商品的快递信息）：</a> </li>
+    </ul>
+</div>
+<form action="user.php" method="post">
+    <table width="100%" border="1" cellpadding="7" cellspacing="1" bgcolor="#eeeeee">
+        <tr>
+            <td width="100%"  style="padding-left:25px;"  bgcolor="#FFFFFF"> 快递公司：
+                <select name="shipping_id" size=1 style="vertical-align:middle;border:1px #ddd solid">
+                    <option value="0">请选择快递公司</option>
+
+
+
+
+                    {foreach from=$shipping_list item=shipping}
+
+
+
+
+                    <option value="{$shipping.shipping_id}" {if $back_shipping.shipping_id eq $shipping.shipping_id}selected{/if} >{$shipping.shipping_name} </option>
+
+
+
+
+                    {/foreach}
+
+
+
+
+                </select>
+                快递运单号：
+                <input type="text" name="invoice_no" class="inputBg" size=20 value="{$back_shipping.invoice_no}" style=" vertical-align:middle">
+                <input type="submit" name="submit" class="main-btn main-btn-large" value="确定" {if $back_shipping.status_back gt 0 && $back_shipping.status_back lt 5}disabled{/if}  style=" vertical-align:middle">
+                <input type="hidden" name="back_id" value="{$back_id}">
+                <input type="hidden" name="act" value="back_order_detail_edit"></td>
+        </tr>
+    </table>
+</form>
+{/if}
+<div class="blank"></div>
+

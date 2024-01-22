@@ -1,0 +1,28 @@
+{if $group_buy_goods}
+
+        <div class="hot" >
+            <div class="hot-bot">  
+                <div class="hot-bot-pic">
+                    {foreach from=$wap_pintuan_adv item=ad_left name=wap_pintuan_adv}
+                       <a href="{$ad_left.url}"><img src="{$ad_left.image}"></a> 
+                    {/foreach}
+                </div>
+                <div class="hot-bot-main bot-main">
+                    <ul>
+                        {foreach from=$group_buy_goods item=goods name=group_buy_goods}
+                        <li>
+                            <div class="bot-main-pic"><a href="{$goods.url}" title="{$goods.act_name|escape:html}">  <img title="n" src="./../{$option.static_path}{$goods.thumb}"> </a></div>
+                            <dd> 
+                                <p><a href="{$goods.url}" title="{$goods.act_name|escape:html}">{$goods.act_name}</a></p>
+                                <dl> 
+                                <i>{$goods.last_price}</i><br> 
+                                </dl>
+                            </dd>
+                        </li>
+                        {/foreach} 
+                    </ul>
+                </div>
+            </div>
+        </div>
+		
+{/if}

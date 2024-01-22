@@ -1,0 +1,48 @@
+<!-- $Id: goods_batch_add.htm 16544 2009-08-13 07:55:57Z liuhui $ -->
+{include file="pageheader.htm"}
+<link href="styles/zTree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+{insert_scripts files='jquery-1.6.2.min.js,jquery.ztree.all-3.5.min.js,category_selecter.js'}
+<div class="main-div">
+<form action="goods_number_batch.php" method="post" enctype="multipart/form-data" name="theForm">
+
+<div class="list-div" id="listDiv">
+<form name="myform">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+      <tr>
+        <th>商品编号</th>
+        <th>商品名称</th>
+        <th>入库数量</th>
+        <th>现有库存数量</th>
+      </tr>
+      {foreach from=$batch_goods item=goods name=goods }
+      <tr>
+        <td align="center"><input type="hidden" name="goods[{$goods.id}][goods_sn]" value="{$goods.sn}" />{$goods.sn}</td>
+        <td align="center"><input type="hidden" name="goods[{$goods.id}][goods_name]" value="{$goods.name}" />{$goods.name}</td>
+        <td align="center"><input type="hidden" name="goods[{$goods.id}][goods_number]" value="{$goods.number}" />{$goods.number}</td>
+        <td align="center">{$goods.old_number}</td>
+      </tr>  
+      {/foreach}
+      <tr align="center">
+        <input type="hidden" name="order_form" value="{$order_form}">
+        <input type="hidden" name="file_sn" value="{$file_sn}">
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="order_type" value="{$order_type}">
+        <td colspan="4"><input name="submit" type="submit" id="submit" value="{$lang.button_submit}" class="button" /><input type="button" value="{$lang.button_back}" class="button" onClick="javascript :history.back(-1);" /></td>
+      </tr>
+  </tbody></table>
+</form>
+</div>
+
+</form>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="80%">{$lang.use_help}</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+
+{include file="pagefooter.htm"}

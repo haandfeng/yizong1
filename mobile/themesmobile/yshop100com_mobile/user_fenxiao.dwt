@@ -1,0 +1,147 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/login.css"/>
+<style>
+		.log_reg_item .Login dl:nth-child(3){display: block}
+		select{display: inline-block;
+    background: #fff;
+    width: 20%;
+    height: 35px;
+    font-size: 12px;
+    color: #333;
+    line-height: 35px;
+    border: 1px solid #ccc;
+    margin-right: 2%;
+    text-indent: 10px;
+    -webkit-appearance: none;
+    border-radius: 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/down.png);
+    background-position: center right;
+    background-size: 23px 7px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;}
+    	input[type="radio"]{width: auto !important}
+    	.bx{position:absolute;right:36px;top:16px;color: red}
+	</style>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+{insert_scripts files='common.js,utils.js,register.js,transport.js,jquery.json.js'}
+ {insert_scripts files='region.js,shopping_flow.js'}
+
+</head>
+<body style="background:#f2f2f2">
+	<header id="header" class='header'>
+	<div class="h-left"><a href="javascript:void(0)" onclick="goback({$is_h5_app})" class="back"></a></div>
+    <div class="h-mid">申请代理</div>
+     </header>
+	<div id="tbh5v0">
+			<div class="log_reg_box">
+				<div id="logRegTabCon">
+					<div class="log_reg_item" id="phonearea">
+						<form action="user.php" id="mobileForm" name="mobileForm" method="post">
+                              <div class="bgwhite">
+                            <div class="Login">
+                            	<dl>
+                                <dt>姓名</dt>
+							    <dd><input type="text" name="real_name" placeholder="请输入您的姓名" />
+							    <span class="bx">*</span>
+                                </dd>
+								</dl>                    
+								<dl>
+                                <dt>手机</dt>
+							    <dd><input type="text" id="mobile" name="mobile" placeholder="请输入手机号码" />
+                                <span class="bx">*</span>
+                                </dd>
+								</dl>
+								<!--<dl>
+                                <dt>性别</dt>
+							    <dd>
+							    	<input type="radio" name="sex" value="0" checked />女
+							    	<input type="radio" name="sex" value="1" style="margin-left: 50px" />男
+							    <span class="bx">*</span>
+							    </dd>
+								</dl>
+								<dl>
+								<dt>居住地</dt>
+								<input name='country' value='1' type="hidden">
+          
+					    		<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" class="province_select" >
+			                     <option value="0">{$lang.please_select}{$name_of_region[1]}</option>-->
+			                      <!-- {foreach from=$province_list item=province} -->
+			                      <!--<option value="{$province.region_id}">{$province.region_name}</option>-->
+			                      <!-- {/foreach} -->
+			                    <!--</select>
+					         
+					             <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+				                   <option value="0">{$lang.please_select}{$name_of_region[2]}</option>-->
+				                      <!-- {foreach from=$city_list item=city} -->
+				                      <!--<option value="{$city.region_id}">{$city.region_name}</option>-->
+				                      <!-- {/foreach} -->
+				                    <!--</select>-->
+				                    
+			                    <!--<select name="district" id="selDistricts" onchange="region.changed(this, 4, 'selXiangcun')" {if !$district_list}style="display:none"{/if}>
+			                      <option value="0">{$lang.please_select}{$name_of_region[3]}</option>-->
+			                      <!-- {foreach from=$district_list item=district} -->
+			                      <!--<option value="{$district.region_id}">{$district.region_name}</option>-->
+			                      <!-- {/foreach} -->
+			                    <!--</select>
+			                    <span class="bx">*</span>
+								</dl>
+								<dl>
+                                <dt>微信号</dt>
+							    <dd><input type="text" name="weixin" placeholder="请输入微信号" />
+							    <span class="bx">*</span>
+                                </dd>
+								</dl>
+								<dl>
+                                <dt>职业</dt>
+							    <dd><input type="text" name="job" placeholder="选填" />
+                                </dd>
+								</dl>
+								<dl>
+                                <dt>年龄</dt>
+							    <dd><input type="text" name="age" placeholder="选填" />
+                                </dd>
+								</dl>
+								<dl>
+                                <dt>介绍人</dt>
+							    <dd><input type="text" name="jieshao" placeholder="选填" />
+                                </dd>
+								</dl>
+								<dl>
+                                <dt style="width: 50%;">是否有从事过微商?</dt>
+							    <dd style="width: 50%;">
+							    	<input type="radio" name="weishang" value="0" checked />否
+							    	<input type="radio" name="weishang" value="1" style="margin-left: 50px" />是
+							    </dd>
+								</dl>-->
+								<!-- <dt></dt>
+									<a style="text-decoration:underline; width: 100%; text-align: center;  display:block; margin-top: 5px;" href="article.php?id=201">《点击了解漢方杏林堂分销商》</a>
+									<a style="text-decoration:underline; width: 100%; text-align: center;  display:block;" href="article.php?id=197">《如何使用分销商功能》</a>
+                                </div> -->
+                            <div class="Login">
+	                      	<div class="field submit-btn" style="padding-left:0px; padding-right:0px;">
+								<input type="submit" id="btn_submit" name="Submit" class="btn_big1" value="提交申请" />
+								<input type="hidden" name="act" value="{$action}" />
+	                            </div>
+	                            </div>
+                                </div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<head>
+    <meta charset="UTF-8">
+    {insert_scripts files='utils.js,common.min.js'}
+</head>
+<body style="background-color: #f6f6f6">
+<div id="header">
+    <div class="header-top">
+        <div class="main">
+            {insert name='member_info'}
+        </div>
+    </div>
+    <style>
+        .sousou{position: absolute;width: 45px;height: 43px;right: 525px;top: 75px; cursor:pointer;}
+    </style>
+    <div class="header-center">
+        <div class="main">
+            <div class="logo"><a href="/"><img src="{$logo}"></a></div>
+            <div class="search">
+             
+                <input type="text" name="keywords" id="keyword" tabindex="9" accesskey="s" placeholder="请输入关键词" autocomplete="off"  onkeyup="if(this.value==''){}else{checkgjz(this,1);e.preventDefault();}">
+                
+                <input type="button" value="搜索" id="ssou" style="display:none;" onclick="chkkey();">
+             
+                <a href="flow.php" target="_top"><img src="themes/yshop100/pc/images/logo_08.png">购物车</a>
+            </div>
+        </div>
+    </div>
+    <div id="nav">
+        <div class="main">
+            
+            <div class="nav">
+                <ul>
+                    <li><a href="index.php" title="首页">首页</a></li>
+                    <li><a href="category.php?id=1" title="直邮专区">直邮专区</a></li>
+                    <!--li><a href="category.php?id=108" title="保税专区">保税专区</a></li-->
+                    <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav } -->
+                    <!-- <li><a class="{if $nav.active eq 1}current{/if}" href="{$nav.url}" title="{$nav.name}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li> -->
+                    <!-- {/foreach} -->
+                    <li><a href="apply_index.php" target="_blank">我要入驻</a></li>
+                    <li><a href="ruzhu.php" target="_blank">入驻商家</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.sousou').click(function(){
+	$('#ssou').click();
+        
+    })
+
+    header_login();
+    function header_login()
+    {
+        Ajax.call('login_act_ajax.php', '', loginactResponse, 'GET', 'JSON', '1', '1');
+    }
+    function loginactResponse(result)
+    {
+        var MEMBERZONE =document.getElementById('login-info');
+        MEMBERZONE.innerHTML= result.memberinfo;
+    } 
+	function checkgjz(field,i)
+	{
+		if(isNaN(field.value))
+		{
+			var str=field.value;
+			$.get("gjz.php?act=key&key="+str,function(data,status){
+				if(data=='false')
+				{ 
+					field.value='';
+					alert("检测到屏蔽词,请重新输入！");
+					var onblurevent=field.onblur;
+					field.onblur = "";
+					setTimeout(function(){
+						field.focus();
+						field.onblur=onblurevent;
+					},0);
+				} 
+			}); 
+		}
+	}
+	
+	$("#keyword").bind("keydown",function(e){ 
+　　var theEvent = e || window.event;
+　　var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+　　 if (code == 13) { debugger;
+　　chkkey();
+　　}
+});
+function chkkey()
+{
+	if(document.getElementById('keyword').value==""||document.getElementById('keyword').value=="请输入关键词")
+	{alert("请输入关键词！");
+	}
+	else
+	{
+		var field=document.getElementById("keyword");
+			if(isNaN(field.value))
+				{
+					var str=field.value;
+					$.get("gjz.php?act=key&key="+str,function(data,status){
+						if(data=='false')
+						{  
+							alert("检测到屏蔽词,请重新输入！");
+							var onblurevent=field.onblur;
+							field.onblur = "";
+							setTimeout(function(){
+								field.focus();
+								field.onblur=onblurevent;
+							},0);
+						}
+						else
+						{ 
+							checkSearchForm();
+						}
+					}); 
+				}
+	}
+}
+</script>

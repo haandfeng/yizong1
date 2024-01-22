@@ -1,0 +1,468 @@
+<!-- $Id: order_info.htm 15544 2009-01-09 01:54:28Z zblikai $ -->
+
+{include file="pageheader.htm"}
+{insert_scripts files="topbar.js,../js/utils.js,listtable.js,selectzone.js,../js/common.js"}
+
+<form  method="post" name="theForm">
+
+<div class="list-div" style="margin-bottom: 5px">
+<table width="100%" cellpadding="3" cellspacing="1">
+  <tr>
+    <th colspan="8">备案信息 </th>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>商品编码</strong></div></td>
+    <td><input type="text" name="skuCode" id="skuCode" value="{$order.skuCode}" maxlength="50" {$readonl} /><span style="color:red">*</span><input type="text" name="skuId" id="skuId" value="{$order.skuId}" maxlength="50" style="display:none;" /></td>
+    <td><div align="right"><strong>商品名称</strong></div></td>
+    <td><input type="text" name="skuName" id="skuName" value="{$order.skuName}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>英文名</strong></div></td>
+    <td><input type="text" name="skuName_EN" id="skuName_EN" value="{$order.skuName_EN}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>商品简称</strong></div></td>
+    <td><input type="text" name="shortName" id="shortName" value="{$order.shortName}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>品牌代码</strong></div></td>
+    <td><input type="text" name="brandCode" id="brandCode" value="{$order.brandCode}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>品牌名称</strong></div></td>
+    <td><input type="text" name="brandName" id="brandName" value="{$order.brandName}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>货号</strong></div></td>
+    <td><input type="text" name="goodsCode" id="goodsCode" value="{$order.goodsCode}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>条形码</strong></div></td>
+    <td><input type="text" name="barCode" id="barCode" value="{$order.barCode}" maxlength="500"  /><span style="color:red">*</span></td>
+  </tr>  
+  <tr>
+    <td><div align="right"><strong>条形码1</strong></div></td>
+    <td><input type="text" name="barCode2" id="barCode2" value="{$order.barCode2}" maxlength="500"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>条形码2</strong></div></td>
+    <td><input type="text" name="barCode3" id="barCode3" value="{$order.barCode3}" maxlength="500"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>条形码3</strong></div></td>
+    <td><input type="text" name="barCode4" id="barCode4" value="{$order.barCode4}" maxlength="500"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>条形码4</strong></div></td>
+    <td><input type="text" name="barCode5" id="barCode5" value="{$order.barCode5}" maxlength="500"  /><span style="color:red">*</span></td>
+  </tr>  
+  <tr>
+    <td><div align="right"><strong>商品类型</strong></div></td>
+    <td> 
+	<select name="itemType" id="itemType">
+		<option value="">请选择</option>
+		<option value="ZC">正常商品</option>
+		<option value="FX">分销商品</option>
+		<option value="ZH">组合商品</option>
+		<option value="ZP">赠品</option>
+		<option value="BC">包材</option>
+		<option value="HC">耗材</option>
+		<option value="FL">辅料</option>
+		<option value="XN">虚拟品</option>
+		<option value="FS">附属品</option>
+		<option value="CC">残次品</option>
+		<option value="OTHER">其它</option>
+	</select>
+	<span style="color:red">*</span>
+	<!--(ZC=正常商品, FX=分销商品, ZH=组合商品, ZP=赠品, BC=包材, HC=耗材, FL=辅料, XN=虚拟品, FS=附属品, CC=残次品, OTHER=其它)--></td>
+    <td><div align="right"><strong>商品属性</strong></div></td>
+    <td><input type="text" name="skuProperty" id="skuProperty" value="{$order.skuProperty}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>商品类别</strong></div></td>
+    <td><input type="text" name="categoryName" id="categoryName" value="{$order.categoryName}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>商品类别ID</strong></div></td>
+    <td><input type="text" name="categoryId" id="categoryId" value="{$order.categoryId}" maxlength="50"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>供应商编码</strong></div></td>
+    <td><input type="text" name="supplierCode" id="supplierCode" value="{$order.supplierCode}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>供应商名称</strong></div></td>
+    <td><input type="text" name="supplierName" id="supplierName" value="{$order.supplierName}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>原产国</strong></div></td>
+    <td><input type="text" name="productionMarketingCountry" id="productionMarketingCountry" value="{$order.productionMarketingCountry}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>原产地</strong></div></td>
+    <td><input type="text" name="originAddress" id="originAddress" value="{$order.originAddress}" maxlength="50"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>吊牌价</strong></div></td>
+    <td><input type="text" name="tagPrice" id="tagPrice" value="{$order.tagPrice}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>零售价</strong></div></td>
+    <td><input type="text" name="retailPrice" id="retailPrice" value="{$order.retailPrice}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>成本价</strong></div></td>
+    <td><input type="text" name="costPrice" id="costPrice" value="{$order.costPrice}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>采购价</strong></div></td>
+    <td><input type="text" name="purchasePrice" id="purchasePrice" value="{$order.purchasePrice}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <!--<td><div align="right"><strong>生产日期</strong></div></td>
+    <td><input type="text" name="productdate" id="productdate" value="{$order.productdate}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>过期日期</strong></div></td>
+    <td><input type="text" name="expiredate" id="expiredate" value="{$order.expiredate}" maxlength="30"  /><span style="color:red">*</span></td>-->
+    <td><div align="right"><strong>批准文号</strong></div></td>
+    <td><input type="text" name="approvalNumber" id="approvalNumber" value="{$order.approvalNumber}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>备注</strong></div></td>
+    <td><input type="text" name="remark" id="remark" value="{$order.remark}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>渠道中的商品标题</strong></div></td>
+    <td><input type="text" name="title" id="title" value="{$order.title}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>颜色</strong></div></td>
+    <td><input type="text" name="color" id="color" value="{$order.color}" maxlength="50"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>季节编码</strong></div></td>
+    <td><input type="text" name="seasonCode" id="seasonCode" value="{$order.seasonCode}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>季节名称</strong></div></td>
+    <td><input type="text" name="seasonName" id="seasonName" value="{$order.seasonName}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>包装代码</strong></div></td>
+    <td><input type="text" name="packCode" id="packCode" value="{$order.packCode}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>是否有效</strong></div></td>
+    <td><input type="checkbox" name="isValid" id="isValid"  maxlength="30" value='Y' checked  /></td>
+  </tr> 
+  <tr>
+    <!--<td><div align="right"><strong>箱规</strong></div></td>
+    <td><input type="text" name="pcs" id="pcs" value="{$order.pcs}" maxlength="30"  /><span style="color:red">*</span></td>-->
+    <td><div align="right"><strong>是否易碎品</strong></div></td>
+    <td><input type="checkbox" name="isFragile" id="isFragile"  maxlength="30" value="Y" /></td>
+    <td><div align="right"><strong>是否危险品</strong></div></td>
+    <td><input type="checkbox" name="isHazardous" id="isHazardous"  maxlength="30" value="Y"  /></td>
+    <td><div align="right"><strong>是否sku</strong></div></td>
+    <td><input type="checkbox" name="isSku" id="isSku"  maxlength="30" value='Y' checked  /></td>
+    <td><div align="right"><strong>是否需要串号管理</strong></td><td><input type="checkbox" name="isSNMgmt" value='Y' id="isSNMgmt"   maxlength="30"  /></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>图片URL1</strong></div></td>
+    <td><input type="text" name="imgUrl" id="imgUrl" value="{$order.imgUrl}" maxlength="800"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>图片URL2</strong></div></td>
+    <td><input type="text" name="imgUrl2" id="imgUrl2" value="{$order.imgUrl2}" maxlength="800"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>图片URL3</strong></div></td>
+    <td><input type="text" name="imgUrl3" id="imgUrl3" value="{$order.imgUrl3}" maxlength="800"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>图片URL4</strong></div></td>
+    <td><input type="text" name="imgUrl4" id="imgUrl4" value="{$order.imgUrl4}" maxlength="800"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>图片URL5</strong></div></td>
+    <td><input type="text" name="imgUrl5" id="imgUrl5" value="{$order.imgUrl5}" maxlength="800"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>长（cm）</strong></div></td>
+    <td><input type="text" name="length" id="length" value="{$order.length}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>宽（cm）</strong></div></td>
+    <td><input type="text" name="width" id="width" value="{$order.width}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>高（cm）</strong></div></td>
+    <td><input type="text" name="height" id="height" value="{$order.height}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>体积（cm³）</strong></div></td>
+    <td><input type="text" name="volume" id="volume" value="{$order.volume}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>毛重（kg）</strong></div></td>
+    <td><input type="text" name="grossWeight" id="grossWeight" value="{$order.grossWeight}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>净重（kg）</strong></div></td>
+    <td><input type="text" name="netWeight" id="netWeight" value="{$order.netWeight}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>尺寸（cm）</strong></div></td>
+    <td><input type="text" name="size" id="size" value="{$order.size}" maxlength="50"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>商品包装材料类型</strong></div></td>
+    <td><input type="text" name="packageMaterial" id="packageMaterial" value="{$order.packageMaterial}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"></div></td>
+    <td></td>
+    <td><div align="right"></div></td>
+    <td></td>
+    <td><div align="right"></div></td>
+    <td></td>
+  </tr> 
+  <!--<tr>
+    <td><div align="right"><strong>商品规格</strong></div></td>
+    <td><input type="text" name="skuModel" id="skuModel" value="{$order.skuModel}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"></div></td>
+    <td></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+  </tr> -->
+  <tr>
+    <th colspan="8">申报信息 </th>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>行邮税号</strong></div></td>
+    <td><input type="text" name="mailTaxNo" id="mailTaxNo" value="{$order.mailTaxNo}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>税则号</strong></div></td>
+    <td><input type="text" name="hsCode" id="hsCode" value="{$order.hsCode}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>第一单位</strong></div></td>
+    <td><input type="text" name="firstUnit" id="firstUnit" value="{$order.firstUnit}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>第二单位</strong></div></td>
+    <td><input type="text" name="secondUnit" id="secondUnit" value="{$order.secondUnit}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>清关单位</strong></div></td>
+    <td><input type="text" name="declareMeasureUnit" id="declareMeasureUnit" value="{$order.declareMeasureUnit}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>计价货币</strong></div></td>
+    <td><input type="text" name="pricingCategory" id="pricingCategory" value="{$order.pricingCategory}" maxlength="200"  /><span style="color:red">*</span></td>
+    <!--<td><div align="right"><strong>第一数量</strong></div></td>
+    <td><input type="text" name="firstQty" id="firstQty" value="{$order.firstQty}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>第二数量</strong></div></td>
+    <td><input type="text" name="SecondQty" id="SecondQty" value="{$order.SecondQty}" maxlength="30"  /><span style="color:red">*</span></td>-->
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>计量单位</strong></div></td>
+    <td><input type="text" name="stockUnit" id="stockUnit" value="{$order.stockUnit}" maxlength="50"  /><span style="color:red">*</span></td>
+    <!--<td><div align="right"><strong>申报数量</strong></div></td>
+    <td><input type="text" name="DeclareMeasureQty" id="DeclareMeasureQty" value="{$order.DeclareMeasureQty}" maxlength="30"  /><span style="color:red">*</span></td>-->
+    <td><div align="right"><strong>账册料号</strong></div></td>
+    <td><input type="text" name="materialNo" id="materialNo" value="{$order.materialNo}" maxlength="30"  /><span style="color:red">*</span></td>
+    <!--<td><div align="right"><strong>税率</strong></div></td>
+    <td><input type="text" name="taxrate" id="taxrate" value="{$order.taxrate}" maxlength="30"  /><span style="color:red">*</span></td>-->
+    <td><div align="right"><strong>账册号</strong></div></td>
+    <td><input type="text" name="manualNo" id="manualNo" value="{$order.manualNo}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>账册序号</strong></div></td>
+    <td><input type="text" name="manualSeqNo" id="manualSeqNo" value="{$order.manualSeqNo}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <th colspan="8">库存信息 </th>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>保质期 (小时)</strong></div></td>
+    <td><input type="text" name="shelfLife" id="shelfLife" value="{$order.shelfLife}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>保质期禁收天数</strong></div></td>
+    <td><input type="text" name="rejectLifecycle" id="rejectLifecycle" value="{$order.rejectLifecycle}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>保质期禁售天数</strong></div></td>
+    <td><input type="text" name="lockupLifecycle" id="lockupLifecycle" value="{$order.lockupLifecycle}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>保质期临期预警天数</strong></div></td>
+    <td><input type="text" name="adventLifecycle" id="adventLifecycle" value="{$order.adventLifecycle}" maxlength="30"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>安全库存</strong></div></td>
+    <td><input type="text" name="safetyStock" id="safetyStock" value="{$order.safetyStock}" maxlength="30"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>批次代码</strong></div></td>
+    <td><input type="text" name="batchCode" id="batchCode" value="{$order.batchCode}" maxlength="50"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>批次备注</strong></div></td>
+    <td><input type="text" name="batchRemark" id="batchRemark" value="{$order.batchRemark}" maxlength="200"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>是否需要保质期管理</strong></div></td>
+    <td><input type="checkbox" name="isShelfLifeMgmt" id="isShelfLifeMgmt"   value="Y" maxlength="30"  /></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>是否批次管理</strong></div></td>
+    <td><input type="checkbox" name="isBatchMgmt" id="isBatchMgmt"  maxlength="30" value="Y" /></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td></td>
+    <td><div align="right"><strong></strong></div></td>
+    <td><span style="color:red">*</span></td>
+  </tr> 
+     
+ 
+</table>
+</div>
+ 
+<div class="list-div" style="margin-bottom: 5px">
+<table cellpadding="3" cellspacing="1">
+  
+ 
+  <tr>
+    <td colspan="6" align="center"> 
+	<input type="hidden" name="createTime" id="createTime" value="{$order.createTime}" maxlength="19"  />
+	<input type="hidden" name="updateTime" id="updateTime" value="{$order.updateTime}" maxlength="19"  /> 
+	<input type="hidden" name="act" id="act" value="{$reqact}" maxlength="19"  />
+        <input name="delivery_confirmed" type="button" value="确定" class="button" onclick="checkform();" />&nbsp;&nbsp;<input type="button" value="{$lang.cancel}" class="button" onclick="location.href='kuajing.php?act=list&t=goods'" />
+
+    </td>
+    </tr>
+</table>
+</div>
+</form>
+{literal}
+<script language="JavaScript">
+{/literal}
+  var oldAgencyId = {$order.agency_id|default:0};
+{literal}
+  onload = function()
+  {
+		document.getElementById("itemType").value='{$order.itemType}';
+		if("{$order.isSNMgmt}"=='Y')
+			document.getElementById("isSNMgmt").checked=true;
+		else
+			document.getElementById("isSNMgmt").checked=false;
+		
+		if("{$order.isShelfLifeMgmt}"=='Y')
+			document.getElementById("isShelfLifeMgmt").checked=true;
+		else
+			document.getElementById("isShelfLifeMgmt").checked=false;
+			
+		if("{$order.isBatchMgmt}"=='Y')
+			document.getElementById("isBatchMgmt").checked=true;
+		else
+			document.getElementById("isBatchMgmt").checked=false;
+			
+		if("{$order.isFragile}"=='Y')
+			document.getElementById("isFragile").checked=true;
+		else
+			document.getElementById("isFragile").checked=false;
+			
+		if("{$order.isHazardous}"=='Y')
+			document.getElementById("isHazardous").checked=true;
+		else
+			document.getElementById("isHazardous").checked=false;
+			
+		if("{$order.isValid}"=='Y')
+			document.getElementById("isValid").checked=true;
+		else
+			document.getElementById("isValid").checked=false;
+			
+		if("{$order.isSku}"=='Y')
+			document.getElementById("isSku").checked=true;
+		else
+			document.getElementById("isSku").checked=false;
+      
+  }
+function checkform()
+{debugger;
+	var flag=true;
+	if($("#skuCode").val()=="")
+	{
+		alert('商品编码必填');
+		flag=false;
+	}
+	 
+	
+	if(flag)
+	{
+		var str='';
+		str+='{';
+		str+='&quot;skuCode&quot;: &quot;'+document.getElementById("skuCode").value+'&quot;,';
+		str+='&quot;skuId&quot;: &quot;'+document.getElementById("skuId").value+'&quot;,';
+		str+='&quot;goodsCode&quot;: &quot;'+document.getElementById("goodsCode").value+'&quot;,';
+		str+='&quot;skuName&quot;: &quot;'+document.getElementById("skuName").value+'&quot;,';
+		str+='&quot;shortName&quot;: &quot;'+document.getElementById("shortName").value+'&quot;,';
+		str+='&quot;skuName_EN&quot;: &quot;'+document.getElementById("skuName_EN").value+'&quot;,';
+		str+='&quot;barCode&quot;: &quot;'+document.getElementById("barCode").value+'&quot;,';
+		str+='&quot;skuProperty&quot;: &quot;'+document.getElementById("skuProperty").value+'&quot;,';
+		str+='&quot;stockUnit&quot;: &quot;'+document.getElementById("stockUnit").value+'&quot;,';
+		str+='&quot;length&quot;: &quot;'+document.getElementById("length").value+'&quot;,';
+		str+='&quot;width&quot;: &quot;'+document.getElementById("width").value+'&quot;,';
+		str+='&quot;height&quot;: &quot;'+document.getElementById("height").value+'&quot;,';
+		str+='&quot;volume&quot;: &quot;'+document.getElementById("volume").value+'&quot;,';
+		str+='&quot;grossWeight&quot;: &quot;'+document.getElementById("grossWeight").value+'&quot;,';
+		str+='&quot;netWeight&quot;: &quot;'+document.getElementById("netWeight").value+'&quot;,';
+		str+='&quot;color&quot;: &quot;'+document.getElementById("color").value+'&quot;,';
+		str+='&quot;size&quot;: &quot;'+document.getElementById("size").value+'&quot;,';
+		str+='&quot;title&quot;: &quot;'+document.getElementById("title").value+'&quot;,';
+		str+='&quot;categoryId&quot;: &quot;'+document.getElementById("categoryId").value+'&quot;,';
+		str+='&quot;categoryName&quot;: &quot;'+document.getElementById("categoryName").value+'&quot;,';
+		str+='&quot;pricingCategory&quot;: &quot;'+document.getElementById("pricingCategory").value+'&quot;,';
+		str+='&quot;safetyStock&quot;: &quot;'+document.getElementById("safetyStock").value+'&quot;,';
+		str+='&quot;itemType&quot;: &quot;'+document.getElementById("itemType").value+'&quot;,';
+		str+='&quot;tagPrice&quot;: &quot;'+document.getElementById("tagPrice").value+'&quot;,';
+		str+='&quot;retailPrice&quot;: &quot;'+document.getElementById("retailPrice").value+'&quot;,';
+		str+='&quot;costPrice&quot;: &quot;'+document.getElementById("costPrice").value+'&quot;,';
+		str+='&quot;purchasePrice&quot;: &quot;'+document.getElementById("purchasePrice").value+'&quot;,';
+		str+='&quot;seasonCode&quot;: &quot;'+document.getElementById("seasonCode").value+'&quot;,';
+		str+='&quot;seasonName&quot;: &quot;'+document.getElementById("seasonName").value+'&quot;,';
+		str+='&quot;brandCode&quot;: &quot;'+document.getElementById("brandCode").value+'&quot;,';
+		str+='&quot;brandName&quot;: &quot;'+document.getElementById("brandName").value+'&quot;,'; 
+		if(document.getElementById("isSNMgmt").checked==false)
+			str+='&quot;isSNMgmt&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isSNMgmt&quot;: &quot;Y&quot;,'; 
+		str+='&quot;isShelfLifeMgmt&quot;: &quot;'+document.getElementById("isShelfLifeMgmt").value+'&quot;,';
+		if(document.getElementById("isShelfLifeMgmt").checked==false)
+			str+='&quot;isShelfLifeMgmt&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isShelfLifeMgmt&quot;: &quot;Y&quot;,';
+		str+='&quot;shelfLife&quot;: &quot;'+document.getElementById("shelfLife").value+'&quot;,';
+		str+='&quot;rejectLifecycle&quot;: &quot;'+document.getElementById("rejectLifecycle").value+'&quot;,';
+		str+='&quot;lockupLifecycle&quot;: &quot;'+document.getElementById("lockupLifecycle").value+'&quot;,';
+		str+='&quot;adventLifecycle&quot;: &quot;'+document.getElementById("adventLifecycle").value+'&quot;,'; 
+		if(document.getElementById("isBatchMgmt").checked==false)
+			str+='&quot;isBatchMgmt&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isBatchMgmt&quot;: &quot;Y&quot;,';
+		str+='&quot;batchCode&quot;: &quot;'+document.getElementById("batchCode").value+'&quot;,';
+		str+='&quot;batchRemark&quot;: &quot;'+document.getElementById("batchRemark").value+'&quot;,';
+		str+='&quot;packCode&quot;: &quot;'+document.getElementById("packCode").value+'&quot;,';
+		str+='&quot;originAddress&quot;: &quot;'+document.getElementById("originAddress").value+'&quot;,';
+		str+='&quot;approvalNumber&quot;: &quot;'+document.getElementById("approvalNumber").value+'&quot;,'; 
+		if(document.getElementById("isFragile").checked==false)
+			str+='&quot;isFragile&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isFragile&quot;: &quot;Y&quot;,'; 
+		if(document.getElementById("isHazardous").checked==false)
+			str+='&quot;isHazardous&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isHazardous&quot;: &quot;Y&quot;,';
+		str+='&quot;remark&quot;: &quot;'+document.getElementById("remark").value+'&quot;,';
+		str+='&quot;createTime&quot;: &quot;'+document.getElementById("createTime").value+'&quot;,';
+		str+='&quot;updateTime&quot;: &quot;'+document.getElementById("updateTime").value+'&quot;,';
+		if(document.getElementById("isValid").checked==false)
+			str+='&quot;isValid&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isValid&quot;: &quot;Y&quot;,'; 
+		if(document.getElementById("isSku").checked==false)
+			str+='&quot;isSku&quot;: &quot;N&quot;,';
+		else 
+			str+='&quot;isSku&quot;: &quot;Y&quot;,';
+		str+='&quot;packageMaterial&quot;: &quot;'+document.getElementById("packageMaterial").value+'&quot;,';
+		str+='&quot;hsCode&quot;: &quot;'+document.getElementById("hsCode").value+'&quot;,';
+		str+='&quot;mailTaxNo&quot;: &quot;'+document.getElementById("mailTaxNo").value+'&quot;,';
+		str+='&quot;firstUnit&quot;: &quot;'+document.getElementById("firstUnit").value+'&quot;,';
+		str+='&quot;secondUnit&quot;: &quot;'+document.getElementById("secondUnit").value+'&quot;,';
+		str+='&quot;declareMeasureUnit&quot;: &quot;'+document.getElementById("declareMeasureUnit").value+'&quot;,';
+		str+='&quot;productionMarketingCountry&quot;: &quot;'+document.getElementById("productionMarketingCountry").value+'&quot;,';
+		str+='&quot;barCode2&quot;: &quot;'+document.getElementById("barCode2").value+'&quot;,';
+		str+='&quot;barCode3&quot;: &quot;'+document.getElementById("barCode3").value+'&quot;,';
+		str+='&quot;barCode4&quot;: &quot;'+document.getElementById("barCode4").value+'&quot;,';
+		str+='&quot;barCode5&quot;: &quot;'+document.getElementById("barCode5").value+'&quot;,';
+		str+='&quot;imgUrl&quot;: &quot;'+document.getElementById("imgUrl").value+'&quot;,';
+		str+='&quot;imgUrl2&quot;: &quot;'+document.getElementById("imgUrl2").value+'&quot;,';
+		str+='&quot;imgUrl3&quot;: &quot;'+document.getElementById("imgUrl3").value+'&quot;,';
+		str+='&quot;imgUrl4&quot;: &quot;'+document.getElementById("imgUrl4").value+'&quot;,';
+		str+='&quot;imgUrl5&quot;: &quot;'+document.getElementById("imgUrl5").value+'&quot;,';
+		str+='&quot;manualNo&quot;: &quot;'+document.getElementById("manualNo").value+'&quot;,';
+		str+='&quot;manualSeqNo&quot;: &quot;'+document.getElementById("manualSeqNo").value+'&quot;,';
+		str+='&quot;materialNo&quot;: &quot;'+document.getElementById("materialNo").value+'&quot;';
+		str+='}';
+		
+	if(document.getElementById("act").value=='add')	 
+	{
+		$.post("kuajing.php", { "act":"addsave","t":"goods","save": str },
+		   function(data){ debugger;
+		   //"{"resultCode":"1","resultData":"","resultContent":"备案成功"}"
+			 if(data.resultCode=="1")
+			 {
+				alert(data.resultContent);
+				location.href='kuajing.php?act=list&t=goods';
+			 }
+			 else if(data.resultCode=="2")
+			 {
+				alert(data.resultContent);
+			 }
+			 else
+			 {
+				alert(data.resultContent+"-错误码："+data.resultCode);
+			 }
+		   //});
+		   }, "json");
+	}   
+	else   
+	{
+		$.post("kuajing.php", { "act":"editsave","t":"goods","save": str },
+		   function(data){debugger;
+		   //"{"resultCode":"1","resultData":"","resultContent":"备案成功"}"
+			 if(data.resultCode=="1")
+			 {
+				alert(data.resultContent);
+			 }
+			 else if(data.resultCode=="2")
+			 {
+				alert(data.resultContent);
+			 }
+			 else
+			 {
+				alert(data.resultContent+"-错误码："+data.resultCode);
+			 }
+		   //});
+		   }, "json");
+	}
+	
+	}
+	return flag;
+}
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}

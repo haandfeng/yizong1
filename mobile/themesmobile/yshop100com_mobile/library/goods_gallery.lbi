@@ -1,0 +1,284 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="banner">
+  <div id="slider" class="slider" style="overflow: hidden; visibility: visible; list-style: none; position: relative;">
+    <i class="icon icon-qrcode" id="alert-click" onclick="get_good_code_act()"></i>
+    <ul id="sliderlist" class="sliderlist" onclick="get_erweima_ajax({$goods.goods_id})" style="background-color:#fff;text-align:center;position: relative; overflow: hidden; transition: left 600ms ease; -webkit-transition: left 600ms ease; width: 2400px; left: -600px;">
+       <!-- {foreach from=$pictures item=picture name=name}-->
+      <li style="float: left; display: block; width: 600px;"><span><a href="javacript:void(0)"><img title=""   src="{if $picture.thumb_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}"></a></span></li>
+       <!--{foreachelse}-->
+       <li style="float: left; display: block; width: 600px;"><span><a href="javacript:void(0)"><img title=""  src="{$goods.goods_img}"></a></span></li>
+       <!--{/foreach}-->
+    </ul>
+    <div id="pagenavi">
+    <!-- {foreach from=$pictures item=picture name=indexname}-->
+    <a href="javascript:void(0);" {if $smarty.foreach.indexname.first}class="active"{/if}></a>
+     <!--{foreachelse}-->
+     <a href="javascript:void(0);" class="active"></a>
+     <!--{/foreach}-->
+</div>
+  </div>
+</div>
+<div class="s_bottom"></div>
+<script type="text/javascript">$(function(){
+	$("div.module_special .wrap .major ul.list li:last-child").addClass("remove_bottom_line");
+});
+var active=0,
+	as=document.getElementById('pagenavi').getElementsByTagName('a');
+	
+for(var i=0;i<as.length;i++){
+	(function(){
+		var j=i;
+		as[i].onclick=function(){
+			t2.slide(j);
+			return false;
+		}
+	})();
+}
+
+function get_erweima_ajax(goods_id) {
+
+}
+
+
+  var t2=new TouchSlider({id:'sliderlist', speed:600, timeout:6000, before:function(index){
+    as[active].className='';
+    active=index;
+    as[active].className='active';
+  }});
+
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="../themesmobile/yshop100com_mobile/fonts/iconfont.css">
+<style>
+#alert-click {
+    width: 2rem;
+    height: 2rem;
+    background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    z-index: 1000;
+}
+.icon-qrcode:before {
+    content: "\e643";
+}
+.alert {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    border: 1px solid #eee;
+    background: #fff;
+    top: 5rem;
+    z-index: 1001;
+    padding: 1rem;
+}
+#alert-mask {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+}
+.alert-close1 {
+    border: none;
+    background: #000;
+    font-size: 1.4rem;
+    position: absolute;
+    right: -0.4rem;
+    top: -1.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    line-height: 1.5rem;
+    color: #fff;
+    border: 1px solid #fff;
+    display: block;
+    text-align: center;
+    font-style: normal;
+}
+.alert-header {
+    padding: 0 0 0.5rem 0;
+}
+.fui-list {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: .5rem;
+    -moz-transition-duration: 300ms;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.alert-goods-img {
+    width: 100%;
+}
+.fui-list-media {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex: 0 0 auto;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-box-lines: single;
+    -moz-box-lines: single;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-right: .5rem;
+    color: #aaa;
+    position: relative;
+}
+.alert-qrcode-i {
+    width: 4rem;
+    height: 4rem;
+    display: block;
+}
+.alert-qrcode-i canvas {
+    widtH: 4rem;
+    height: 4rem;
+}
+.alert-content h2 {
+    font-size: 0.7rem;
+    max-height: 2rem;
+    overflow: hidden;
+    line-height: 1rem;
+    color: #283139;
+}
+.alert-content span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ff3f5a;
+}
+.alert-content del {
+    font-size: 0.7rem;
+    color: #999;
+}
+.share-text1 {
+    text-align: center;
+    padding: 0.5rem 0.5rem 0;
+    font-size: 0.6rem;
+    color: #666;
+    line-height: 1rem;
+}
+</style>
+
+<div id="alert-picker" style="display: none;">
+    <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.qrcode.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            $('.icon-close').on('click',function(){
+                $('#alert-picker').hide();
+            })
+
+//          $('#alert-click').on('click',function(){
+//            $.post('register.php',{act:'get_good_code_act',goods_id:{$goods_id}},function (data) {
+//              if (data.error == 2){
+//                alert(data.message);
+//              }else if(data.error == 1){
+//                alert(data.message);
+//                window.location.href="user.php";
+//              }else if(data.error == 0){
+//                $('#qr_code_img').attr('src','./../images/qrimage/'+data.info[code_url]);
+//                $('#alert-picker').show();
+//              }
+//            },'json');
+//            });
+
+        });
+      function get_good_code_act(){
+        $(".alert-qrcode-i").html('')
+        var img_url = '';
+        var code_img = $('.alert-qrcode-i');
+        if(code_img.attr('data-status') != 1){
+          $.post('goods.php',{act:'get_good_code_act',goods_id:{$goods_id}},function (data) {
+            if (data.error == 2){
+              alert(data.message);
+            }else if(data.error == 1){
+              alert(data.message);
+              window.location.href="user.php";
+            }else if(data.error == 0){
+              code_img.attr('data-status','1');
+              img_url = "http://{$smarty.server.SERVER_NAME}/mobile/register.php?goods_id="+data.info.goods_id+"&id="+data.info.user_id+"|"+data.info.qr_code;
+              code_img.attr('data-url',img_url);
+              $(".alert-qrcode-i").qrcode({
+                typeNumber: 0,
+                correctLevel: 0,
+                text:img_url
+              });
+              $('#alert-picker').show();
+            }
+          },'json');
+        }else{
+          img_url = code_img.attr('data-url');
+          $(".alert-qrcode-i").qrcode({
+            typeNumber: 0,
+            correctLevel: 0,
+            text:img_url
+          });
+          $('#alert-picker').show();
+          $('#alert-mask').show();
+          $('.alert-content').show();
+        }
+      }
+
+       function a(){
+        $('#alert-mask').hide();
+                        $('.alert-content').hide();
+       }
+    </script>
+    <div id="alert-mask"></div>
+        <div class="alert-content">
+        <div class="alert">
+            <i class="alert-close alert-close1 icon icon-close " onclick="a()"></i>
+            <div class="fui-list alert-header">
+                <div class="fui-list-media">
+                    <img class="round" src="themesmobile/yshop100com_mobile/yzimages/images/logo_03.png">
+                </div>
+                <div class="fui-list-inner" style="font-weight: bold; color: #fd7020;line-height: 18px; font-size: 0.8rem;">{$lang.w_name}<br><h2 style="color: #fafafa;background-color: #fb7320;display: inline-block;padding: 0 10px;">{$lang.w_name_eng}</h2></div>
+            </div>
+                <img id="qr_code_img" src="{$pictures.0.img_url}" class="alert-goods-img" alt="">
+            <div class="fui-list alert-qrcode">
+                <div class="fui-list-media">
+                    <i class="alert-qrcode-i"></i>
+                </div>
+                <div class="fui-list-inner alert-content">
+                    <h2 class="alert-title">{$goods.goods_name}</h2>
+                    <span>
+                        {if $goods.is_promote and $goods.gmt_end_time}
+                            {$goods.promote_price}
+                        {else}
+                            {$goods.shop_price_formated}
+                        {/if}
+                        </span></div>
+            </div>
+            <div class="share-text1">{$lang.w_name_tip}</div>
+        </div>
+    </div>
+    </div>

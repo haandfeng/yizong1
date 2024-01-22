@@ -1,0 +1,89 @@
+<!-- $Id: goods_batch_add.htm 16544 2009-08-13 07:55:57Z liuhui $ -->
+{include file="pageheader.htm"}
+<link href="styles/zTree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+{insert_scripts files='jquery-1.6.2.min.js,jquery.ztree.all-3.5.min.js,category_selecter.js'}
+<div class="main-div">
+<form action="goods_number_batch.php?act=confirm" method="post" enctype="multipart/form-data" name="theForm" onsubmit="return formValidate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+<tr>
+    <td class="label">{$lang.export_format}</td>
+    <td><select name="data_format" id="data_format">
+      {html_options options=$data_format }
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.file_step}</td>
+    <td><select name="step" id="step">
+      {html_options options=$step_list}
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">T1库：</td>
+    <td><select name="order_form" id="order_form">
+      {html_options options=$order_form_array}
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">
+      <a href="javascript:showNotice('noticeFile');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>
+      {$lang.xls_file}</td>
+    <td><input name="file" type="file" size="40">
+    <br />
+      <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeFile">{$lang.notice_file}</span></td>
+  </tr>
+  {foreach from=$download_list item=download key=charset}
+  <tr>
+    <td>&nbsp;</td>
+    <td><a href="goods_batch.php?act=download&charset={$charset}">{$download}</a></td>
+  </tr>
+  {/foreach}
+  <tr align="center">
+    <input type="hidden" name="act" value="{$act}">
+    <td colspan="2"><input name="submit" type="submit" id="submit" value="{$lang.button_submit}" class="button" /></td>
+  </tr>
+</table>
+
+
+</form>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="80%">{$lang.use_help}</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+    var elements;
+    onload = function()
+    {
+        // 文档元素对象
+        elements = document.forms['theForm'].elements;
+
+        // 开始检查订单
+        startCheckOrder();
+    }
+
+    /**
+     * 检查输入是否完整
+     */
+    function formValidate()
+    {
+      if ($("[name='file']").val() == '')
+    	{
+        	alert(please_upload_file);
+        	return false;
+    	}
+       
+        return true;
+    }
+	
+</script>
+
+
+
+{/literal}
+
+{include file="pagefooter.htm"}

@@ -1,0 +1,34 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/login.css"/>  
+
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+{insert_scripts files='common.js,utils.js,user.js,transport.js'}
+</head>
+<body class="body_bj">
+	<header id="header" class='header'>
+	    <div class="h-left"><a href="javascript:void(0)" onclick="goback({$is_h5_app})" class="sb-back"></a></div>
+	    <div class="h-mid">绑定老账号</div>
+    </header>
+    <h3 style='text-align:center;'>绑定老账号</h3>
+   <form action='weixin_bang.php?act=check' method='post'>
+     <div style='height:40px;text-align:center;'>
+      用户名：<input type='text' name='name'/>
+     </div>
+     <div style='height:40px;text-align:center;'>
+      密 码：<input type='password' name='password'/>
+      </div>
+      <div style='height:40px;text-align:center;'>
+      <input type='submit' value='绑定老账号'/>
+      </div>
+   </form>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/catalog.css?v=.1"/>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script> 
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<!-- 头部 start -->
+<header class="header" style=" position:fixed; top:0">
+  <div class="tab_nav">
+      <div class="h-left">
+          <!--{if $comefrom != 'app'}-->
+          <a class="sb-back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a>
+          <!--{/if}-->
+      </div> 
+      <div class="h-mid">{$catname}</div>  
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+        </aside>
+      </div>
+  </div>
+</header>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+<!--分类切换--> 
+<div class="container">    
+  <div class="category-box">
+    <div class="category1" style="outline: none;" tabindex="5000">
+      <ul class="clearfix" style=" padding-top:45px;">
+			<!--{if $pid>0}-->
+       	<li >
+        	<span>全部分类</span><i id="cat_more"></i>
+		</li>
+			<!--{/if}-->
+       	<!--{foreach from=$categories item=cat name=name}-->
+       	<li {if $ceid=="" and $smarty.foreach.name.first}class="cur cur1"{/if} {if $ceid==$cat.id}class="cur cur1"{/if} id="{$cat.id}" title="{$cat.pid}">
+        	<a href="#id{$cat.id}">{$cat.name|escape:html}</a>
+		</li>
+		<!--{/foreach}-->
+
+
+      </ul>
+    </div>
+	<input id="txtclassid" value="0" style="display:none" />
+   <input style="display:none;" id="txtcatchildid" value="{$catchildid}"/>
+    <div class="category2" style=" outline: none; overflow-y:scroll" tabindex="5001">
+	
+		<table width="100%" height="45px" border="0">
+		<tbody><tr>
+		<td align="right">
+		
+		</td>
+		</tr>
+		</tbody></table>
+   		<!--{foreach from=$items item=item1 key=k}-->
+   <dl style="display: none;"> 
+			<div style="background:#FF9000" id="id{$item1.tid}">
+			<span style="color:#fff;margin-left:20px;">{$k} 
+			</span>
+			</div>
+		<ul id="list" style="margin-top:10px;width:99%;padding-left:10px"> 
+			<!--{foreach from=$item1.tb item=ch name=name}--> 
+			<!--{if $ch.type_img neq '' and $ch.is_show eq '1'}--> 
+					<li class="single_item info icon_for" id="more_element_1"><a href="https://www.quickact.net/mobile/catalog.php?ceid={$item1.tid}&pid=0&catchildid={$ch.id}">
+						<img src="/{$ch.type_img}" style="width:65px;height:65px">
+						<span>{$ch.name}</span> 
+						</a>
+					</li> 
+			<!--{/if}-->
+			<!--{/foreach}-->
+	    </ul>  
+		<table width="100%" height="30px" border="0">
+		<tbody><tr>
+		<td align="right">
+		<a id="idspantop" style="color:#033BDA;  " href="catalog.php?ceid={$item1.tid}&pid=0">所有产品&gt;&gt;</a> 
+		</td>
+		</tr>
+		</tbody></table>
+		  
+      </dl>
+		<!--{/foreach}-->
+	  
+   		     
+ 
+    </div>
+  </div>
+</div>
+<!---切换js----->
+  
+<script type="text/javascript">
+	var id="";
+	var idtext="";
+	var page=0;
+    //点击切换2 3级分类
+	var array=new Array();
+	$('.category1 li').each(function(){ 
+		array.push($(this).position().top-45);
+	});
+	
+	id=$('.cur1').attr('id');
+	idtext=$('.cur1').text(); 
+		$(document).ready(function(){
+			console.log(id);
+			 
+			$('.category1 li').click(function() {
+				if($(this).is('.cat1') == false && $(this).is('.cat1_more') == false){
+					if($(this).attr('id')==undefined&&$(this).attr('title')==undefined)
+					{ 
+					}
+					else
+					{
+						$('.category1 li').each(function(){ 
+							$(this).removeClass("cur cur1");
+						});
+						$(this).addClass("cur cur1");
+					}
+				}
+			});
+			 
+			 $(".single_item").each(function(){ 
+				$(this).parent().parent().css('display','block'); 
+			 });
+		});
+
+		    
+</script> 
+</body>
+</html>

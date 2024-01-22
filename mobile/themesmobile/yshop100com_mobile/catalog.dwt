@@ -1,0 +1,233 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/catalog.css?v=1"/>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+<script type="application/javascript" src="themesmobile/yshop100com_mobile/js/jquery.more2x.js?v=6.5"></script>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<!-- 头部 start -->
+<header class="header" style=" position:fixed; top:0">
+  <div class="tab_nav">
+      <div class="h-left">
+          <!--{if $comefrom != 'app'}-->
+          <a class="sb-back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a>
+          <!--{/if}-->
+      </div> 
+      <div class="h-mid">{$catname}</div>  
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+        </aside>
+      </div>
+  </div>
+</header>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+<!--分类切换--> 
+<div class="container">    
+  <div class="category-box">
+    <div class="category1" style="outline: none;" tabindex="5000">
+      <ul class="clearfix" style=" padding-top:45px;">
+			<!--{if $pid>0}-->
+       	<li >
+        	<span>全部分类</span><i id="cat_more"></i>
+		</li>
+			<!--{/if}-->
+       	<!--{foreach from=$categories item=cat name=name}-->
+       	<li {if $ceid=="" and $smarty.foreach.name.first}class="cur cur1"{/if} {if $ceid==$cat.id}class="cur cur1"{/if} id="{$cat.id}" title="{$cat.pid}">
+        	<span>{$cat.name|escape:html}</span>
+		</li>
+		<!--{/foreach}-->
+
+
+      </ul>
+    </div>
+	<input id="txtclassid" value="0" style="display:none" />
+   <input style="display:none;" id="txtcatchildid" value="{$catchildid}"/>
+    <div class="category2" style=" outline: none; overflow-y:scroll" tabindex="5001">
+   <dl style="display: none; padding-top:45px;display: block;"> 
+		<!--{if $child}-->
+   		<div style=" color:#FFF" id="btntop2">
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid red;" onclick="filtercat(0,this)" id="btncat0">全部</a>
+			<!--{foreach from=$child item=cat name=name}-->
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid #ccc;" onclick="filtercat({$cat.id},this,)" id="btncat{$cat.id}">{$cat.name|escape:html}</a>
+			<!--{/foreach}-->
+		</div> 
+		<!--{/if}-->  
+   		<div style=" color:#FFF" id="btntop">
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid red;" onclick="filter('0',this)" id="bntcl0">全部</a>
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid #ccc;" onclick="filter('1',this)" id="bntcl1">海外直邮</a>
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid #ccc;" onclick="filter('2',this)" id="bntcl2">保税商品</a>
+			<a style="display: inline-block;margin-top: 6px;margin-bottom: 6px;padding-left: 5px;padding-right: 5px;height: 25px;font-size: 12px;line-height: 25px;color: #666;text-align: center;border-radius: 2px;border: 1px solid #ccc;" onclick="filter('3',this)" id="bntcl3">汉方优选</a>
+		</div>  
+		<span id="idspantop" style="color:#fff;margin-top:-10px;font-size: 12px;margin-left:20px;">全部</span>
+   		<ul id="list">
+	        <li class="single_item info xun_for"></li>
+	        <a href="javascript:;" class="get_more" >
+                        </a>
+	    </ul>         
+      </dl>
+ 
+    </div>
+  </div>
+</div>
+<!---切换js----->
+
+    <script type="text/javascript">
+	 
+	var url = '/mobile/catalog.php?act=ajax&ceid='+$('.cur1').attr('id')+'&pid='+$('.cur1').attr('title');
+	$(function(){
+		$('#list').more({'address': url});
+	});
+	function goTop(){
+		$('html,body').animate({'scrollTop':0},600);
+	}
+	</script>
+<script src="themesmobile/yshop100com_mobile/js/jquery.nicescroll.min.js"></script> 
+
+<script type="text/javascript">
+	var id="";
+	var idtext="";
+	var page=0;
+    //点击切换2 3级分类
+	var array=new Array();
+	$('.category1 li').each(function(){ 
+		array.push($(this).position().top-45);
+	});
+	
+	id=$('.cur1').attr('id');
+	idtext=$('.cur1').text();
+	$('.all').text("进入"+$('.cur1').text()+"频道 >");
+	$('.all').attr('href','category.php?id='+$('.cur1').attr('id')); 
+
+		$(document).ready(function(){
+			console.log(id);
+			$("li[catid='"+id+"']").find('i').attr('id','cat_more');
+			$("#"+id).parents().show();
+
+			$("html,body").animate({scrollTop:($("#"+id).offset().top - 100)},2000)
+
+			$('.category1 li').click(function() {
+				if($(this).is('.cat1') == false && $(this).is('.cat1_more') == false){
+					if($(this).attr('id')==undefined&&$(this).attr('title')==undefined)
+					{
+						document.location="catalog.php";
+					}
+					else
+					{
+						document.location="catalog.php?ceid="+$(this).attr('id')+'&pid='+$(this).attr('title');
+					}
+				}
+			});
+			setchildcatbutton($('#txtcatchildid').val());
+			$('.cat1').click(function() {
+				var catid = $(this).attr('catid');
+				if ($("li[catid='"+catid+"']").hasClass("cat1_more")) {
+					setTimeout(function(){catUp(catid);},100);
+				}else if($("li[catid='"+catid+"']").hasClass("cat1_default")){
+					setTimeout(function(){catDown(catid);},100);
+				}
+
+			});
+		});
+
+			
+
+function catUp(catid){
+	$("li[catid='"+catid+"']").removeClass("cat1_more").addClass("cat1_default");
+	$("li[catid='"+catid+"']").find("i").attr("id","");
+	$('#cat2_'+catid).slideUp();
+}
+
+function catDown(catid){
+	$('.cat2').slideUp();
+	$('.cat1').removeClass("cat1_more").addClass("cat1_default");
+	$('.cat1 i').attr("id","");
+	$("li[catid='"+catid+"']").removeClass("cat1_default").addClass("cat1_more");
+	$("li[catid='"+catid+"']").find("i").attr("id","cat_more");
+	$('#cat2_'+catid).slideDown();
+}
+
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+
+function filter(num,th){ 
+	var oldnumber=$("#txtclassid").val();
+	//if(oldnumber=='1'&&num=='3'){
+	//	num='1,3';
+	//}
+	//else if(oldnumber=='3'&&num=='1'){
+	//	num='1,3';
+	//} 
+	//else if(oldnumber=='2'&&num=='3'){
+	//	num='2,3';
+	//}
+	//else if(oldnumber=='3'&&num=='2'){
+	//	num='2,3';
+	//}
+	$("#txtclassid").val(num);
+	$("#btntop").children().css('border', "1px solid #ccc"); 
+	$(th).css('border', "1px solid red"); 
+	if(num=='0'){
+        $("#idspantop").css('display','');
+        $("#idspantop").css('color','#fff');
+        $("#idspantop").html('全部');
+    }
+    else if(num=='1'){
+        $("#idspantop").css('display','');
+        $("#idspantop").css('color','red');
+        $("#idspantop").html('即时配送，即时提取');
+    }
+    else if(num=='2'){
+        $("#idspantop").css('display','');
+        $("#idspantop").css('color','#33cc33');
+        $("#idspantop").html('提供身份证号码，包税包邮');
+    }
+    else if(num=='3'){
+        $("#idspantop").css('display','');
+        $("#idspantop").css('color','#ff5916');
+        $("#idspantop").html('优选品牌');
+    }
+    else if(num=='1,3'){
+		$('#bntcl1').css('border', "1px solid red"); 
+		$('#bntcl3').css('border', "1px solid red"); 
+        $("#idspantop").css('display','');
+        $("#idspantop").css('color','#ff5916');
+        $("#idspantop").html('海外直邮-即时配送，即时提取;汉方优选-优选品牌');
+    }
+   // else if(num=='2,3'){
+	//	$('#bntcl2').css('border', "1px solid red"); 
+	//	$('#bntcl3').css('border', "1px solid red"); 
+     //   $("#idspantop").css('display','');
+     //   $("#idspantop").css('color','#ff5916');
+     //   $("#idspantop").html('保税商品-提供身份证号码，包税包邮;汉方优选-优选品牌');
+    //}
+	var url = '/mobile/catalog.php?act=ajax&ceid='+$('.cur1').attr('id')+'&pid='+$('.cur1').attr('title');
+	$('#list').clear();
+	$('#list').more({'address': url});
+}
+function filtercat(num,th){ 
+	setchildcatbutton(num);
+	var url = '/mobile/catalog.php?act=ajax&ceid='+$('.cur1').attr('id')+'&pid='+$('.cur1').attr('title');
+	$('#list').clear();
+	$('#list').more({'address': url});
+}
+function setchildcatbutton(num){
+	$("#txtcatchildid").val(num);
+	$("#btntop2").children().css('border', "1px solid #ccc"); 
+	$("#btncat"+num.toString()).css('border', "1px solid red");  	
+}
+</script>
+<a href="javascript:goTop();" class="gotop" style=" z-index:9999"><img src="themesmobile/yshop100com_mobile/images/topup.png"></a>
+</body>
+</html>

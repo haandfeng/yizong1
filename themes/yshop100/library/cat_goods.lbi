@@ -1,0 +1,66 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php
+$GLOBALS['smarty']->assign('cat_recommend_type',get_cat_recommend_type($GLOBALS['smarty']->_var['goods_cat']['id']));
+?>
+
+
+
+
+<div class="floor">
+    <div class="main">
+        <div class="floor-top">
+            <strong>{$goods_cat.name|escape:html}</strong>
+            <ul>
+                <?php
+                    $ii = 0;
+                    $GLOBALS['smarty']->assign('child_cat_hot',get_hot_cat_tree($GLOBALS['smarty']->_var['goods_cat']['id'], 3));
+                ?>
+                <!--{foreach from=$child_cat_hot item=cat name=name1}-->
+                <!--{foreach from=$cat.child item=cat_child name=name}-->
+                <?php
+                $ii = $ii + 1;
+                $GLOBALS['smarty']->assign('ii', $ii);
+                ?>
+                <!--{if  $ii < 9 }-->
+                <li>
+                    <a href="{$cat_child.url}" title="{$cat_child.name|escape:html}">
+                        {$cat_child.name|escape:html}
+                    </a>
+                </li>|
+                <!-- {/if} -->
+                <!--{/foreach}-->
+                <!--{/foreach}-->
+            </ul>
+        </div>
+        <div class="floor-pic">
+            <?php
+                $GLOBALS['smarty']->assign('index_image',get_adv('首页-分类ID'.$GLOBALS['smarty']->_var['goods_cat']['id'].'-左侧图片'));
+            ?>
+            {$index_image}
+        </div>
+        <div class="floor-bot">
+            <ul>
+                <?php
+                $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', get_children($GLOBALS['smarty']->_var['goods_cat']['id']), 4));
+                ?>
+                <!--{foreach from=$best_goods item=goods name=cat_item_goods}-->
+                <li>
+                    <div>
+                        <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                            <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="pic_img_{$goods.id}">
+                        </a>
+                    </div>
+                    <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_style_name}</a></p>
+                    <span>
+                    <!-- {if $goods.promote_price neq ""} -->
+                    {$goods.promote_price}
+                    <!-- {else}-->
+                    {$goods.shop_price}
+                    <!--{/if}-->
+                    </span>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+        </div>
+    </div>
+</div>

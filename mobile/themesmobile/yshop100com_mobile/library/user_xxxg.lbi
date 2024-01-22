@@ -1,0 +1,157 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="Personal">
+  <div id="tbh5v0">
+    <div class="innercontent1" >
+      {if $op == 'change_headimg'}
+      <style>
+        .file {
+          position: relative;
+          display: inline-block;
+          background: #D0EEFF;
+          border: 1px solid #99D3F5;
+          border-radius: 4px;
+          padding: 4px 12px;
+          overflow: hidden;
+          color: #1E88C7;
+          text-decoration: none;
+          text-indent: 0;
+          line-height: 20px;
+        }
+        .file input {
+          position: absolute;
+          font-size: 100px;
+          right: 0;
+          top: 0;
+          opacity: 0;
+        }
+        .file:hover {
+          background: #AADFFD;
+          border-color: #78C3F3;
+          color: #004974;
+          text-decoration: none;
+        }
+      </style>
+        <form action="/mobile/user.php?act=act_edit_img" method="post" enctype="multipart/form-data">
+          <div class="name" style="display: inline-block;height: auto"><span>头像</span>
+            <img src="{$headimgurl}" alt="" style="width:100px;height: 100px">
+          </div>
+          <div class="name"><span>头像</span>
+            <a href="javascript:void(0);" class="file">
+              更换头像
+              <input type="file" name="headimg" value="" id="headimg">
+            </a>
+          </div>
+
+          <div class="field submit-btn">
+            <input type="submit" value="{$lang.confirm_edit}" class="btn_big1" />
+          </div>
+          <input type="hidden" name="act" value="act_edit_img"/>
+        </form>
+      {else}
+        <form method="post" action="user.php" id="edit_profile">
+        <div class="name"><span>用户名</span>
+          <input type="text" name="username" value="{$profile.user_name}" placeholder="*用户名" class="c-f-text">
+        </div>
+        <div class="name"> <span>{$lang.birthday}</span> {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}</div>
+        <div class="name1"> <span>{$lang.sex}</span>
+          <ul>
+            <li {if $profile.sex eq '0'} class="on" {/if} >
+              <label for="sex0">
+               <input type="radio" name="sex" value="0" tabindex="2" class="radio" id="sex0" {if $profile.sex eq '0'}checked=true{/if}/>
+                {$lang.secrecy}</label>
+            </li>
+            <li {if $profile.sex eq '1'} class="on" {/if} >
+              <label for="sex1">
+                <input type="radio" name="sex" value="1"  tabindex="3" class="radio" id="sex1" {if $profile.sex eq '1'} checked=true{/if}/>
+                {$lang.male}</label>
+            </li>
+            <li {if $profile.sex eq '2'} class="on" {/if} >
+              <label for="sex2">
+                <input type="radio" name="sex" value="2"  tabindex="4" class="radio" id="sex2" {if $profile.sex eq '2'}checked=true{/if}/>
+                {$lang.female}</label>
+            </li>
+          </ul>
+        </div>
+		<div class="name"> <span>扫码进购物车</span>
+          <select name="shipscancode" style="font-size: 16px;" >
+		  <option value="1" {if $profile.shipscancode neq '3'}selected{/if}>打开</option><option value="3" {if $profile.shipscancode eq '3'}selected{/if}>关闭</option>
+		  </select> 
+            
+        </div>
+        
+		<div class="name">身份证证件照(正面)<input type="file" name="face_card" style="width:220px"/> 
+		</div>
+		
+		<div class="name">身份证证件照(反面)<input type="file" name="back_card" style="width:220px"/> 
+		</div>
+        <!--
+        <div class="name">
+          <label for="email_ep"> <span>邮箱</span>
+            <input name="email" value="{$profile.email}" id="email_ep" placeholder="*{$lang.email}" type="text" />
+          </label>
+        </div>
+        -->
+		
+        <h4 class="title">密码修改</h4>
+         <div class="field_pwd">
+                   <label for="password">
+                     <input type="password" name="password" id="password" class="c-f-text" placeholder="原密码"/>
+                   </label>
+                 </div>
+                 <div class="field_pwd">
+                   <label for="new_password">
+                     <input type="password" name="password1" id="new_password" class="c-f-text" placeholder="新密码"/>
+                   </label>
+                 </div>
+
+        <div class="field submit-btn">
+          <input type="submit" value="{$lang.confirm_edit}" class="btn_big1" />
+        </div>
+        <input type="hidden" name="act" value="act_edit_profile"/>
+      </form>
+
+      {/if}
+    </div>
+    <!--
+    <div class="innercontent11" >
+      <form name="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+        <h4 class="title">密码修改</h4>
+        <div class="field_pwd">
+          <label for="password">
+            <input type="password" name="old_password" id="password" class="c-f-text" placeholder="{$lang.old_password}"/>
+          </label>
+        </div>
+        <div class="field_pwd">
+          <label for="new_password">
+            <input type="password" name="new_password" id="new_password" class="c-f-text" placeholder="{$lang.new_password}"/>
+          </label>
+        </div>
+        <div class="field_pwd">
+          <label for="comfirm_password">
+            <input type="password" name="comfirm_password" id="comfirm_password" class="c-f-text" placeholder="{$lang.confirm_password}"/>
+          </label>
+        </div>
+        <div class="field submit-btn">
+          <input type="submit" value="{$lang.confirm_edit}" class="btn_big1" />
+        </div>
+        <input type="hidden" name="act" value="act_edit_password"/>
+      </form>
+    </div>
+    -->
+  </div>
+</div>
+<script type="text/javascript">
+{foreach from=$lang.profile_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+</script>
+
+<!--出生日期按钮js--->
+<script>
+    $('.name1 ul li').click(function(){
+	$(this).find("input").attr("checked","checked");
+	$('.name1 ul li').removeClass("on");
+	$(this).addClass("on");
+	})
+    </script>

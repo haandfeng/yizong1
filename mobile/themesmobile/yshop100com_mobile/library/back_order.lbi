@@ -1,0 +1,443 @@
+
+<script>
+    function check_back_form()
+    {
+//        if (document.getElementById("back_type_2").checked == true)
+//        {
+//            if (document.getElementById("huan_box").innerHTML == "")
+//            {
+//                alert("请添加换货商品！");
+//                document.getElementById("add_huan_btton").focus();
+//                show_huan_goods();
+//                return false;
+//            }
+//        }
+
+        if (document.getElementById("back_reason").value == '')
+        {
+            alert("请输入问题描述！");
+            document.getElementById("back_reason").focus();
+            return false;
+        }
+
+//        if (document.getElementById("back_type_2").checked == true || document.getElementById("back_type_3").checked == true)
+//        {
+//            if (document.getElementById("back_address").value == '')
+//            {
+//                alert("请输入收货地址！");
+//                document.getElementById("back_address").focus();
+//                return false;
+//            }
+//            if (document.getElementById("back_zipcode").value == '')
+//            {
+//                alert("请输入邮政编码！");
+//                document.getElementById("back_zipcode").focus();
+//                return false;
+//            }
+//            if (document.getElementById("back_consignee").value == '')
+//            {
+//                alert("请输入联系人姓名！");
+//                document.getElementById("back_consignee").focus();
+//                return false;
+//            }
+//            if (document.getElementById("back_mobile").value == '')
+//            {
+//                alert("请输入手机号码！");
+//                document.getElementById("back_mobile").focus();
+//                return false;
+//            }
+//        }
+    }
+</script>
+<style type="text/css">
+	#drawback tr{width: 100%;}
+	#drawback tr:nth-child(1) td{
+		width: 100%;
+	}
+	
+	#drawback tr td{width:20%;float: left;    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;}
+	#drawback tbody{width: 94%;padding: 0 3%;}
+	#drawback{width:100%;margin: 0 auto;height:9rem;word-break:break-all;}
+	#drawback tr:last-child td{height:8rem;}
+	.serve tr td{float:left;}
+	.serve tr td:nth-child(1){width: 20%;}
+	.serve_1 td{width: 100% !important;}
+	.serve_1 td input{    margin-right: auto;
+    margin-left: 70px;
+    float: left;
+}}
+</style>
+<form action="user.php?act=back_order_act" name="theForm" id="theForm" method="post" onsubmit="return check_back_form();" style="margin-top: 20px;">
+    <table width="100%" border="0" cellpadding="5" cellspacing="1"  bgcolor="#eeeeee" id="drawback">
+        {if $order_info}
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="5">订单编号：{$order_info.order_sn}{if $smarty.get.order_all eq 1} &nbsp;<br />
+                订单已付金额（应退金额）：{if $order_info.money_paid neq 0}{$order_info.money_paid}{else}{$order_info.surplus}{/if}{/if}</td>
+        </tr>
+        <tr>
+            <td align=center bgcolor="#FFFFFF">商品名称</td>
+            <td align=center bgcolor="#FFFFFF">商品属性</td>
+            <td align=center bgcolor="#FFFFFF">商品价格</td>
+            <td align=center bgcolor="#FFFFFF">购买数量</td>
+            <td align=center bgcolor="#FFFFFF">小计</td>
+        </tr>
+        {foreach from=$order_info.goods_list item=goods_info}
+        <tr>
+            <td align=center bgcolor="#FFFFFF">{$goods_info.goods_name} </td>
+            <td bgcolor="#FFFFFF">{$goods_info.goods_attr}</td>
+            <td align=center bgcolor="#FFFFFF">{$goods_info.goods_price_format}</td>
+            <td align=center bgcolor="#FFFFFF">{$goods_info.goods_number}</td>
+            <td align=center bgcolor="#FFFFFF">{$goods_info.total_price_format}</td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr>
+            <td align=center bgcolor="#FFFFFF">订单编号</td>
+            <td align=center bgcolor="#FFFFFF">商品名称</td>
+            <td align=center bgcolor="#FFFFFF">商品属性</td>
+            <td align=center bgcolor="#FFFFFF">商品价格</td>
+            <td align=center bgcolor="#FFFFFF">购买数量</td>
+            <td align=center bgcolor="#FFFFFF">小计</td>
+        </tr>
+        <tr>
+            <td align=center bgcolor="#FFFFFF">{$back_goods.order_sn}</td>
+            <td align=center bgcolor="#FFFFFF">{$back_goods.goods_name} </td>
+            <td bgcolor="#FFFFFF">{$back_goods.goods_attr}</td>
+            <td align=center bgcolor="#FFFFFF">{$back_goods.goods_price_format}</td>
+            <td align=center bgcolor="#FFFFFF">{$back_goods.goods_number}</td>
+            <td align=center bgcolor="#FFFFFF">{$back_goods.total_price_format}</td>
+        </tr>
+        {/if}
+    </table>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <table width="100%" border="0" cellpadding="5" cellspacing="1" class="serve">
+        <tr>
+            <td width="15%" align="right" valign=top>服务类型：</td>
+            <td>
+                <!-- {if $back_goods.shipping_time_end == 0} -->
+                {if $smarty.get.x != 1}<input type="radio" name="back_type" id="back_type_1" value="1" {if $smarty.get.x != 1}checked="checked" {/if}onclick="tui_box_show(3)" />退货　{/if}
+                <!--<input type="radio" name="back_type" id="back_type_2" value="2" onclick="tui_box_show(2)" />换货　-->
+                <input type="radio" name="back_type" id="back_type_4" value="4" {if $smarty.get.x == 1}checked="checked" {/if}onclick="tui_box_show(3)" />退款（无需退货）　
+                <!-- {else} -->
+                <input type="radio" name="back_type" id="back_type_3" value="3" checked="checked" />申请返修
+                <!-- {/if} -->
+
+                <input type="hidden" name="tui_goods_price" value ="{$back_goods.goods_price}">
+                <input type="hidden" name="product_id_tui" value ="{$back_goods.product_id}" >
+                <input type="hidden" name="goods_attr_tui" value ="{$back_goods.goods_attr}" >
+            </td>
+        </tr>
+        <tr id="thh_2" style="display:none">
+            <td width="15%" align="right" valign=top></td>
+            <td><div>
+                    <input type="button" name="add_huan_btton" id="add_huan_btton" value="添加换货商品" onclick="javascript:show_huan_goods();">
+                    <font color=#ff3300>（*）</font> </div>
+                <table id="huan_goods" style="padding:10px;background:#eee;display:none;">
+                    <tr>
+                        <td align=right>商品名称：</td>
+                        <td>{$back_goods.goods_name} </td>
+                    </tr>
+                    <!-- {foreach from=$specification item=spec key=spec_key} -->
+                    <!-- {if $spec.attr_type eq 1} -->
+                    <tr>
+                        <td valign=top style="padding-top:5px;" align=right>{$spec.name}：</td>
+                        <td ><div class="catt">
+                                <!-- {foreach from=$spec.values item=value key=key} -->
+                                <a {if $key eq 0}class="cattsel"{/if} onclick="changeAtt(this,{$back_goods.goods_id})" href="javascript:;" name="{$value.id}" title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]">{$value.label}
+                                <input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $key eq 0}checked{/if} />
+                                </a>
+                                <!-- {/foreach} -->
+                            </div>
+                            <input type="hidden" name="spec_list" value="{$key}" /></td>
+                    </tr>
+                    <!-- {/if} -->
+                    <!-- {/foreach} -->
+                    <tr>
+                        <td colspan=2><input type="button" value="确定" onclick="add_huan_goods({$back_goods.goods_id});"></td>
+                    </tr>
+                </table>
+                <table id="huan_box" >
+                </table></td>
+        </tr>
+        <tr>
+            {if $smarty.get.x eq 1}
+            <td width="15%" align="right" valign=top>退款提示：</td>
+            <td>申请退款，将取消整笔订单，并退回您该笔订单款项，如有需要请重新下单。</td>
+            {else}
+            <td width="15%" align="right" valign=top>提交数量：</td>
+            <td><script>
+                    function check_tui_goods_number()
+                    {
+                        var now_number = Number(document.getElementById("tui_goods_number").value);
+                        var goods_number = {$back_goods.goods_number};
+                        if (now_number < 1)
+                        {
+                            alert("提交数量不能小于1");
+                            document.getElementById("tui_goods_number").value = 1;
+                            document.getElementById("tui_goods_number").focus();
+                        }
+                        else if (now_number > goods_number)
+                        {
+                            alert("提交数量不能超过购买数量"+goods_number);
+                            document.getElementById("tui_goods_number").value = goods_number;
+                            document.getElementById("tui_goods_number").focus();
+                        }
+                    }
+                </script>
+                <input type="text" name="tui_goods_number" id="tui_goods_number" onblur="check_tui_goods_number()" value="1" size=5 class="inputBg"></td>
+            {/if}
+        </tr>
+        <tr>
+            <td width="15%" align="right" valign=top>问题描述：</td>
+            <td><textarea name="back_reason" id="back_reason" rows=5 cols=50></textarea>
+                <font color=#ff3300>（*）</font>
+                <div style="color:#999">请您如实填写申请原因及商品情况，字数在500字内。</div></td>
+        </tr>
+
+
+<!--        <tr>-->
+<!--            <td width="15%" align="right" valign=top>图片信息：</td>-->
+<!--            <td><link rel="stylesheet" href="includes/kindeditor/themes/default/default.css" />-->
+<!--                <script src="includes/kindeditor/kindeditor.js"></script>-->
+<!--                <script src="includes/kindeditor/lang/zh_CN.js"></script>-->
+<!--                <script>-->
+<!--                    KindEditor.ready(function(K) {-->
+<!--                        var editor = K.editor({-->
+<!--                            allowFileManager : true-->
+<!--                        });-->
+<!--                        K('#back_order_img').click(function() {-->
+<!--                            editor.loadPlugin('image', function() {-->
+<!--                                editor.plugin.imageDialog({-->
+<!--                                    showRemote : false,-->
+<!--                                    //imageUrl : K('#url3').val(),-->
+<!--                                    clickFn : function(url, title, width, height, border, align) {-->
+<!--                                        K('#back_order_img_list').append('<div><img height="60" src="' + url + '"><input type="hidden" name="imgs[]" value="' + url + '" /></div>');-->
+<!--                                        editor.hideDialog();-->
+<!--                                    }-->
+<!--                                });-->
+<!--                            });-->
+<!--                        });-->
+<!--                    });-->
+<!--                </script>-->
+<!--                <style>-->
+<!--                </style>-->
+<!--                <div id="back_order_img_list" class="clearfix"> </div>-->
+<!--                <div><img id="back_order_img" src="/themes/yshop100/images/back_order_img.gif" /></div>-->
+<!--                <div style="margin-top:10px;">为了帮助我们更好的解决问题，请您上传图片</div>-->
+<!--                <div style="color:#999">每张图片大小不超过2M，支持gif,jpg,png,jpeg格式文件</div></td>-->
+<!--        </tr>-->
+
+
+        <!-- {if $back_goods.shipping_time_end == 0} -->
+        <tr id="thh_1">
+            <!-- {else} -->
+        <tr id="thh_1" style="display:none">
+            <!-- {/if} -->
+            <td width="15%" align="right" valign=top>退款方式：</td>
+            <td><input type="radio" name="back_pay" value="1" />
+                退款至账户余额<br />
+                <input type="radio" name="back_pay" value="2" checked="checked" />
+                原支付方式返回
+                <div style="color:#999; padding-left:20px;">如为现金支付，将会退款至您的账户余额或银行卡；</div>
+                <div style="color:#999; padding-left:20px;">请您在 <a href="#" style="color:#005ea7">退款说明</a> 中查看退款时效</div></td>
+        </tr>
+        <!-- {if $smarty.get.x == 1 or $smarty.get.x == 2} -->
+        <tbody id="thh_address" style="display:none">
+        <!-- {else} -->
+        <tbody id="thh_address">
+        <!-- {/if} -->
+        <tr>
+            <td width="15%" align="right" >收货地址：</td>
+            <td> {insert_scripts files='utils.js,transport.js,region.js,shopping_flow.js'}
+                <select name="country" id="selCountries_1" onchange="region.changed(this, 1, 'selProvinces_1')">
+                    <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+                    <!-- {foreach from=$country_list item=country} -->
+                    <option value="{$country.region_id}" {if $order.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+                    <!-- {/foreach} -->
+                </select>
+                <select name="province" id="selProvinces_1" onchange="region.changed(this, 2, 'selCities_1')">
+                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+                    <!-- {foreach from=$shop_province item=province} -->
+                    <option value="{$province.region_id}" {if $order.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+                    <!-- {/foreach} -->
+                </select>
+                <select name="city" id="selCities_1" onchange="region.changed(this, 3, 'selDistricts_1')">
+                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+                    <!-- {foreach from=$shop_city item=city} -->
+                    <option value="{$city.region_id}" {if $order.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+                    <!-- {/foreach} -->
+                </select>
+                <select name="district" id="selDistricts_1" {if !$shop_district}style="display:none"{/if}>
+                <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+                <!-- {foreach from=$shop_district item=district} -->
+                <option value="{$district.region_id}" {if $order.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+                <!-- {/foreach} -->
+                </select>
+                <div style=" display: inline-block">
+                    <input type="text" name="back_address" id="back_address" size=50 value="{$order.address}" class="inputBg">
+                    <font color=#ff3300>（*）</font></div></td>
+        </tr>
+        <tr>
+            <td width="15%" align="right" >邮政编码：</td>
+            <td><input type="text" name="back_zipcode"  id="back_zipcode" size=20 value="{$order.zipcode}" class="inputBg">
+                <font color=#ff3300>（*）</font></td>
+        </tr>
+        <tr>
+            <td width="15%" align="right" >联系人姓名：</td>
+            <td><input type="text" name="back_consignee"  id="back_consignee" size=20 value="{$order.consignee}" class="inputBg">
+                <font color=#ff3300>（*）</font></td>
+        </tr>
+        <tr>
+            <td width="15%" align="right" >手机号码：</td>
+            <td><input type="text" name="back_mobile"  id="back_mobile" size=20 value="{$order.mobile}" class="inputBg">
+                <font color=#ff3300>（*）</font></td>
+        </tr>
+        </tbody>
+        <tr>
+            <td width="15%" align="right" >我要留言：</td>
+            <td><textarea name="back_postscript" rows=5 cols=50></textarea></td>
+        </tr>
+        <tr class="serve_1">
+            <td colspan=2 align=center><input type="hidden" name="act" value="back_order_act">
+                {if $order_info}
+                <input type="hidden" name="order_all" value="1">
+                <input type="hidden" name="order_id" value="{$order_info.order_id}">
+                {else}
+                <input type="hidden" name="order_id" value="{$back_goods.order_id}">
+                <input type="hidden" name="order_sn" value="{$back_goods.order_sn}">
+                <input type="hidden" name="goods_id" value="{$back_goods.goods_id}">
+                <input type="hidden" name="goods_name" value="{$back_goods.goods_name}">
+                <input type="hidden" name="goods_sn" value="{$back_goods.goods_sn}">
+                {/if}
+                <input name="submit" type="submit" value="确认" class="main-btn main-btn-large"/>
+                <input type="button" value="取消" class="main-btn main-btn-large" onclick="history.go(-1)"/>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%;height: 50px;display:inline-block"></div>
+    <style>
+        .main-btn{    display: inline-block;
+            margin-top: 12px;
+            height: 40px;
+            padding: 0 10px;
+            font-size: 21px;
+            line-height: 25px;
+            color: #666;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #ccc;}
+    </style>
+    <script>
+
+        function show_huan_goods()
+        {
+            if (document.getElementById('huan_goods').style.display=="block")
+            {
+                document.getElementById('huan_goods').style.display="none";
+            }
+            else if(document.getElementById('huan_goods').style.display=="none")
+            {
+                document.getElementById('huan_goods').style.display="block";
+            }
+        }
+
+        function changeAtt(t,goods_id) {
+            t.lastChild.checked='checked';
+            for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+                if (t.parentNode.childNodes[i].className == 'cattsel') {
+                    t.parentNode.childNodes[i].className = '';
+                }
+            }
+
+            t.className = "cattsel";
+        }
+
+        function  add_huan_goods(goods_id)
+        {
+            var goods        = new Object();
+            var formBuy      = document.forms['theForm'];
+            spec_arr = getSelectedAttributes(formBuy);
+            goods.spec     = spec_arr;
+            goods.goods_id = goods_id;
+            Ajax.call('user.php?act=add_huan_goods', 'goods=' + goods.toJSONString(), add_huan_goodsResponse, 'POST', 'JSON');
+        }
+        function rand_str(prefix)
+        {
+            var dd = new Date();
+            var tt = dd.getTime();
+            tt = prefix + tt;
+
+            var rand = Math.random();
+            rand = Math.floor(rand * 100);
+
+            return (tt + rand);
+        }
+
+        function add_huan_goodsResponse(result)
+        {
+            var table_list = document.getElementById('huan_box');
+            var new_tr_id = rand_str('t');
+            var index = table_list.rows.length;
+            var new_row = table_list.insertRow(index);//新增行
+            new_row.setAttribute("id", new_tr_id);
+            var new_col = new_row.insertCell(0);
+            new_col.innerHTML =  result.goods_name + result.content + '<input type="hidden" name="product_id_huan[]" id="pro_"'+index+' value="' + result.product_id + '"><input type="hidden" name="goods_attr_huan[]" value="' + result.content + '"><input type="button" class="button" value="删除 " onclick="javascript:del_huan_goods(\'' + new_tr_id + '\');"/>';
+
+        }
+
+
+        function del_huan_goods(tr_number)
+        {
+            if (tr_number.length > 0)
+            {
+                if (confirm("确定删除吗？") == false)
+                {
+                    return false;
+                }
+                var table_list = document.getElementById('huan_box');
+                for (var i = 0; i < table_list.rows.length; i++)
+                {
+                    if (table_list.rows[i].id == tr_number)
+                    {
+                        table_list.deleteRow(i);
+                    }
+                }
+            }
+            return true;
+        }
+
+        function tui_box_show(type)
+        {
+            if (type == 1)
+            {
+                document.getElementById("thh_1").style.display = '';
+                document.getElementById("thh_2").style.display = 'none';
+                document.getElementById("thh_4").style.display = '';
+                document.getElementById("thh_address").style.display = '';
+            }
+
+            if (type == 2)
+            {
+                document.getElementById("thh_1").style.display = 'none';
+                document.getElementById("thh_2").style.display = '';
+                document.getElementById("thh_4").style.display = '';
+                document.getElementById("thh_address").style.display = '';
+            }
+
+            if (type == 3)
+            {
+                document.getElementById("thh_1").style.display = '';
+                document.getElementById("thh_2").style.display = 'none';
+                document.getElementById("thh_4").style.display = '';
+                document.getElementById("thh_address").style.display = 'none';
+            }
+
+        }
+
+
+
+    </script>
+</form>

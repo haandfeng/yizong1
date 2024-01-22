@@ -1,0 +1,54 @@
+ /* 轮播图最外层盒子 */
+  .carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel ul {
+    /* 这个高度需要在JS里面动态添加 */
+  }
+
+  .carousel ul li {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    /* 使用 transform:translaX(300%) 暂时将 li 移动到屏幕外面去*/
+    -webkit-transform: translateX(300%);
+    transform: translateX(300%);
+  }
+
+  /* 图片自适应 */
+  .carousel ul li img {
+      width: 100%;
+      height: auto;
+      border: none;
+      /* ie8 */
+      display: block;
+      -ms-interpolation-mode: bicubic;
+      /*为了照顾ie图片缩放失真*/
+    }
+
+  /* 小圆点盒子 */
+  .carousel .points {
+    /* 未知宽度的盒子，使用 absolute 定位，结合 transform 的方式进行居中 */
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+  }
+
+  /* 小圆点 */
+  .carousel .points li {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    /*border: 1px solid #fff;*/
+    float: left;
+    margin: 0 2px;
+  }
+
+  /* 选中小圆点的样式类 */
+  .carousel .points li.active {
+    /*background-color: #fff;*/
+  }

@@ -1,0 +1,264 @@
+<!-- $Id: agency_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- 供货商搜索 -->
+<script> 
+    function search()
+    { 
+			tableobj=document.getElementById('lista');debugger;
+			for (var i = tableobj.rows.length-1; i >=0 ; i--) { 
+				if(tableobj.rows[i].id!="heada")
+				{
+					$(tableobj.rows[i]).remove();
+				}
+			}
+		
+			$.post("kuajing.php", { "act":"query","t":"goods","name": document.getElementById("skuName").value ,"pageSize":200,"currentPage":1},
+			   function(data){
+				 if(data.count>0)
+				 { 
+					for(var i=0;i<data.list.length;i++)
+					{ 
+						var trobj =document.createElement("tr");
+						trobj.innerHTML=''+
+							'<td align="center">'+data.list[i]["skuCode"]+'</td>'+
+							'<td align="center">'+data.list[i]["skuName"]+'</td>'+
+							'<td align="center">'+data.list[i]["barCode"]+'</td>'+
+							'<td align="center">'+data.list[i]["skuProperty"]+' '+data.list[i]["length"]+'*'+data.list[i]["width"]+'*'+data.list[i]["height"]+'</td>'+
+							'<td align="center">'+data.list[i]["volume"]+'</td>'+
+							'<td align="center">'+data.list[i]["grossWeight"]+'</td>'+
+							'<td align="center">'+data.list[i]["netWeight"]+'</td>'+
+							'<td align="center">'+data.list[i]["categoryName"]+'</td>'+
+							'<td align="center">'+data.list[i]["tagPrice"]+'</td>'+
+							'<td align="center">'+data.list[i]["retailPrice"]+'</td>'+
+							'<td align="center">'+data.list[i]["costPrice"]+'</td>'+
+							'<td align="center">'+data.list[i]["purchasePrice"]+'</td>'+
+							'<td align="center">'+data.list[i]["statetime"]+'</td> '+
+							'<td align="center">'+data.list[i]["stateremark"]+'</td> '+
+							'<td align="center">'+
+							'	<a href="#" onclick="copy(\''+data.list[i]["skuCode"]+'\')" >复制</a>'+
+							'	<a href="#" onclick="edit(\''+data.list[i]["skuCode"]+'\')" >修改</a>'+
+							'	<a href="#" onclick="del(\''+data.list[i]["skuCode"]+'\')" >作废</a>'+
+							'</td>';
+						tableobj.appendChild(trobj);
+						 
+					}
+					 
+				 }
+				 else 
+				 { 
+						var trobj =document.createElement("tr");
+						trobj.innerHTML=''+
+							'<td class="no-records" colspan="17">没有找到任何记录</td>';
+						tableobj.appendChild(trobj); 
+				 } 
+			   //});
+			   }, "json");
+		  
+    }
+	function copy(skuCode)
+	{
+		location.href='kuajing.php?act=add&t=goods&code='+skuCode;
+	}
+	function edit(skuCode)
+	{
+		location.href='kuajing.php?act=edit&t=goods&code='+skuCode;
+	}
+	function tobus()
+	{
+		location.href='kuajing.php?act=query&t=businessauth';
+	}
+	function del(skuCode)
+	{
+			debugger;
+		if(window.confirm('你确定要作废吗？'))
+		{
+			$.post("kuajing.php", { "act":"del","t":"goods","code": skuCode },
+			   function(data){ debugger;
+					 if(data.resultCode=="1")
+					 {
+						alert(data.resultContent);
+					 } 
+					 else
+					 {
+						alert(data.resultContent+"-错误码："+data.resultCode);
+					 }
+					 search();
+				  
+			   //});
+			   }, "json");
+		}
+	}
+    function searchapi()
+    { debugger;
+		var flag=true;
+		//if($("#skuCode").val()=="")
+		//{
+		//	alert('商品编码必填');
+		//	flag=false;
+		//}
+		 
+		
+		if(flag)
+		{
+			var str='';
+			str+='{';
+			str+='&quot;stockCode&quot;: &quot;'+document.getElementById("stockCode").value+'&quot;,';
+			str+='&quot;clientCode&quot;: &quot;'+document.getElementById("clientCode").value+'&quot;,';
+			str+='&quot;skuCode&quot;: &quot;'+document.getElementById("skuCode").value+'&quot;,';
+			str+='&quot;skuName&quot;: &quot;'+document.getElementById("skuName").value+'&quot;,'; 
+			str+='&quot;shortName&quot;: &quot;'+document.getElementById("skuName").value+'&quot;,'; 
+			str+='&quot;skuName_EN&quot;: &quot;'+document.getElementById("skuName").value+'&quot;,'; 
+			str+='&quot;barCode&quot;: &quot;'+document.getElementById("barCode").value+'&quot;,'; 
+			str+='&quot;itemType&quot;: &quot;&quot;,'; 
+			str+='&quot;brandName&quot;: &quot;&quot;,'; 
+			str+='&quot;createTime&quot;: &quot;&quot;,'; 
+			str+='&quot;hsCode&quot;: &quot;&quot;,'; 
+			str+='&quot;mailTaxNo&quot;: &quot;&quot;,'; 
+			str+='&quot;manualNo&quot;: &quot;&quot;,'; 
+			str+='&quot;materialNo&quot;: &quot;&quot;,'; 
+			str+='&quot;status&quot;: &quot;&quot;'; 
+			str+='}';
+			 
+			$.post("kuajing.php", { "act":"queryapi","t":"goods","query": str ,"pageSize":200,"currentPage":1},
+			   function(data){debugger; 
+				 if(data.resultCode=="1")
+				 {
+					alert(data.resultContent);
+				 }
+				 else if(data.resultCode=="2")
+				 {
+					alert(data.resultContent);
+				 }
+				 else
+				 {
+					alert(data.resultContent+"-错误码："+data.resultCode);
+				 }
+			   //});
+			   }, "json");
+		 
+		
+		}
+		return flag;
+    }
+    function add()
+    { 
+         location.href='kuajing.php?act=add&t=goods';
+    }
+    function label()
+    { 
+         location.href='kuajing.php?act=label&orderno='+document.getElementById("stockCode").value;
+    }
+    function weight()
+    { 
+         location.href='kuajing.php?act=weight&orderno='+document.getElementById("stockCode").value;
+    }
+    function trace()
+    { 
+         location.href='kuajing.php?act=trace&orderno='+document.getElementById("stockCode").value;
+    }
+	window.onload = function(){
+	  search();  
+	}
+</script>
+<div class="form-div">
+    <form  name="searchForm">
+        <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+
+        仓库编码
+        <input name="stockCode" type="text" id="stockCode"  value="{$stockCode}">
+        货主编码、组织编码
+        <input name="clientCode" type="text" id="clientCode"   value="{$clientCode}" >
+		<input type="button" value="查询" class="button" onclick="search()" />
+		<input type="button" value="新增" class="button" onclick="add()" />
+		<input type="button" value="快递" class="button" onclick="tobus()" />
+		<input type="button" value="面单" class="button" onclick="label()" />
+		<input type="button" value="称重" class="button" onclick="weight()" />
+		<input type="button" value="轨迹" class="button" onclick="trace()" />
+		<br/>
+        商品编码
+        <input name="skuCode" type="text" id="skuCode" size="15"  >
+        商品名称
+        <input name="skuName" type="text" id="skuName" size="15"  >
+        条形码
+        <input name="barCode" type="text" id="barCode" size="15"  >
+        商品类型
+        <select name="itemType" size=1>
+            <option value="ZC">正常商品</option>
+            <option value="FX">分销商品</option>
+            <option value="ZH">组合商品</option>
+            <option value="ZP">赠品</option>
+            <option value="BC">包材</option>
+            <option value="HC">耗材</option>
+            <option value="FL">辅料</option>
+            <option value="XN">虚拟品</option>
+            <option value="FS">附属品</option>
+            <option value="CC">残次品</option>
+            <option value="OTHER">其它</option>
+ 
+
+        </select>
+        
+         
+        
+         
+    </form>
+</div>
+
+    <div class="list-div" id="listDiv">
+        {/if}
+
+        <table cellpadding="3" cellspacing="1" id="lista">
+            <tr id="heada">  
+				<th>商品编号</th>
+				<th>商品名称</th>
+				<th>条形码</th>
+				<th>商品属性（长*宽*高）</th>
+				<th>体积（升）</th>
+				<th>毛重（千克）</th>
+				<th>净重（千克）</th>
+				<th>商品类型</th>
+				<th>吊牌价</th>
+				<th>零售价</th>
+				<th>成本价</th>
+				<th>采购价</th>
+				<th>创建时间</th>
+				<th>状态</th>
+				<th>操作</th>
+            </tr>
+            {foreach from=$goods_list item=goods}
+            <tr>  
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td> 
+                <td align="center">
+                    <a href="#" onclick="edit()" >修改</a>
+                    <a href="#" onclick="del()" >作废</a>
+				</td>
+			</tr>
+            {foreachelse}
+            <tr><td class="no-records" colspan="17">{$lang.no_records}</td></tr>
+            {/foreach}
+        </table>
+    
+
+        {if $full_page}
+    </div>
+
+
+
+{include file="pagefooter.htm"}
+{/if}

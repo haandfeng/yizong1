@@ -1,0 +1,14 @@
+
+                            <div class="bot-main-pic" ><a href="{$goods.url}" title="{$goods.name|escape:html}">  <img src="{$option.static_path}{$goods.thumb}"> </a></div>
+                            <dd>
+                                <!-- <span>{if $goods.class_name}{$goods.class_name}{else}&nbsp;{/if}</span> -->
+                                <p><a href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.name}</a></p>
+                                <dl>
+                                    <a href="javascript:addToCart({$goods.id})" class="btns">
+                                        <img src="themesmobile/yshop100com_mobile/yzimages/images/car_65.png">
+                                    </a>
+                                    <i>{if $goods.is_exchange eq 0}{$goods.final_price}{else}{$goods.final_exchange_price}{/if}{if $goods.is_intax gt 0}<em>保税优惠价</em>{/if}</i><br>
+
+                                </dl>
+                            </dd>
+

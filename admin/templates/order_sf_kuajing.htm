@@ -1,0 +1,644 @@
+<!-- $Id: order_info.htm 15544 2009-01-09 01:54:28Z zblikai $ -->
+
+{include file="pageheader.htm"}
+{insert_scripts files="topbar.js,../js/utils.js,listtable.js,selectzone.js,../js/common.js"}
+
+<form action="order.php?act=operate_post" method="post" name="theForm">
+
+<div class="list-div" style="margin-bottom: 5px">
+<table width="100%" cellpadding="3" cellspacing="1">
+  <tr>
+    <th colspan="8">申报顺丰清单  {if $shenbao_time!=""}<span style="color:red">上次申报时间：{$shenbao_time} 返回结果：{if $shenbao_result!=""}{$shenbao_result}{else}未返回{/if}</span>{/if}</th>
+  </tr>
+  <tr>
+    <input type="hidden" name='order_sn' value="{$order.order_sn}"/>
+    <td><div align="right"><strong>下单类型</strong></div></td>
+    <td><select name="operate_type" id="operate_type" ><option value="1" selected>下单</option><option value="2">改单</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>客户参考编号1</strong></div></td>
+    <td><input type="text" name="reference_no1" id="reference_no1" value="{$order.order_sn}" maxlength="100"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>客户参考编号2</strong></div></td>
+    <td><input type="text" name="reference_no2" id="reference_no2" maxlength="18"  /></td>
+    <td><div align="right"><strong>顺丰运单号</strong></div></td>
+    <td><input type="text" name="mailno" id="mailno" maxlength="100"  /></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>包裹总件数</strong></div></td>
+    <td><input type="text" name="parcel_quantity" id="parcel_quantity" value="{$order.parcel_quantity}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>是否返回顺丰运单号</strong></div></td>
+    <td><select name="is_get_bill_no" id="is_get_bill_no" ><option value="1" selected>是</option><option value="0">否</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方联系人</strong></div></td>
+    <td><input type="text" name="j_contact" id="j_contact" value="{$order.j_contact}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方联系电话</strong></div></td>
+    <td><input type="text" name="j_tel" id="j_tel" value="{$order.j_tel}" maxlength="100"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>寄件方联系区号</strong></div></td>
+    <td><input type="text" name="j_area_code" id="j_area_code" value="{$order.j_area_code}" maxlength="20"  /></td>
+    <td><div align="right"><strong>寄件方手机号码</strong></div></td>
+    <td><input type="text" name="j_mobile" id="j_mobile" value="{$order.j_mobile}" maxlength="18"  /></td>
+    <td><div align="right"><strong>寄件方国家/地区</strong></div></td>
+    <td><select name="j_country" id="j_country" ><option value="HK">香港</option><option value="AU">澳大利亚</option><option value="CN">中国</option><option value="KR">韩国</option><option value="MY">马来西亚</option><option value="US">美国</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方州/省</strong></div></td>
+    <td><input type="text" name="j_province" id="j_province" value="{$order.j_province}" maxlength="60"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>寄件方城市</strong></div></td>
+    <td><input type="text" name="j_city" id="j_city" value="{$order.j_city}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件人所在县/区</strong></div></td>
+    <td><input type="text" name="j_county" id="j_county" value="{$order.j_county}" maxlength="100"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方详细地址</strong></div></td>
+    <td><textarea name="j_address" id="j_address" cols="40" rows="2">{$order.j_address|escape}</textarea><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方邮编</strong></div></td>
+    <td><input type="text" name="j_post_code" id="j_post_code" value="{$order.j_post_code}" maxlength="60"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>到件方联系人</strong></div></td>
+    <td><input type="text" name="d_contact" id="d_contact" value="{$order.real_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>到件方联系人中文名</strong></div></td>
+    <td><input type="text" name="d_contact_cn" id="d_contact_cn" value="{$order.d_contact_cn}" maxlength="18"  /></td>
+    <td><div align="right"><strong>到件方联络电话</strong></div></td>
+    <td><input type="text" name="d_tel" id="d_tel" value="{$order.mobile|escape}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>到件方国家/地区</strong></div></td>
+    <td><input type="text" name="d_country" id="d_country" value="CN" maxlength="18"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>到件方州/省</strong></div></td>
+    <td><input type="text" name="d_province" id="d_province" value="{$order.province_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>到件方城市</strong></div></td>
+    <td><input type="text" name="d_city" id="d_city" value="{$order.city_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>到件方所在县/区</strong></div></td>
+    <td><input type="text" name="d_county" id="d_county" value="{$order.district_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>到件方详细地址</strong></div></td>
+    <td><textarea name="d_address" id="d_address" cols="40" rows="2">{$order.address|escape}</textarea><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+	<td><div align="right"><strong>到件方邮编</strong></div></td>
+    <td><input type="text" name="d_post_code" id="d_post_code" value="{$order.d_post_code}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>快件类型</strong></div></td>
+   	<td><select name="express_type" id="express_type" ><option value="901" selected>BC</option><option value="902">CC</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>付款方式</strong></div></td>
+    <td><select name="pay_method" id="pay_method" ><option value="1">寄件方</option><option value="2">收件方</option><option value="3" selected>第三方</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>付款月结卡号</strong></div></td>
+    <td><input type="text" name="custid" id="custid" value="{$order.custid}" maxlength="18"  /><span style="color:red">*</span></td>
+  </tr>
+  <tr>
+	  <td><div align="right"><strong>税金付款方式</strong></div></td>
+    <td><select name="tax_pay_type" id="tax_pay_type" ><option value="1">寄付</option><option value="2" selected>到付</option><option value="3">第三方付</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>税金结算账号</strong></div></td>
+    <td><input type="text" name="tax_set_accounts" id="tax_set_accounts" value="{$order.tax_set_accounts}" maxlength="60"  /></td>
+    <td><div align="right"><strong>长</strong></div></td>
+    <td><input type="text" name="cargo_length" id="cargo_length" value="{$order.cargo_length}" maxlength="18"  /></td>
+    <td><div align="right"><strong>宽</strong></div></td>
+    <td><input type="text" name="cargo_width" id="cargo_width" value="{$order.cargo_width}" maxlength="18"  /></td>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>高</strong></div></td>
+    <td><input type="text" name="cargo_height" id="cargo_height" value="{$order.cargo_height}" maxlength="100"  /></td>
+    <td><div align="right"><strong>币别</strong></div></td>
+    <td><select name="currency" id="currency" ><option value="CNY" selected>人民币</option><option value="HKD">港币</option><option value="USD">美元</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>返回打印面单的样式</strong></div></td>
+    <td><select name="printSize" id="printSize" ><option value="" selected>不返回</option><option value="0">100*210面单</option><option value="1">100*150面单</option><option value="2">100*45面单</option><option value="3">100*150面单(捡货面单)</option><option value="4">100*210(捡货面单)</option><option value="5">100*45(参考编号面单)</option><option value="Other">100*210面单</option></select></td>
+    <td><div align="right"><strong>订购人注册号</strong></div></td>
+    <td><input type="text" name="buyers_nickname" id="buyers_nickname" value="{$order.user_name}" maxlength="18"  /><span style="color:red">*</span></td>
+  </tr> 
+  <tr>
+    <td><div align="right"><strong>买家总运费</strong></div></td>
+    <td><input type="text" name="freight" id="freight" value="{$order.freight}" maxlength="18"  /></td>
+    <td><div align="right"><strong>买家总保费</strong></div></td>
+    <td><input type="text" name="dynamic4" id="dynamic4" value="{$order.dynamic4}" maxlength="18"  /></td>
+    <td><div align="right"><strong>优惠总金额</strong></div></td>
+    <td><input type="text" name="dynamic1" id="dynamic1" value="{$order.dynamic1}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>买家实付金额</strong></div></td>
+    <td><input type="text" name="turnover" id="turnover" value="{$order.total_amount}" maxlength="18"  /><span style="color:red">*</span></td>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>支付企业名称</strong></div></td>
+    <td><input type="text" name="payment_company_name" id="payment_company_name" value="{$order.payment_company_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>支付工具</strong></div></td>
+    <td><input type="text" name="payment_tool" id="payment_tool" value="{$order.pay_desc}" maxlength="60"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>支付交易号</strong></div></td>
+    <td><input type="text" name="payment_number" id="payment_number" value="{$order.out_trade_no}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>支付时间</strong></div></td>
+    <td><input type="text" name="payment_time" id="payment_time" value="{$order.payment_time}" maxlength="18"  /><span style="color:red">*</span></td>
+  </tr>
+  <tr>
+    <td><div align="right"><strong>订购人姓名</strong></div></td>
+    <td><input type="text" name="payer_name" id="payer_name" value="{$order.real_name}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>订购人/收件人证件类型</strong></div></td>
+    <td><select name="order_cert_type" id="order_cert_type" ><option value="ID" selected>身份证</option></select><span style="color:red">*</span></td>
+    <td><div align="right"><strong>订购人/收件人证件号</strong></div></td>
+    <td><input type="text" name="order_cert_no" id="order_cert_no" value="{$order.card}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>运单备注</strong></div></td>
+    <td><input type="text" name="ddp_remark" id="ddp_remark" value="{$order.ddp_remark}" maxlength="18"  /></td>
+  </tr>
+   <tr>
+    <td><div align="right"><strong>店铺代码</strong></div></td>
+    <td><input type="text" name="store_name" id="store_name" value="{$order.store_name}" maxlength="18"  /></td>
+    <td><div align="right"><strong>购物网站代码</strong></div></td>
+    <td><input type="text" name="dynamic9" id="dynamic9" value="{$order.dynamic9}" maxlength="18"  /></td>
+    <td><div align="right"><strong>买家总税款</strong></div></td>
+    <td><input type="text" name="tax" id="tax" value="{$order.tax}" maxlength="18"  /><span style="color:red">*</span></td>
+    <td><div align="right"><strong>寄件方公司名称</strong></div></td>
+    <td><input type="text" name="j_company" id="j_company" value="{$order.j_company}" maxlength="18"  /></td>
+  </tr>
+</table>
+</div>
+
+<div class="list-div" style="margin-bottom: 5px">
+<table width="100%" cellpadding="3" cellspacing="1">
+  <tr>
+    <th colspan="20" scope="col">{$lang.goods_info}</th>
+    </tr>
+  <tr>
+  	<td scope="col"><div align="center"><strong>商品编号</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品名称</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品单价</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品数量</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品总额</strong></div></td>
+    <td scope="col"><div align="center"><strong>商品单位</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品源产国</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>单个商品净重</strong></div></td> 
+    <td scope="col"><div align="center"><strong>商品币别</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品海关备案号</strong></div></td>
+    <td scope="col"><div align="center"><strong>商品国检备案号</strong></div></td>
+    <td scope="col"><div align="center"><strong>品牌</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>条形码</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>规格型号</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>海关编码</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>商品序号</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>法定第一数量</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>法定第一计量单位</strong><span style="color:red">*</span></div></td>
+    <td scope="col"><div align="center"><strong>法定第二数量</strong></div></td>
+    <td scope="col"><div align="center"><strong>法定第二计量单位</strong></div></td>
+  </tr><script>var totolweight=0;</script>
+  {foreach from=$goods_list item=goods name=goods}
+  
+  <tr class="goods_list">
+    <td scope="col"><div align="center"><strong><input name="goods_code[]" type="text" id="goods_code_{$goods.rec_id}" value="{$goods.goods_sn}" size="8" maxlength="60"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="name[]" type="text" id="name_{$goods.rec_id}" value="{$goods.goods_name}" size="20" maxlength="128"  /></strong></div></td>
+     <td scope="col"><div align="center"><strong><input name="amount[]" type="text" id="amount_{$goods.rec_id}" value="{$goods.goods_price}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="count[]" type="text" id="count_{$goods.rec_id}" value="{$goods.goods_number}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="total_value[]" type="text" id="total_value_{$goods.rec_id}" value="" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong>
+    <select name="unit[]" type="text" id="unit_{$goods.rec_id}">
+    {$unit_list}
+    </select>
+    </strong></div></td>
+    <td scope="col"><div align="center"><strong>
+    <select name="source_area[]" id="source_area_{$goods.rec_id}" >
+    {$country_list}
+    </select><script>$("#source_area_{$goods.rec_id}").val('{$goods.countrycode}');</script></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="weight[]" type="text" id="weight_{$goods.rec_id}" value="" size="6" maxlength="6"  />
+    </div></td>
+    <td scope="col"><div align="center"><strong>
+    <select name="goods_currency[]" type="text" id="currency_{$goods.rec_id}">
+    <option value="CNY" selected>人民币</option>
+    </select>
+    </strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="product_record_no[]" type="text" id="product_record_no_{$goods.rec_id}" value="{$order.product_record_no}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="good_prepard_no[]" type="text" id="good_prepard_no_{$goods.rec_id}" value="{$goods.good_prepard_no}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="brand[]" type="text" id="brand_{$goods.rec_id}" value="{$goods.brand_name}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="statebarcode[]" type="text" id="statebarcode_{$goods.rec_id}" value="{$goods.barCode}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="specifications[]" type="text" id="specifications_{$goods.rec_id}" value="{$goods.goods_model}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="hs_code[]" type="text" id="hs_code_{$goods.rec_id}" value="{$goods.gcode}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="item_no[]" type="text" id="item_no_{$goods.rec_id}" value="{$smarty.foreach.goods.iteration}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="qty1[]" type="text" id="qty1_{$goods.rec_id}" value="{$goods.goods_weight}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><select name="unit1[]" type="text" id="unit1_{$goods.rec_id}"><option value="千克">千克</option><option value="支">支</option><option value="瓶">瓶</option><option value="盒">盒</option><option value="箱">箱</option></select></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="qty2[]" type="text" id="qty2_{$goods.rec_id}" value="{$goods.qty2}" size="6" maxlength="20"  /></strong></div></td>
+    <td scope="col"><div align="center"><strong><input name="unit2[]" type="text" id="unit2_{$goods.rec_id}" value="{$goods.unit2}" size="6" maxlength="20"  /></strong></div></td>
+  </tr>
+     
+  {/foreach}
+ <script>$("#netWeight").val(totolweight);</script>
+</table>
+</div>
+
+
+
+
+<div class="list-div" style="margin-bottom: 5px">
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th colspan="6">{$lang.action_info}</th>
+  </tr>
+ 
+  <tr>
+    <td><div align="right"><strong>备注:</strong></div></td>
+  <td colspan="5"><textarea name="action_note" cols="80" rows="3"></textarea></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center">
+	<input type="hidden" name="operation" id="operation" value="sf_kuajing"/>
+	<input type="hidden" name="order_id" id="order_id" value="{$order_id}"/>
+        <!-- <input name="delivery_confirmed" type="submit" value="确定申报" class="button" onclick="return checkform();" />&nbsp;&nbsp;<input type="button" value="{$lang.cancel}" class="button" onclick="location.href='order.php?act=info&order_id={$order_id}'" /> -->
+<input name="delivery_confirmed" type="submit" value="确定申报" class="button" />&nbsp;&nbsp;<input type="button" value="{$lang.cancel}" class="button" onclick="location.href='order.php?act=info&order_id={$order_id}'" />
+    </td>
+    </tr>
+</table>
+</div>
+</form>
+{literal}
+<script language="JavaScript">
+{/literal}
+  var oldAgencyId = {$order.agency_id|default:0};
+{literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+function checkform()
+{
+	var flag=true;
+	if($("#operate_type").val()=="")
+	{
+		alert('下单类型必填');
+		flag=false;
+	}
+    if($("#reference_no1").val()=="")
+    {
+        alert('客户参考编号1必填');
+        flag=false;
+    }
+    if($("#parcel_quantity").val()=="")
+    {
+        alert('包裹总件数必填');
+        flag=false;
+    }
+    if($("#is_get_bill_no").val()=="")
+    {
+        alert('是否返回顺丰运单号必填');
+        flag=false;
+    }
+    if($("#j_contact").val()=="")
+    {
+        alert('寄件方联系人必填');
+        flag=false;
+    }
+    if($("#j_tel").val()=="")
+    {
+        alert('寄件方联系电话必填');
+        flag=false;
+    }
+    if($("#j_country").val()=="")
+    {
+        alert('寄件方国家/地区必填');
+        flag=false;
+    }
+    if($("#j_province").val()=="")
+    {
+        alert('寄件方州/省必填');
+        flag=false;
+    }
+    if($("#j_city").val()=="")
+    {
+        alert('寄件方城市必填');
+        flag=false;
+    }
+    if($("#j_county").val()=="")
+    {
+        alert('寄件人所在县/区必填');
+        flag=false;
+    }
+    if($("#j_address").val()=="")
+    {
+        alert('寄件方详细地址必填');
+        flag=false;
+    }
+    if($("#j_post_code").val()=="")
+    {
+        alert('寄件方邮编必填');
+        flag=false;
+    }
+    if($("#d_contact").val()=="")
+    {
+        alert('到件方联系人必填');
+        flag=false;
+    }
+    if($("#d_tel").val()=="")
+    {
+        alert('到件方联络电话');
+        flag=false;
+    }
+    if($("#d_country").val()=="")
+    {
+        alert('到件方国家/地区必填');
+        flag=false;
+    }
+    if($("#d_province").val()=="")
+    {
+        alert('到件方州/省必填');
+        flag=false;
+    }
+    if($("#d_city").val()=="")
+    {
+        alert('到件方城市必填');
+        flag=false;
+    }
+    if($("#d_county").val()=="")
+    {
+        alert('到件方所在县/区必填');
+        flag=false;
+    }
+    if($("#d_address").val()=="")
+    {
+        alert('到件方详细地址必填');
+        flag=false;
+    }
+    if($("#d_post_code").val()=="")
+    {
+        alert('到件方邮编必填');
+        flag=false;
+    }
+    if($("#express_type").val()=="")
+    {
+        alert('快件类型必填');
+        flag=false;
+    }
+    if($("#pay_method").val()=="")
+    {
+        alert('付款方式必填');
+        flag=false;
+    }
+    if($("#custid").val()=="")
+    {
+        alert('付款月结卡号必填');
+        flag=false;
+    }
+    if($("#tax_pay_type").val()=="")
+    {
+        alert('税金付款方式必填');
+        flag=false;
+    }
+    if($("#currency").val()=="")
+    {
+        alert('币别必填');
+        flag=false;
+    }
+    if($("#buyers_nickname").val()=="")
+    {
+        alert('订购人注册号必填');
+        flag=false;
+    }
+    if($("#dynamic1").val()=="")
+    {
+        alert('优惠总金额');
+        flag=false;
+    }
+    if($("#turnover").val()=="")
+    {
+        alert('买家实付金额必填');
+        flag=false;
+    }
+    if($("#payment_company_name").val()=="")
+    {
+        alert('支付企业名称必填');
+        flag=false;
+    }
+    if($("#payment_tool").val()=="")
+    {
+        alert('支付工具必填');
+        flag=false;
+    }
+    if($("#payment_number").val()=="")
+    {
+        alert('支付交易号必填');
+        flag=false;
+    }
+    if($("#payment_time").val()=="")
+    {
+        alert('支付时间必填');
+        flag=false;
+    }
+    if($("#payer_name").val()=="")
+    {
+        alert('订购人姓名必填');
+        flag=false;
+    }
+    if($("#order_cert_type").val()=="")
+    {
+        alert('订购人/收件人证件类型必填');
+        flag=false;
+    }
+    if($("#order_cert_no").val()=="")
+    {
+        alert('订购人/收件人证件号必填');
+        flag=false;
+    }
+    if($("#tax").val()=="")
+    {
+        alert('买家总税款必填');
+        flag=false;
+    }
+
+
+
+	{
+		for (var i=0;i<document.getElementsByName("goods_code[]").length;i++)
+		{
+			if(document.getElementsByName("goods_code[]")[i].value=="")
+			{
+				alert('商品编码必填');
+				flag=false;
+				break;
+			}
+		}
+		if(flag)
+		{
+			for (var i=0;i<document.getElementsByName("name[]").length;i++)
+			{
+				if(document.getElementsByName("name[]")[i].value=="")
+				{
+					alert('商品名称必填');
+					flag=false;
+					break;
+				}
+			}
+			if(flag)
+			{
+				for (var i=0;i<document.getElementsByName("amount[]").length;i++)
+				{
+					if(document.getElementsByName("amount[]")[i].value=="")
+					{
+						alert('商品单价必填');
+						flag=false;
+						break;
+					}
+				}
+				if(flag)
+				{
+					for (var i=0;i<document.getElementsByName("count[]").length;i++)
+					{
+						if(document.getElementsByName("count[]")[i].value=="")
+						{
+							alert('商品数量必填');
+							flag=false;
+							break;
+						}
+					}
+					if(flag)
+					{
+						for (var i=0;i<document.getElementsByName("unit[]").length;i++)
+						{
+							if(document.getElementsByName("unit[]")[i].value=="")
+							{
+								alert('商品单位必填');
+								flag=false;
+								break;
+							}
+						}
+						if(flag)
+						{
+							for (var i=0;i<document.getElementsByName("source_area[]").length;i++)
+							{
+								if(document.getElementsByName("source_area[]")[i].value=="")
+								{
+									alert('商品源产国必填');
+									flag=false;
+									break;
+								}
+							}
+							if(flag)
+							{
+								for (var i=0;i<document.getElementsByName("goods_currency[]").length;i++)
+								{
+									if(document.getElementsByName("goods_currency[]")[i].value=="")
+									{
+										alert('商品币别必填');
+										flag=false;
+										break;
+									}
+								}
+								if(flag)
+								{
+									// for (var i=0;i<document.getElementsByName("product_record_no[]").length;i++)
+									// {
+									// 	if(document.getElementsByName("product_record_no[]")[i].value=="")
+									// 	{
+									// 		alert('商品海关备案号必填');
+									// 		flag=false;
+									// 		break;
+									// 	}
+									// }
+									if(flag)
+									{
+										for (var i=0;i<document.getElementsByName("brand[]").length;i++)
+										{
+											if(document.getElementsByName("brand[]")[i].value=="")
+											{
+												alert('品牌必填');
+												flag=false;
+												break;
+											}
+										}
+										if(flag)
+										{
+											for (var i=0;i<document.getElementsByName("statebarcode[]").length;i++)
+											{
+												if(document.getElementsByName("statebarcode[]")[i].value=="")
+												{
+													alert('条形码必填');
+													flag=false;
+													break;
+												}
+											}
+											if(flag)
+											{
+												for (var i=0;i<document.getElementsByName("specifications[]").length;i++)
+												{
+													if(document.getElementsByName("specifications[]")[i].value=="")
+													{
+														alert('规格型号必填');
+														flag=false;
+														break;
+													}
+												}
+												if(flag)
+												{
+													for (var i=0;i<document.getElementsByName("hs_code[]").length;i++)
+													{
+														if(document.getElementsByName("hs_code[]")[i].value=="")
+														{
+															alert('海关编码必填');
+															flag=false;
+															break;
+														}
+													}
+													if(flag)
+													{
+														for (var i=0;i<document.getElementsByName("item_no[]").length;i++)
+														{
+															if(document.getElementsByName("item_no[]")[i].value=="")
+															{
+																alert('商品序号必填');
+																flag=false;
+																break;
+															}
+														}
+														if(flag)
+														{
+															for (var i=0;i<document.getElementsByName("qty1[]").length;i++)
+															{
+																if(document.getElementsByName("qty1[]")[i].value=="")
+																{
+																	alert('法定第一数量必填');
+																	flag=false;
+																	break;
+																}
+															}
+															if(flag)
+															{
+																for (var i=0;i<document.getElementsByName("unit1[]").length;i++)
+																{
+																	if(document.getElementsByName("unit1[]")[i].value=="")
+																	{
+																		alert('法定第一计量单位必填');
+																		flag=false;
+																		break;
+																	}
+																}
+																// if(flag)
+																// {
+																// 	for (var i=0;i<document.getElementsByName("secondUnit[]").length;i++)
+																// 	{
+																// 		if(document.getElementsByName("secondUnit[]")[i].value=="")
+																// 		{
+																// 			alert('第二单位必填');
+																// 			flag=false;
+																// 			break;
+																// 		}
+																// 	}
+																// 	if(flag)
+																// 	{
+																// 		for (var i=0;i<document.getElementsByName("secondCount[]").length;i++)
+																// 		{
+																// 			if(document.getElementsByName("secondCount[]")[i].value=="")
+																// 			{
+																// 				alert('第二数量必填');
+																// 				flag=false;
+																// 				break;
+																// 			}
+																// 		}
+																// 	}
+																// }
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return flag;
+}
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}

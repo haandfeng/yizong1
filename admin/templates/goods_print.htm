@@ -1,0 +1,280 @@
+<!-- $Id: goods_batch_add.htm 16544 2009-08-13 07:55:57Z liuhui $ -->
+{include file="pageheader.htm"}
+<link href="styles/zTree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+{insert_scripts files='jquery-1.6.2.min.js,jquery.ztree.all-3.5.min.js,category_selecter.js'}
+<div class="main-div">
+<form action="goods_print.php" method="post" enctype="multipart/form-data" name="theForm" target="_blank" onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">供应商</td>
+    <td><select name="suppliers_id">
+      {html_options options=$suppliers_list}
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">分销归属</td>
+    <td><select name="user_id">
+      {html_options options=$fenxiao_list}
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">纸张大小</td>
+    <td><select name="page_size">
+      <option value="A3">A3</option>
+      <option value="A4">A4</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td class="label">是否选中商品显示</td>
+    <td>
+        <input name="is_select" id="is_select" type="checkbox" value="" onclick="showselect()" />    <br/>
+    </td>
+  </tr>
+
+  <!-- 选中商品 -->
+  <table width="100%" cellpadding="0" cellspacing="1" id="selectbox" style="display: none;">
+  <tr>
+    <td>
+    <div class="main-div" style="background-color: white;padding:10px">
+    <h3><center>选中商品</center></h3>
+    <div>
+        <strong>{$lang.custom_goods_search}</strong>
+        <!-- 分类 -->
+        <select id="cat_id"><option value="0">{$lang.all_category}</option>{$cat_list}</select>
+        <!-- 品牌 -->
+        <select id="brand_id"><option value="0">{$lang.all_brand}</option>{html_options options=$brand_list}</select>
+        <!-- 关键字 -->
+        {$lang.custom_keyword}<input type="text" id="keyword"/>
+        <!-- 搜索 -->
+        <input type="button" class="button"  value="{$lang.button_search}" onclick="return queryGoods(this)" />
+    </div>
+    <table>
+    <tr>
+      <td width="46%"><select name="src_goods_lists" id="src_goods_lists" size="14" style="width:100%">
+                </select></td>
+      <td rowspan="2" width="8%" style="text-align:center;">
+        <p><input type="button" value=">>" id="addAllGoods" class="button" /></p>
+        <p><input type="button" value=">" id="addGoods" class="button" /></p>
+        <p><input type="button" value="<" id="delGoods" class="button" /></p>
+        <p><input type="button" value="<<" id="delAllGoods" class="button" /></p>
+      </td>
+      <td width="46%"><select name="dst_goods_lists" id="dst_goods_lists" size="14" style="width:100%"></select></td>
+                <input name="goods_ids" id="goods_ids" type="hidden" />
+    </tr>
+    </table>
+    </div>
+    </td>
+  </tr>
+  </table>
+
+  <table>
+    <tr align="center">
+      <input type="hidden" name="act" value="info">
+      <td colspan="2"><input name="submit" type="submit" id="submit" value="{$lang.button_submit}" class="button" /></td>
+    </tr>
+  </table>
+</table>
+
+
+</form>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="80%">{$lang.use_help}</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script type="text/javascript">
+function validate()
+{
+  validator = new Validator("theForm");
+ 
+  var goods_ids = "";
+  var goods_lists = Utils.$('dst_goods_lists');
+ for (var i=0,l=goods_lists.options.length; i<l; i++)
+      {
+          var separator = (i==0)?'':',';
+          goods_ids += separator + goods_lists.options[i].value;
+      }
+  $('#goods_ids').val(goods_ids);
+
+  return validator.passed();
+}
+function showselect(){
+  if($("#is_select").attr("checked")){
+    $("#selectbox").show();
+    $("#is_select").val("1");
+  }else{
+    $("#selectbox").hide();
+    $("#is_select").val("0");
+  }
+}
+
+
+/* 搜索商品列表 */
+function queryGoods()
+{
+    var filters = new Object;
+    filters.cat_id = $('#cat_id').val();
+    filters.brand_id = $('#brand_id').val();
+    filters.keyword = $('#keyword').val();
+
+    Ajax.call('goods_print.php?is_ajax=1&act=new_get_goods_list', filters, queryGoodsResponse , 'POST', 'JSON');
+    return false;
+}
+
+function queryGoodsResponse (result)
+{
+    if (result.error > 0)
+    {
+        alert(result.message);
+        return;
+    }
+    Utils.$('src_goods_lists').innerHTML = '';
+    for (var i=0,l=result.content.length;i<l;++i)
+    {
+        var new_opt = document.createElement('OPTION');
+        new_opt.value = result.content[i].goods_id;
+        new_opt.innerHTML = result.content[i].goods_name;
+        Utils.$('src_goods_lists').appendChild(new_opt);
+    }
+}
+
+/* 操作自定义导出商品的Select Box */
+    var MySelectBox;
+    var MySelectBox2;
+    if (!MySelectBox)
+    {
+        var global = $import("../js/global.js","js");
+        global.onload = global.onreadystatechange= function()
+        {
+            if(this.readyState && this.readyState=="loading")return;
+            var selectbox = $import("js/selectbox.js","js");
+            selectbox.onload = selectbox.onreadystatechange = function()
+            {
+                if(this.readyState && this.readyState=="loading")return;
+                MySelectBox = new SelectBox('src_goods_fields', 'dst_goods_fields');
+                MySelectBox2 = new SelectBox('src_goods_lists', 'dst_goods_lists', true);
+            }
+        }
+    }
+    if (Utils.$('addItem'))
+    {
+        Utils.$('addItem').onclick = function ()
+        {
+            MySelectBox.addItem();
+        }
+    }
+    if (Utils.$('delItem'))
+    {
+        Utils.$('delItem').onclick = function ()
+        {
+            MySelectBox.delItem();
+        }
+    }
+    if (Utils.$('addAllItem'))
+    {
+        Utils.$('addAllItem').onclick = function ()
+        {
+            MySelectBox.addItem(true);
+        }
+    }
+    if (Utils.$('delAllItem'))
+    {
+        Utils.$('delAllItem').onclick = function ()
+        {
+            MySelectBox.delItem(true);
+        }
+    }
+    if (Utils.$('src_goods_fields'))
+    {
+        Utils.$('src_goods_fields').ondblclick = function ()
+        {
+            MySelectBox.addItem();
+        }
+    }
+    if (Utils.$('dst_goods_fields'))
+    {
+        Utils.$('dst_goods_fields').ondblclick = function ()
+        {
+            MySelectBox.delItem();
+        }
+    }
+    if (Utils.$('mvUp'))
+    {
+        Utils.$('mvUp').onclick = function ()
+        {
+            MySelectBox.moveItem('up');
+        }
+    }
+    if (Utils.$('mvDown'))
+    {
+        Utils.$('mvDown').onclick = function ()
+        {
+            MySelectBox.moveItem('down');
+        }
+    }
+
+    if (Utils.$('addGoods'))
+    {
+        Utils.$('addGoods').onclick = function ()
+        {
+            MySelectBox2.addItem();
+        }
+    }
+    if (Utils.$('delGoods'))
+    {
+        Utils.$('delGoods').onclick = function ()
+        {
+            MySelectBox2.delItem();
+        }
+    }
+    if (Utils.$('addAllGoods'))
+    {
+        Utils.$('addAllGoods').onclick = function ()
+        {
+            MySelectBox2.addItem(true);
+        }
+    }
+    if (Utils.$('delAllGoods'))
+    {
+        Utils.$('delAllGoods').onclick = function ()
+        {
+            MySelectBox2.delItem(true);
+        }
+    }
+    if (Utils.$('src_goods_lists'))
+    {
+        Utils.$('src_goods_lists').ondblclick = function ()
+        {
+            MySelectBox2.addItem();
+        }
+    }
+    if (Utils.$('dst_goods_lists'))
+    {
+        Utils.$('dst_goods_lists').ondblclick = function ()
+        {
+            MySelectBox2.delItem();
+        }
+    }
+
+    function copy_search_result(src_obj, dst_obj)
+    {
+        dst_obj.cat_id.value = src_obj.cat_id.value;
+        dst_obj.brand_id.value = src_obj.brand_id.value;
+        dst_obj.keyword.value = src_obj.keyword.value;
+        var goods_lists = Utils.$('dst_goods_lists');console.log(goods_lists);
+        for (var i=0,l=goods_lists.options.length; i<l; i++)
+        {
+            var separator = (i==0)?'':',';
+            dst_obj.goods_ids.value += separator + goods_lists.options[i].value;
+        }
+    }
+
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}

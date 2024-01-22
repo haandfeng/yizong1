@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+<link rel="stylesheet" href="themes/yshop100/pc/css/index.css">
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/index.css" />
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js"></script>
+<script src="themes/yshop100/pc/js/kxbdSuperMarquee.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jump.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/tab.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jquery-lazyload.js" ></script>
+<script type="text/javascript">
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js,index.js'}
+</head>
+<body>{insert name='add_url_uid'}
+	<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="banner" style="height: 424px;">
+		<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+    </div>
+
+        <div class="hot">
+            <div class="main">
+                <div class="hot-top"><strong>热卖商品</strong>经典热卖</div>
+                <ul>
+                   <li>{$index_hot_img1}</li>
+                   <li>{$index_hot_img2}</li>
+                   <li class="three">
+                      {$index_hot_img3}
+                      {$index_hot_img4}
+                   </li>
+                </ul>
+            </div>
+        </div>
+
+ <div class="new">
+            <div class="main">
+                <div class="hot-top"><strong>新品上市</strong>经典热卖</div>
+                    <div id="contro">
+                        <a href="javascript:void(0);" class="goU"><img src="themes/yshop100/pc/images/gou_24.jpg" id="img3"></a><br>
+                        <a href="javascript:void(0);" class="goD"><img src="themes/yshop100/pc/images/gou_27.jpg" id="img4"></a>
+                    </div>
+                    <div id="marquee123">
+                        <ul class="m_new" style="width:1100px;">
+                            <!--{foreach from=$new_goods item=goods name=index_goods}-->
+                                {if $smarty.foreach.index_goods.iteration < 20}
+                                    <li>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <div><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"></div>
+                                    <dd><p>{$goods.short_name}</p>
+                                        <span>
+                                            <!-- {if $goods.promote_price neq ""} -->
+                                            {$goods.promote_price}
+                                            <!-- {else}-->
+                                            {$goods.shop_price}
+                                            <!--{/if}-->
+                                        </span>
+                                    </dd>
+                                    </a>
+                                    </li>
+                                {/if}
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+            </div>
+        </div>
+<script type="text/javascript">
+	Move(".goD",".goU",".m_new","#marquee123","4");
+</script>
+
+
+
+        <div class="hot_2">
+            <div class="main">
+                <div class="hot-top"><strong>热销排行</strong>经典热卖</div>
+                <div class="hot-bot">
+                    <div class="hot-bot-left">
+                    <?php
+                    	$GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div>
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$hot_goods item=goods name=index_goods}-->
+                           {if $smarty.foreach.index_goods.iteration < 8}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+						<!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+			<!-- TemplateBeginEditable name="商品分类楼层" -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+<style>
+.floor-bot>ul>li:last-child{margin-right:0;}
+</style>
+    <script type="text/javascript" src="themes/yshop100/js/indexPrivate.min.js"></script>
+    <!-- #BeginLibraryItem "/library/right_sidebar.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/arrive_notice.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/left_sidebar.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript" src="themes/yshop100/js/home_index.js"></script>
+
+<script type="text/javascript">
+	$(".brand-con").hover(function(){
+		var num = $(this).find("li").length;
+		if(num > 10){
+			$(this).find(".brand-btn").fadeTo('fast',0.4);	
+		}
+	},
+	function(){
+		$(this).find(".brand-btn").fadeTo('fast',0);	
+	})
+
+
+$("#marquee123").kxbdSuperMarquee({
+        isAuto:true,
+        distance:272,
+        time:3,
+        btnGo:{right:'.goU',left:'.goD'},
+        direction:'left'
+		
+    });
+<!--{if $tishi == 1}-->
+    //alert('系统升级中，如有问题请联系客服。给您带来不便之处敬请谅解');
+	//alert('春节来临，【宜众易购·漢方杏林堂】将于2月14日（年三十）至2月21日（年初六）休息并暂停快递服务，2月22日（大年初七）恢复正常发货（如有需要可联系客服）【宜众易购·漢方杏林堂】全体仝人恭祝各位客户春节快乐，阖家安康，万事如意！');
+<!--{/if}-->
+    //代码
+
+
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!-- $Id: account_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+
+<div class="main-div">
+<form method="post" action="goods.php" name="theForm" onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">{$lang.lab_goods_name}</td>
+    <td>【{$goods_info.suppliers_desc}】{$goods_info.goods_name}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.lab_goods_number}</td>
+    <td><select name="add_sub_goods_number" id="add_sub_goods_number">
+      <option value="1" selected="selected">{$lang.add}</option>
+      <option value="-1">{$lang.subtract}</option>
+    </select>
+      <input name="goods_number" type="text" id="goods_number" style="text-align:right" placeholder="0" size="10" />
+      {$lang.current_value}{$goods_info.goods_number}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" class="button" value="{$lang.button_submit}" />
+      <input type="reset" class="button" value="{$lang.button_reset}" />
+      <input type="hidden" name="act" value="number_edit" />
+      <input type="hidden" name="goods_id" value="{$goods_info.goods_id}" />
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+	validator.isInt("goods_number", goods_number_not_int);
+    return validator.passed();
+}
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

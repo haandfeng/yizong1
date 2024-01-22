@@ -1,0 +1,123 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{$page_title}</title>
+  <meta name="Keywords" content="{$keywords}" />
+  <meta name="Description" content="{$description}" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+  <link rel="stylesheet" href="themesmobile/yshop100com_mobile/css/article.css">
+  <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+  {insert_scripts files='jquery.json.js,transport.js'}
+<style>
+input[type="submit"], input[type="reset"], input[type="button"], button {
+    -webkit-appearance: none;
+}
+.add_gift_attr {
+    background: #E71F19;
+    text-align: center;
+    line-height: 100%;
+    height: 100%;
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    font-family: 微软雅黑;
+    border: none;
+    border-radius: 0;
+}
+
+.f_foot {
+    background: #E71F19;
+    width: 100%;
+    height: 53px;
+    text-align: center;
+    margin-top: -1.5rem;
+}
+</style>
+</head>
+<body class="body_bj">
+  <!----------------------------------header----------------------------------->
+  <div class="tab_nav">
+    <header class="header">
+      <div class="h-left">
+        <a class="sb-back" href="javascript:void(0)" onclick="goback({$is_h5_app})" title="返回"></a>
+      </div>
+      <div class="h-mid">
+        <h6 style="color: #000">{$page_title}</h6>
+      </div>
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more">
+            <a href="javascript:;"></a>
+          </div>
+        </aside>
+      </div>
+    </header>
+  </div>
+  <!-- #BeginLibraryItem "/library/up_menu.lbi" -->
+  <!-- #EndLibraryItem -->
+  <!--弹出菜单-->
+  <form name="formIdentity" action="v_user_agree_period.php" method="post"   enctype="multipart/form-data">
+  <div class="ccontainer">
+     
+    <div id="user_bzzx_1">
+      <div class="brand-con radius">
+        <div class="hot-list" style="border: #e6e6e6 solid 1px; color:#666; font-weight:normal">分销商个人基本信息</div>
+       
+        <div class="hot-list">
+        <span>收款人银行卡：</span><input type="text" name="bank_card" id="bank_card" class="inputBg"/>
+        </div>
+        
+        <div class="hot-list">
+        <span>银行卡开户行：</span><div id="bank"><select name="bank_name" id="bank_name"></select></div>
+        </div>
+
+        <div class="hot-list">
+        <span>真实姓名：</span><input type="text" name="real_name" value="{$user_info.real_name}"  class="inputBg"/>
+        </div>
+        
+        <div class="hot-list">
+        <span>身份证号：</span><input type="text" name="card" value="{$user_info.card}"  class="inputBg"/>
+        </div>
+
+        <div class="hot-list">
+        <span>手机：</span><input type="text" name="mobile_phone" value="{$user_info.mobile_phone}" class="inputBg"/>
+        </div>
+
+        <div class="hot-list">
+        <input name="act" type="hidden" value="act_identity" />
+        </div>
+        
+        <div class="hot-list">
+        <div class="f_foot">
+        <input name="submit" type="submit" value="确认" border="0" class="add_gift_attr"  />
+        </div>
+       </div>
+      </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+
+ Ajax.call('v_user_agree_period.php', 'act=bank_card', bankName, 'POST', 'JSON');
+
+ $("#bank_card").blur(function(){
+  var bank_card = $("#bank_card").val();
+  if(bank_card.length >= 16){
+    $("#bank_name").hide();
+    $("#bank").append("<img class='loader' src='images/category/loader.gif' style='height:40px' />");
+    Ajax.call('v_user_agree_period.php', 'act=bank_card&cardid=' + bank_card, bankName, 'POST', 'JSON');
+  }
+ });
+
+
+function bankName(result){
+  $(".loader").hide();
+  $("#bank_name").show();
+  $("#bank_name").html(result);
+}
+</script>
+  </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{$page_title}</title>
+  <meta name="Keywords" content="{$keywords}" />
+  <meta name="Description" content="{$description}" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/> 
+     
+<script src="https://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script>
+  wx.config({
+    debug: true,
+    appId: '{$signPackage.appId}',
+    timestamp: {$signPackage.timestamp},
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+        'updateTimelineShareData',
+        'updateAppMessageShareData' ,
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage' 
+    ]
+  });
+ wx.ready(function () { 
+    wx.updateAppMessageShareData({
+      title: '红包来袭！！！',
+      desc: '大额红包来啦！！！快来领取！！！',
+      link: 'https://www.quickact.net/mobile/user.php?act=add_bonus',
+      imgUrl: 'https://www.quickact.net/mobile/themesmobile/yshop100com_mobile/images/hongbao.jpg',  
+      success: function (res) {
+        //alert('success');
+      } 
+    });
+ 
+    wx.updateTimelineShareData({
+      title: '红包来袭！！！',
+      link: 'https://www.quickact.net/mobile/user.php?act=add_bonus',
+      imgUrl: 'https://www.quickact.net/mobile/themesmobile/yshop100com_mobile/images/hongbao.jpg',   
+      success: function (res) {
+        //alert('success');
+      } 
+    });
+	
+    wx.updateAppMessageShareData({
+      title: '红包来袭！！！',
+      desc: '大额红包来啦！！！快来领取！！！',
+      link: 'https://www.quickact.net/mobile/user.php?act=add_bonus',
+      imgUrl: 'https://www.quickact.net/mobile/themesmobile/yshop100com_mobile/images/hongbao.jpg',  
+      success: function (res) {
+        //alert('success');
+      } 
+    });
+ 
+    wx.updateTimelineShareData({
+      title: '红包来袭！！！',
+      link: 'https://www.quickact.net/mobile/user.php?act=add_bonus',
+      imgUrl: 'https://www.quickact.net/mobile/themesmobile/yshop100com_mobile/images/hongbao.jpg',  
+      success: function (res) {
+        //alert('success');
+      } 
+    });
+});
+</script>
+</head>
+<body >
+    
+</body>
+</html>

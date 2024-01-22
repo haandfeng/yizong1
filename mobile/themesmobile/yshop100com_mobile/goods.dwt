@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta itemprop="image" content="https://www.quickact.net/mobile/wlogin.jpg" />
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/goods.css"/>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/photoswipe.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/yshop100com_mobile/css/default-skin.css"/>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/photoswipe.min.js"></script>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/photoswipe-ui-default.min.js"></script>
+
+<!--判断-->
+<!-- <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jweixin-1.0.0.js"></script> -->
+<script>
+
+</script>
+<style>
+  .ft{
+    position: fixed;
+    z-index: 10000;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+  }
+</style>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/TouchSlide.1.1.js"></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+<script type="text/javascript" src="themesmobile/yshop100com_mobile/js/touchslider.dev.js"></script>
+{insert_scripts files='common.js'}
+</head>
+<body>{insert name='add_url_uid'}
+{insert name='share'}
+<script type="text/javascript"> 
+var process_request = "{$lang.process_request}";
+$(document).ready(function(){
+		$(window).on('scroll', function () {
+			var oDiv = $("#user_goods_ka_1");
+			var oWin = $(window);
+			if ((oWin.scrollTop() > (oDiv.offset().top + oDiv.outerHeight())) || ((oWin.scrollTop() + oWin.height()) < oDiv.offset().top)) {
+				oDiv = $("#user_goods_ka_2");
+				if ((oWin.scrollTop() > (oDiv.offset().top + oDiv.outerHeight())) || ((oWin.scrollTop() + oWin.height()) < oDiv.offset().top)) {
+					oDiv = $("#user_goods_ka_3");
+					if ((oWin.scrollTop() > (oDiv.offset().top + oDiv.outerHeight())) || ((oWin.scrollTop() + oWin.height()) < oDiv.offset().top)) {
+						//alert("没有");
+					}
+					else{
+						$('.tab_down1 li a').removeClass('on');
+						$('#goods_ka3').addClass('on');
+					}
+				}
+				else{
+					$('.tab_down1 li a').removeClass('on');
+					$('#goods_ka2').addClass('on');
+				}
+			}else{
+				$('.tab_down1 li a').removeClass('on');
+				$('#goods_ka1').addClass('on');
+			}
+		});
+ 
+     $('.tab_down1 li a').click(function () {
+          
+            $('.tab_down1 li a').removeClass('on');
+            $(this).addClass('on');
+			var idx = $('.tab_down1 li a').index($(this));
+			location.href = "#user_goods_ka_"+(idx+1);
+        })
+        //$('.tab_down1 li a').click(function () {
+        //    var idx = $('.tab_down1 li a').index($(this));
+        //    $('.ct').removeClass('tt').eq(idx).addClass('tt');
+        //})
+      
+      $(function(){
+    $('.footer_nav .collect-button').click(function () {
+             if($('.goods_nav3').hasClass("jia"))
+        $('.goods_nav3').removeClass("jia");
+        else
+        $('.goods_nav3').addClass("jia");
+       });
+  })
+  
+  })
+
+
+</script> 
+<script language="javascript"> 
+<!--
+/*屏蔽所有的js错误*/
+/*function killerrors() {
+return true; 
+}
+window.onerror = killerrors;*/
+//-->
+function tiaozhuan()
+{ 
+//var thisurl = window.location.href;
+document.getElementById("share_form").submit();
+}
+</script> 
+<style>
+  .ct{display: none;}
+  .tt{display: block;}
+</style>
+<script type="text/javascript">
+        /*第一种形式 第二种形式 更换显示样式*/
+        
+        
+     
+        </script> 
+
+<!----------------------------------header----------------------------------->
+{insert name='add_url_uid'}
+<div class="goods_header">
+  <h2><a class="sb-back" onClick="goback({$is_h5_app})" title="返回"></a></h2>
+  <ul class="tab_down1">
+    <li><a href="javascript:;" class="tab_head on" id="goods_ka1">商品</a></li>
+    <li><a href="javascript:;" class="tab_head" id="goods_ka2" >详情</a></li>
+    <li><a href="javascript:;" class="tab_head" id="goods_ka3">评价</a></li>
+  </ul>
+  <dl>
+    <dd class="top_bar">
+      <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a></div>
+    </dd>
+    {if $is_h5_app eq 1}
+    <dt> <a href="javascript:void(0)" onClick="H5ToAppCart()" class="show_cart"><em class="global-nav__nav-shop-cart-num" id="ECS_CARTINFO">{insert name='cart_info'}</em></a></dt>
+    {else}
+    <dt> <a href="flow.php" class="show_cart"><em class="global-nav__nav-shop-cart-num" id="ECS_CARTINFO">{insert name='cart_info'}</em></a></dt>
+    {/if}
+  </dl>
+</div>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+<form action="share_goods.php" method="post" id="share_form">
+  <input type="hidden" name="content" value="{$goods.goods_style_name}">
+  <input type="hidden" name="pics" value="{$goods.goods_img}">
+  <input type="hidden" name="gid" value="{$goods.goods_id}">
+  <input type="hidden" name="url" value="https://{$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}">
+</form>
+<form action="javascript:addToCart({$goods.goods_id}),close_choose_attr();" method="post" id="purchase_form" name="ECS_FORMBUY" >
+<!-----------------------------------商品-------------------------------------->
+<input type="hidden" id="chat_goods_id" value="{$goods.goods_id}" />
+<input type="hidden" id="chat_supp_id" value="{$goods.supplier_id}" />
+<div class="main body_bj ct tt" id="user_goods_ka_1">
+<!-- 单品介绍图片 -->
+<!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+    <style>
+        .goods_price dt{height: 55px;}
+    </style>
+    <div class="product_info">
+        <!--商品名称、描述、分享-->
+        <div class="info_dottm">
+            {if $goods.goods_brief}
+            <h3><em>{if $goods.suppliers_desc}【{$goods.suppliers_desc}】{/if}{$goods.goods_name}</em><span>{$goods.goods_brief}</span></h3>
+            {else}
+            <h2>{if $goods.suppliers_desc}【{$goods.suppliers_desc}】{/if}{$goods.goods_name}</h2>
+            {/if}
+            <!--分享-->
+<!-- <div class="right"><a>
+                                <div onclick="isWeiXin()" id="pro_share" class="share"></div>
+                            </a></div> -->
+        </div>
+        <!--微信分享-->
+
+
+<script>
+    wx.config({
+        debug: false,
+        appId: '{$app.appId}',
+        timestamp: '{$app.timestamp}',
+        nonceStr: '{$app.nonceStr}',
+        signature: '{$app.signature}',
+        jsApiList: [
+            'checkJsApi',
+            'openLocation',
+            'getLocation',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage'
+        ]
+    })
+
+    wx.onMenuShareAppMessage({
+        imgUrl: "{$fen_img}",
+        desc: 'https://www.quickact.net/mobile/goods.php?id={$goods_id}',
+        link: 'https://www.quickact.net/mobile/goods.php?id={$goods_id}',
+        title: "{$goods.goods_name}",
+        success: function () {
+            // 用户确认分享后执行的回调函数
+            alert('分享成功');
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+    });
+
+//分享
+
+            wx.ready(function() {
+                // 分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: "{$goods.goods_name}",
+                  link: 'https://www.quickact.net/mobile/goods.php?id={$goods_id}',
+                  imgUrl: "{$fen_img}",
+                  success: function () {
+                          alert('分享成功');
+                  },
+                  cancel: function () {
+                  }
+                });
+                // 发送给好友
+                wx.onMenuShareAppMessage({
+                    imgUrl: "{$fen_img}",
+                    desc: 'https://www.quickact.net/mobile/goods.php?id={$goods_id}',
+                    link: 'https://www.quickact.net/mobile/goods.php?id={$goods_id}',
+                    title: "{$goods.goods_name}",
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                        alert('分享成功');
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+
+                wx.error(function(res){
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                    console.log("errorMSG:"+res);
+                });
+
+            })
+            //document.getElementById("share_form").submit();
+
+
+    </script>
+      <!--微信分享-->
+
+        <!--价格-->
+        <dl class="goods_price">
+            {if $goods.is_promote and $goods.gmt_end_time}
+            <!--判断是否是促销商品-->
+            <dt> <span id="ECS_GOODS_AMOUNT">{if $goods.is_exchange eq 0}{$goods.promote_exchange_price}{else}{$goods.promote_price}{/if}</span> <em>{if $goods.is_seckill}秒杀价{else}促销价{/if}</em><em>剩余<i id="leftTime">{$lang.please_waiting}</i></em>
+            </dt>
+            <!-- {if $goods.is_intax eq 0} -->
+            <span id="ECS_GOODS_AMOUNT_TAX" style="font-size: 18px;">{$goods.price_tax}</span>
+            <!-- {/if} -->
+            {insert_scripts files='lefttime.js'}<!--倒计时引用js-->
+            <dd>
+
+                <!-- {if $goods.give_integral eq '-1'} 购买此商品赠送积分-->
+                <em>赠送积分: <span id="ECS_GOODS_AMOUNT_JF"></span></em>
+                <!-- {elseif $goods.give_integral > 0} -->
+                <em>赠送积分: <span>{$goods.give_integral}</span></em>
+                <!-- {else} -->
+                <em>赠送积分: <span>0</span></em>
+                <!-- {/if} -->
+                <em id="IS_EXCLUSIVE" style="display:none">手机专享</em>
+                <!-- {if $goods.is_shipping} 为免运费商品则显示--><em>包邮</em><!-- {/if} -->
+                <!-- {if $goods.is_intax > 0} --><em>已含税</em><!-- {/if} -->
+            </dd>
+            {else}
+            <dt> <span id="ECS_GOODS_AMOUNT">{if $goods.is_exchange eq 0}{$goods.shop_price_exchange_formated}{else}{$goods.shop_price_formated}{/if}</span>
+                <!-- {if $goods.is_shipping} 为免运费商品则显示--><em>包邮</em><!-- {/if} -->
+                
+            </dt>
+            <!-- {if $goods.is_intax eq 0} -->
+            <span id="ECS_GOODS_AMOUNT_TAX">{$goods.price_tax}</span>
+            <!-- {/if} -->
+            <dd>
+                <!-- {if $goods.give_integral eq '-1'} 购买此商品赠送积分-->
+                <em>赠送积分: <span id="ECS_GOODS_AMOUNT_JF"></span></em>
+                <!-- {elseif $goods.give_integral > 0} -->
+                <em>赠送积分: <span>{$goods.give_integral}</span></em>
+                <!-- {else} -->
+                <em>赠送积分: <span>0</span></em>
+                <!-- {/if} -->
+                <em id="IS_EXCLUSIVE" style="display:none">手机专享</em> 
+                <!-- {if $goods.is_intax > 0} --><em>已含税</em><!-- {/if} -->
+            </dd>
+                
+            {/if}
+        </dl>
+        <ul class="price_dottm">
+            {if $zhekou != 10}
+                <li style=" text-align:left">折扣：{$zhekou}折</li>
+            {/if}
+            <li>{$review_count}人评价</li>
+            <li style=" text-align:right">{$order_num}人已购</li>
+        </ul>
+    </div>
+<!---优惠活动--->
+ <!-- {if $promotion || $volume_price_list || $goods.give_integral > 0 || $goods.bonus_money} -->
+ <div class="goods_hd">
+  <dl>
+    <dt onClick="choose_attrtwo(0)">
+    {if $promotion}
+      <!-- {foreach from=$promotion item=item key=key name=promotion}-->
+      <!--{if $smarty.foreach.promotion.iteration < 2}   -->
+      <i>惠</i><span>{$item.act_name}</span>
+      <!--{/if}-->
+      <!-- {/foreach} -->
+      {elseif $volume_price_list}
+      <!--{foreach from=$volume_price_list item=price_list key=price_key name=name}-->
+      <!-- {if $smarty.foreach.name.iteration < 2}-->
+      <i>惠</i><span>购买{$price_list.number}件&nbsp;优惠价：{$price_list.format_price}</span>
+      <!-- {/if}-->
+      <!--{/foreach}-->
+      {elseif $goods.give_integral > 0} <i>惠</i><span>{$lang.goods_give_integral} {$goods.give_integral}{$points_name}</span>
+      {elseif $goods.bonus_money} <i>赠</i><span>{$lang.goods_bonus}{$goods.bonus_money}</span> {/if} </dt>
+  </dl>
+
+  </div>
+    <!-- {/if} -->
+	<div class="goods_hd" style="display:none;" id="perioddiv">
+  <dl>
+    <dt style="height:45px">
+<div style="float: left;">
+    <div style="float: left;background-color: #FFF;margin-right: 7px;padding-left:5px;padding-right:5px;">     快闪付分期          </div>
+
+        {foreach from=$period_list name="period_list" item=period}
+      {if $period.period neq '' &&  $period.isshow eq '1' }
+        <div style="float: left;background-color: #FFF;margin-right: 7px;padding-left:5px;padding-right:5px;border: 1px solid #de7a7a;">     
+			<a href="#none" style="font-size: 10px;color: #666;" name="priodamount" num="{$period.period}" rate="{$period.monthrate}"></a>          
+		</div>
+      {/if} 
+        {/foreach} 
+	
+	
+</div>
+      </dt>
+  </dl>
+   </div>
+<!---会员价格--->
+<!---{if $rank_prices}------>
+<div class="goods_hd">
+  <dl>
+    <dt onClick="choose_attrstr(0)" >会员等级价格</dt>
+  </dl>
+   </div>
+<!---{/if}--->
+<!---产品参数-->
+<div class="goods_can">
+ <dl>
+<dt onClick="choose_attrone(0)">产品参数</dt>
+</dl>
+</div>
+
+<!---商品属性-->
+{if $specification}
+<div class="goods_can">
+<dl id="ECS_SELECT_GOODS_ATTR" style="display:none">
+</dl>
+</div>
+{/if}
+
+<!---自提点---->
+<!--{if $pups && $ppts}-->
+<!-- <section id="search_ka" class="goods_ziti">
+<a href="pocking.php?id={$goods.goods_id}"><span>查看自提点</span><i><img src="themesmobile/yshop100com_mobile/images/goods/ziti.png"></i></a>
+
+</section> -->
+<!--{/if}-->
+
+<!---店铺信息---->
+<!-- {if $goods.supplier_id} -->
+<section class="rzs_info">
+<div class="top_info">
+<dl>
+<a href="supplier.php?suppId={$suppid}">
+<dt><!--{if $shop_logo}--><img src="./..{$shop_logo}"><!--{else}--><img src="themesmobile/yshop100com_mobile/images/goods/dianpu.jpg"><!--{/if}--></dt>
+<dd><span>{$shopname}</span><em>{$userrank}{if $serviceqq}&nbsp;&nbsp;QQ:{$serviceqq}{/if}{if $servicephone}&nbsp;&nbsp;电话：{$servicephone}{/if}{if $serviceemail}&nbsp;&nbsp;邮件：{$serviceemail}{/if}</em></dd>
+</a>
+</dl>
+<ul>
+<a href="supplier.php?suppId={$suppid}">
+<li class="bian_l whim"><strong>{$goodsnum}</strong><font>全部商品</font></li>
+<li class="bian_l whim"><strong>{$fensi}</strong><font>关注人数</font></li>
+<li class="whim1">
+<span><em>宝贝描述</em><i>{if $c_rank gt 0}{$c_rank}{else}5.0{/if}</i></span>
+<span><em>卖家服务</em><i>{if $serv_rank gt 0}{$serv_rank}{else}5.0{/if}</i></span>
+<span><em>物流服务</em><i>{if $shipp_rank gt 0}{$shipp_rank}{else}5.0{/if}</i></span>
+</li>
+</a>
+</ul>
+</div>
+<div class="s_dianpu">
+<span>{if $is_guanzhu}<a href="javascript:void(0)" style=" margin-left:7%;"><em class="bg1"></em>已收藏</a>{else}<a href="javascript:guanzhu({$suppid})" style=" margin-left:7%;"><em class="bg1"></em>收藏店铺</a>{/if}</span>
+<span><a href="supplier.php?suppId={$suppid}" style=" margin-left:3%;"><em class="bg2"></em>进入店铺</a></span>
+</div>
+</section>
+<!-- {/if} -->
+
+<!---优惠套餐-->
+<!--{if $package_goods_list_120}-->
+<section class="index_taocan">
+    <a href="goods.php?act=taocan&goods_id={$goods.goods_id}">
+    <h2><span></span>优惠套餐</h2>
+        <div class="tc_goods">
+        {foreach from=$package_goods_list_120 name="pa_list" item=pa_item}
+        {if $smarty.foreach.pa_list.first}
+         {foreach from=$pa_item.goods_list name="pa_list_goods" item=pa_goods}
+         {if $smarty.foreach.pa_list_goods.iteration < 4}
+         {if $smarty.foreach.pa_list_goods.iteration neq 1}
+           <div class="jia"><img src="themesmobile/yshop100com_mobile/images/goods/jia.png" class="B_eee" ></div>
+         {/if}
+         {if $smarty.foreach.pa_list_goods.iteration eq 3}
+          <dl class="t_goods">
+          <dt>
+          <!-- <span> {$pa_goods.rank_price_zk_format}</span> -->
+          <i><img src="{$pa_goods.goods_thumb}" class="B_eee" ></i>
+          </dt>
+           </dl>
+           {else}
+          <dl class="t_goods">
+          <dt><!-- <span>{$pa_goods.rank_price_zk_format}</span> -->
+          <i><img src="{$pa_goods.goods_thumb}" class="B_eee" ></i></dt>
+           </dl>
+           {/if}
+          {/if}
+{/foreach}
+{/if}
+<input type="button" value="{$pa_item.act_name}:  {$pa_item.package_price_hkd}" style="background-color: #ff5916; border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px; width: 100%; margin-top: 10px" />
+{/foreach}
+</div>
+</a>
+  </section>
+<!-- {/if} -->
+</div>
+<!---------------------------------详情----------------------------------->
+<div class="main ct tt" id="user_goods_ka_2" >
+      <div class="product_main">
+          <div class="product_images product_desc pinch-zoom" id="product_desc" style="position: relative;">
+               
+
+                <div class="row">
+                    <div>
+                        {foreach from=$goods_path_video item=video_list name=video}
+                        <p style="text-align:center;"><video class="edui-upload-video video-js vjs-default-skin" controls="" preload="none" width="420" height="280" src="{$video_list}" data-setup="{}"><source src="{$video_list}" type="video/mp4"></video></p>
+                        {/foreach}
+                    </div>
+    <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
+	{$goods_comcontent_top}
+    {if $ishide_path_img eq 0}
+    {foreach from=$goods_path_img item=list name=listone}
+            <img src="{$list}" alt="">
+     {/foreach}
+    {/if}
+	{$goods_comcontent_bottom}
+    </div>
+
+<script src="previewImagemobilemaster/dist/md5.js"></script>
+<script src="previewImagemobilemaster/dist/previewImage.min.js"></script>
+<script>
+    /**
+     * get multiple elements
+     * @public
+     */
+    $.all = function(selector, contextElement) {
+      var nodeList,
+        list = [];
+      if (contextElement) {
+        nodeList = contextElement.querySelectorAll(selector);
+      } else {
+        nodeList = document.querySelectorAll(selector);
+      }
+      if (nodeList && nodeList.length > 0) {
+        list = Array.prototype.slice.call(nodeList);
+      }
+      return list;
+    }
+
+    /**
+     * delegate an event to a parent element
+     * @public
+     * @param  array     $el        parent element
+     * @param  string    eventType  name of the event
+     * @param  string    selector   target's selector
+     * @param  function  fn
+     */
+    $.delegate = function($el, eventType, selector, fn) {
+      if (!$el) { return; }
+      $el.addEventListener(eventType, function(e) {
+        var targets = $.all(selector, $el);
+        if (!targets) {
+          return;
+        }
+        // findTarget:
+        for (var i=0; i<targets.length; i++) {
+          var $node = e.target;
+          while ($node) {
+            if ($node == targets[i]) {
+              fn.call($node, e);
+              break; //findTarget;
+            }
+            $node = $node.parentNode;
+            if ($node == $el) {
+              break;
+            }
+          }
+        }
+      }, false);
+    };
+
+    var urls = [];
+    var imgs = $.all('img',$.all('#demo-test-gallery')[0]);
+    imgs.forEach(function(v,i){
+        urls.push(v.src);
+    })
+    
+    $.delegate(document.querySelector('#demo-test-gallery'), 'click','img',function(){
+        var current = this.src;
+        var obj = {
+            urls : urls,
+            current : current
+        };
+        previewImage.start(obj);
+    });
+    
+</script>
+</div>
+
+          </div>
+        </div>
+      </div>
+<!---------------------------------评价----------------------------------->
+<div class="tab_attrs tab_item hide ct tt" id="user_goods_ka_3" >
+        <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+        <script language="javascript"> ShowMyComments({$goods.goods_id},0,1);</script>
+      </div>
+<!---------------------------------底部----------------------------------->
+
+<script type="text/javascript">
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+<!-- {literal} -->
+onload = function(){
+  changePrice();
+  try { onload_leftTime(now_time); }
+
+  catch (e) {
+}
+}
+
+/**/
+function  show_goods_desc(){
+   document.getElementById('product_desc').innerHTML = '{$goods.goods_desc}';
+}
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+if(qty <=0 ){
+ document.forms['ECS_FORMBUY'].elements['number'].value = 1;
+ qty = 1;
+}
+  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+        //document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+var amt=res.result.substring(res.result.indexOf("CNY")+4);
+var pas=document.getElementsByName("priodamount");
+for(i=0;i<pas.length;i++)
+{
+	var period=$(pas[i]).attr("num");
+	var rate=$(pas[i]).attr("rate");
+	var n1=(parseFloat(amt)/parseInt(period)).toFixed(2);
+	var n2=(parseFloat(rate)*parseFloat(amt)).toFixed(2);
+	pas[i].innerHTML="￥"+String((parseFloat(n1)+parseFloat(n2)).toFixed(2))+"×"+String(period)+"期";
+}
+//document.getElementById("perioddiv").style.display="";
+
+        if (document.getElementById('ECS_GOODS_AMOUNT')){
+          document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+        }
+       if(document.getElementById('ECS_GOODS_NUMBER')){
+        document.getElementById('ECS_GOODS_NUMBER').innerHTML = res.goods_attr_number;
+            if(res.goods_attr_number > 0){
+                document.getElementById('ECS_ADD_TO_CART').style.display="block";
+                document.getElementById('ECS_ONE_STEP_BUY').style.display="block";
+                document.getElementById('ECS_DAOHUO').style.display="none";
+            }else{
+                document.getElementById('ECS_ADD_TO_CART').style.display="none";
+                document.getElementById('ECS_ONE_STEP_BUY').style.display="none";
+                document.getElementById('ECS_DAOHUO').style.display="block";
+            }
+        }
+        if(document.getElementById('ECS_GOODS_AMOUNT_JF')){
+          document.getElementById('ECS_GOODS_AMOUNT_JF').innerHTML = res.result_jf;
+        }
+        if(document.getElementById('ECS_GOODS_AMOUNT_CHOOSE')){
+                document.getElementById('ECS_GOODS_AMOUNT_CHOOSE').innerHTML = res.result;
+        }
+        if(document.getElementById('ECS_GOODS_ATTR_THUMB')){
+            document.getElementById('ECS_GOODS_ATTR_THUMB').src = res.goods_attr_thumb;
+        }
+        if(document.getElementById('ECS_GOODS_ATTR')){
+            document.getElementById('ECS_GOODS_ATTR').innerHTML = res.goods_attr;
+        }
+    if(document.getElementById('ECS_SELECT_GOODS_ATTR') && res.goods_attr != ''){
+            document.getElementById('ECS_SELECT_GOODS_ATTR').style.display="block";
+            document.getElementById('ECS_SELECT_GOODS_ATTR').innerHTML ="<dt onClick='choose_attr(0)'><span>产品属性：" + res.goods_attr + "</span></dt>";
+    }
+        if(document.getElementById('IS_EXCLUSIVE') && res.is_exclusive){
+            document.getElementById('IS_EXCLUSIVE').style.display = 'block';
+        }else{
+            document.getElementById('IS_EXCLUSIVE').style.display = 'none';
+        }
+    }
+    //秒杀
+    if(document.getElementById('ECS_SECKILL') && res.off_seckill > 0){
+        document.getElementById('ECS_ADD_TO_CART').style.display="none";
+        document.getElementById('ECS_ONE_STEP_BUY').style.display="none";
+        document.getElementById('ECS_DAOHUO').style.display="none";
+        document.getElementById('ECS_SECKILL').style.display="block";
+    }
+}
+
+<!-- {/literal} -->
+</script>
+<!---------------------------------底部弹出层----------------------------------->
+<!--优惠活动弹出代码-->
+<section class="f_mask2" style="display: none;"></section>
+<section class="f_block2" id="choose_attr2" style="height:0; overflow:hidden;">
+<!---优惠活动列表-->
+<div class="Promotions">
+ <h2>优惠活动</h2>
+   <ul>
+   <!-- 优惠活动-->
+   <!-- {foreach from=$promotion item=item key=key name=promotion}-->
+<a href="{$item.url}" title="{$lang.$item.type} {$item.act_name}{$item.time}">
+<li>
+<i>惠</i>
+<span>【{$lang.$item.type}】{$item.act_name}</span>
+</li></a>
+   <!-- {/foreach} -->
+<!--购买优惠 {if $volume_price_list}-->
+{foreach from=$volume_price_list item=price_list key=price_key}
+<li><i>购</i>
+<span>购买{$price_list.number}件&nbsp;优惠价：{$price_list.format_price}</span></li>{/foreach}
+ <!-- {/if} -->
+ <!-- {if $goods.bonus_money} 红包-->
+<li>
+<i>赠</i><span>{$lang.goods_bonus}{$goods.bonus_money}</span></li>
+ <!-- {/if} -->
+</ul>
+</div>
+ <div class="goods_shut">
+<a href="javascript:void(0)" onclick="close_choose_attr2();" class="shut" style=" color:#FFF; font-size:18px;">关闭</a>
+</div>
+</section>
+<script>
+function choose_attrtwo(num){
+  $('#choose_attr2').css('height','80%');
+    var total=0,h=$(window).height(),
+        top =$('.Promotions h2').height()||0,
+        con = $('.Promotions');
+    total = 0.8*h;
+    con.height(total-top+'px');
+  // $(".f_mask2").show();
+}
+function close_choose_attr2(){
+  $(".f_mask2").hide();
+  $('#choose_attr2').css('height','0');
+  $('#choose_attr2').animate({height:'0'},[10000]);
+}
+
+function changeAtt(t) {
+t.lastChild.checked='checked';
+for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+        if (t.parentNode.childNodes[i].className == 'hover') {
+            t.parentNode.childNodes[i].className = '';
+      t.childNodes[0].checked="checked";
+    }
+    }
+t.className = "hover";
+changePrice();
+}
+function changeAtt1(t) {
+t.lastChild.checked='checked';
+for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+        if (t.className == 'hover') {
+            t.className = '';
+      t.childNodes[0].checked = false;
+    }
+    else{
+      t.className="hover";
+      t.childNodes[0].checked = true;
+    }
+
+
+}
+changePrice();
+}
+
+</script>
+<!--会员等级价格弹出代码-->
+<section class="f_mask3" style="display: none;"></section>
+<section class="f_block3" id="choose_attr3" style="height:0; overflow:hidden;">
+<div class="subNavBox">
+  <h2>会员专享价</h2>
+    <!-- {if $rank_prices} 会员等级价格-->
+    <ul>
+    {foreach from=$rank_prices item=rank_price key=key}
+<li>
+<p>{$rank_price.rank_name}：</p>
+<span>{$rank_price.price}</span>
+    </li>
+{/foreach}
+      </ul>
+     <!---{/if}-->
+    </div>
+ <div class="goods_shut">
+<a href="javascript:void(0)" onclick="close_choose_attr3();" class="shut" style=" color:#FFF;font-size:18px;">关闭</a>
+</div>
+</section>
+<script>
+function choose_attrstr(num){
+    $("#choose_attr3").css('height','80%');
+    var total=0,h=$(window).height(),
+        top =$('.subNavBox').height()||0,
+        con = $('.subNavBox ul');
+    total = 0.8*h;
+    con.height(total-top+'px');
+
+}
+function close_choose_attr3(){
+
+    $("#choose_attr3").css('height','0');
+}
+
+</script>
+<!--产品参数弹出代码-->
+<section class="f_mask1" style="display: none;"></section>
+<section class="f_block1" id="choose_attr1" style="height:0; overflow:hidden;">
+<section class="good_canshu">
+<h2>{$lang.xinxi}</h2>
+<ul>
+
+ <li><p>商品名称：</p><span>{$goods.goods_style_name}</span></li>
+  <!-- {if $goods.goods_sn} 显示商品货号 -->
+ <li><p>商品编号：</p><span>{$goods.goods_sn}</span></li><!--{/if}-->
+  <!-- {if $goods.goods_brand} 显示商品品牌-->
+ <li><p>商品品牌：</p><span><a href="{$goods.goods_brand_url}" >{$goods.goods_brand}</a></span></li><!--{/if}-->
+  <!-- {if $goods.add_time} 上架时间-->
+ <li><p>上架时间：</p><span>{$goods.add_time}</span></li><!--{/if}-->
+  <!-- {if $goods.goods_weight} 商品重量-->
+ <li><p>商品重量：</p><span>{$goods.goods_weight}</span></li><!--{/if}-->
+<!-- {if $goods.goods_number eq 0} -->
+ <li><p>商品库存：</p><span> {$lang.stock_up} </span></li>
+<!-- {else} -->
+ <li><p>商品库存：</p><span> {$goods.goods_number} {$goods.measure_unit} </span></li> <!-- {/if} -->
+  <!-- {if $properties} -->
+<!-- {foreach from=$properties item=property_group key=key} -->
+<!-- {foreach from=$property_group item=property} -->
+ <li><p>{$property.name|escape:html}:</p><span>{$property.value}</span></li>
+<!-- {/foreach}-->
+<!-- {/foreach}-->
+<!--{/if}-->
+</ul>
+</section>
+<div class="goods_shut">
+<a href="javascript:void(0)" onclick="close_choose_attr1();" class="shut" style=" color:#FFF;font-size:18px;">关闭</a>
+</div>
+</section>
+<script>
+function choose_attrone(num){
+    $('#choose_attr1').css('height','80%');
+    var total=0,h=$(window).height(),
+        top =$('.good_canshu').height()||0,
+        con = $('.xiangq');
+    total = 0.8*h;
+    con.height(total-top+'px');
+
+}
+function close_choose_attr1(){
+    $('#choose_attr1').css('height','0');
+  $('#choose_attr1').animate({height:'0'},[10000]);
+}
+
+</script>
+<!-- 购物车弹出代码-->
+<section class="f_mask" style="display: none;"></section>
+<section class="f_block" id="choose_attr" style="height:0; overflow:hidden;">
+<!-- #BeginLibraryItem "/library/goods_choose_attr.lbi" --><!-- #EndLibraryItem -->
+</section>
+<script>
+function choose_attr(num){
+  var is_h5_login = {$is_h5_login};
+  var is_h5_app = {$is_h5_app};
+  if(is_h5_login==0){
+    if(is_h5_app==1){
+      H5ToAppLogin(window.location.href);
+    }else{
+            if(num == 0){
+                var actionForm = document.getElementById('purchase_form');
+                actionForm.action = "javascript:addToCart({$goods.goods_id}),close_choose_attr()";
+            }
+            if(num == 1){
+                var actionForm = document.getElementById('purchase_form');
+                actionForm.action = "javascript:addToCart({$goods.goods_id},0,1),close_choose_attr()";
+            }
+
+
+      $("#choose_attr").animate({height:'80%'},[10000]);
+      var total=0,h=$(window).height(),
+      top =$('.f_title_attr').height()||0,
+      bottom =$('#choose_attr .f_foot').height()||0,
+      con = $('.f_content_attr');
+      total = 0.8*h;
+      con.height(total-top-bottom+'px');
+            $("#choose_attr").css('height','80%');
+    }
+  }else{
+        if(num == 0){
+            var actionForm = document.getElementById('purchase_form');
+            actionForm.action = "javascript:addToCart({$goods.goods_id}),close_choose_attr()";
+        }
+        if(num == 1){
+            var actionForm = document.getElementById('purchase_form');
+            actionForm.action = "javascript:addToCart({$goods.goods_id},0,1),close_choose_attr()";
+        }
+
+
+    $("#choose_attr").animate({height:'80%'},[10000]);
+    var total=0,h=$(window).height(),
+    top =$('.f_title_attr').height()||0,
+    bottom =$('#choose_attr .f_foot').height()||0,
+    con = $('.f_content_attr');
+    total = 0.8*h;
+    con.height(total-top-bottom+'px');
+        $("#choose_attr").css('height','80%');
+
+  }
+}
+
+function close_choose_attr(){
+  document.body.style.overflow='';
+    $("#choose_attr").css('height','0');
+
+}
+
+</script>
+<!-- 到货通知弹出代码-->
+<section class="f_mask6" style="display: none;"></section>
+<section class="f_block6" id="choose_attr6" style="height:0; overflow:hidden;">
+<section class="callme">
+<h2>到货通知</h2>
+
+<div id="tell_me_form" style="display:none;">
+  <div class="tell_me_con">
+<div style="background:#FFFDEE ;border:1px dotted #ff3300;line-height:20px; font-weight:normal; padding:10px; margin-top:10px;">
+            <p style="font-size:16px;color:#F52648;">{$goods.goods_name|truncate:20}</p>
+           <p style="font-size:12px;color:#999;"> 当商品进行补货时，我们将以短信、邮件的形式通知您，最多发送一次，不会对您造成干扰。</p>
+ </div>
+ <ul>
+ <li><span><font color=#ff3300>*</font>数量：</span><em><input type="text" value="1" id="book_number" /></em></li>
+ <li><span><font color=#ff3300>*</font>手机号码：</span><em><input type="text" value="" id="phone_num" /></em></li>
+ <li><span><font color=#ff3300>*</font>电子邮箱：</span><em><input type="text" value="" id="arrival_email" /></em></li>
+ <li><input type="button" value="提交" onclick="tell_me1({$goods.goods_id})" class="tell_btn"/></li>
+ </ul>
+  </div>
+</div>
+<script>
+                $(function(){
+          $('#tell_me_form').css('left',($(window).width()-500)/2);
+          $('#tell_me_form').css('top',($(window).height()-300)/2);
+          $('.tell_me_close').click(function(){
+            $('#tell_me_form').hide();
+          //  document.getElementById('bg').style.display='none';
+          })
+        })
+                </script>
+<script type="text/javascript">
+   function tell_me(goods_id){
+
+            //no_have = (typeof(no_have_val) == "undefined" ? 0 : no_have_val);
+            Ajax.call('user.php?act=book_goods', 'id=' + goods_id, tellmeResponse, 'GET', 'JSON');
+    }
+
+    function tellmeResponse(result){
+        if(result.error==1){
+            document.getElementById('tell_me_form').style.display = 'block';
+            // document.getElementById('bg').style.display='block';
+            document.getElementById('phone_num').value=result.tel;
+            document.getElementById('arrival_email').value=result.email;
+            choose_attr6(0);
+          close_choose_attr6();
+        }
+  if(result.error==0){
+            alert(result.message);
+        }
+  if(result.error==2){
+            alert(result.message);
+            close_choose_attr6();
+            document.getElementById('tell_me_form').style.display = document.getElementById('tell_me_form').style.display=='none'?'block':'none';
+            //  document.getElementById('bg').style.display='none';
+  }
+
+    }
+
+    function tell_me1(goods_id){
+  var num=document.getElementById('book_number').value;
+  var tel=document.getElementById('phone_num').value;
+  var email=document.getElementById('arrival_email').value;
+  var msg = '';
+  var g = /^[1-9]*[1-9][0-9]*$/;
+
+     if (num == '') {
+        msg += '数量不能为空!\n';
+    }else if(!g.test(num)){
+    msg += '数量需为正整数！\n';
+  }
+
+    if (tel == '') {
+        msg += '手机号码不能为空！\n';
+    }
+    if (email == '') {
+        msg += '邮箱不能为空!\n';
+    }
+    if (msg)
+    {
+        alert(msg);
+        return false;
+    }
+    else
+    {
+          //no_have = (typeof(no_have_val) == "undefined" ? 0 : no_have_val)
+        Ajax.call('user.php?act=add_book_goods', 'id=' + goods_id + '&num=' + num+ '&tel=' + tel+ '&em=' + email, tellmeResponse, 'GET', 'JSON');
+    }
+
+
+        }
+    </script>
+<!-- #BeginLibraryItem "/library/arrive_notice.lbi" --><!-- #EndLibraryItem -->
+</section>
+<div class="goods_shut">
+<a href="javascript:void(0)" onclick="close_choose_attr6();" class="shut" style=" color:#FFF;font-size:18px;">关闭</a>
+</div>
+</section>
+<script>
+function choose_attr6(num){
+  $("#choose_attr6").animate({height:'80%'},[10000]);
+    var total=0,h=$(window).height(),
+        top =$('.callme').height()||0,
+        con = $('.tell_me_con');
+    total = 0.8*h;
+    con.height(total-top+'px');
+
+  $(".f_mask6").show();
+}
+// function close_choose_attr6(){
+// // $(".f_mask6").hide();
+// // $('#choose_attr6').animate({height:'0'},[10000]);
+//   $("#choose_attr6").css('height','0');
+
+// }
+function close_choose_attr6(){
+  document.body.style.overflow='';
+    $("#choose_attr6").css('height','0');
+
+}
+function guanzhu(sid){
+  Ajax.call('supplier.php', 'go=other&act=add_guanzhu&suppId=' + sid, selcartResponse, 'GET', 'JSON');
+}
+
+function selcartResponse(result){
+
+  alert(result.info);
+}
+
+
+
+</script>
+</form>
+{if $user_id eq 0 && $iswei eq 1}
+<style>
+.wlogin {
+    position: absolute;
+    left: 5rem;
+    right: 5rem;
+    border: 1px solid #eee;
+    background: #fff;
+    top: 13rem;
+    z-index: 1001;
+    padding: 1rem;
+    border-radius: 1.5rem;
+}
+#wlogin-mask {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+}
+.wlogin-close1 {
+    border: none;
+    font-size: 1.4rem;
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    
+    display: block;
+    line-height: 1.5rem;
+    color: #ddd;
+    display: block;
+    text-align: center;
+    font-style: normal;
+}
+.wlogin-header {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.wlogin-img {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.wlogin-img a{
+    display: block;
+}
+.wlogin-img img{
+    width: 100px;
+    height: 100px;
+    
+}
+.wlogin-text{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.wlogin-text span{
+    padding: 0 1rem; 
+    font-size: 14px;
+    line-height: 14px;
+    background: #d3d0d7;
+    border-radius: 1rem;
+    color: #333;
+    margin: 0 auto;
+}
+.wlogin-other{
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+.wlogin-other a{
+  color: #ea44f8;
+}
+</style>
+<div id="wlogin-mask"></div>
+
+<div class="wlogin">
+    <i class="wlogin-close1 icon icon-close " onclick="$('#wlogin-mask').hide();$('.wlogin').hide();"></i>
+    <div class="wlogin-header">快速注册登录</div>
+    <div class="wlogin-img"><a href="weixin_login.php?back_act={$back_act}"><img src="themesmobile/yshop100com_mobile/yzimages/images/wlogin.png" alt=""></a></div>
+    <div class="wlogin-text"><span>新用户/微信用户</span></div>
+    <div class="wlogin-other">其他方式注册/登录？<a href="user.php">点此></a></div>
+</div>
+{/if}
+<!-- #BeginLibraryItem "/library/goods_related.lbi" --><!-- #EndLibraryItem -->
+<div style=" height:55px;"></div>
+<div class="footer_nav">
+ <ul>
+ {if $is_h5_app eq 1}
+ <li class="bian"><a href="javascript:void(0)" onClick="H5ToAppIndex()"><em class="goods_nav1"></em><span>首页</span></a> </li>
+ {else}
+ <li class="bian"><a href="index.php"><em class="goods_nav1"></em><span>首页</span></a> </li>
+ {/if}
+
+ <li class="bian" test>{if $customers}<a href="javascript:chat_online();">{else}{if $goods.supplier_id}<a href="tel:{$servicephone}">{else}<a href="javascript:void(0);" onclick="document.location='/wxkf.htm'">{/if}{/if}<em class="goods_nav2"></em><span>客服</span></a> </li>
+ {if $is_h5_login eq 0}
+ <li class="collect-button"><a href="javascript:H5ToAppLogin(window.location.href)" id="favorite_add"><em class="goods_nav3"></em><span>收藏</span></a></li>
+ {else}
+ <li class="collect-button"><a href="javascript:collect({$goods.goods_id})" id="favorite_add"><em class="goods_nav3"></em><span>收藏</span></a></li>
+ {/if}
+
+ </ul>
+ <dl>
+ <dd class="flow" id="ECS_ADD_TO_CART"><a class="button active_button" onClick="choose_attr(0)">加入购物车</a> </dd>
+ <dd class="goumai" id="ECS_ONE_STEP_BUY"><a style="display:block;" onClick="choose_attr(1)">立即购买</a> </dd>
+ <span class="daohuo" id="ECS_DAOHUO"> <a onClick="tell_me({$goods.goods_id})"/>到货通知</a></span>
+<span class="seckill" id="ECS_SECKILL" style="display:none;"> <a onClick="javascript:void(0);"/>商品已下架</a></span>
+ </dl>
+</div>
+</body>
+<script>
+  
+</script>
+</html>

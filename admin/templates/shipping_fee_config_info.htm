@@ -1,0 +1,66 @@
+<!-- $Id: shipping_area_info.htm 16819 2009-11-25 06:21:17Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.org.js,../js/region.js"}
+<div class="main-div">
+<form method="post" action="shipping_fee.php" name="theForm" onsubmit="return validate()" style="background:#FFF">
+<fieldset style="border:1px solid #DDEEF2">
+  <table >
+    <tr>
+      <td class="label">运费大类:</td>
+<td><input type="text" name="name" maxlength="60" size="30" value="{$name}" {if $id=="0"}readonly="true"{/if}/>{$lang.require_field}</td>
+    </tr> 
+	{if $id>0 or $id==""}
+    <tr>
+      <td class="label">包邮金额：</td> 
+<td> 
+<input type="text" name="goodsamount" maxlength="60" size="30" value="{$goodsamount}" /></td>
+    </tr> 
+	{/if}
+  <tr><td class="label"><input type="checkbox" id="isuse" name="isuse" /><label for="isuse">启用</label>
+ 
+  </td><td>
+  {if $id>0 or $id==""} 
+	{else}
+	启用状态下，以新运费+物流计费。非启用状态下，按物流计费。
+   {/if}
+		</td></tr>
+ 
+  </table>
+</fieldset>
+ 
+  <table >
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" /> 
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$id}" />  
+    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+<script language="JavaScript"> 
+var flag="{$isuse}"=="1"?true:false;$('#isuse').attr("checked", flag);
+   
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+ 
+	validator.isNullOption('name', "运费大类不能为空", true);  
+     
+    
+    return validator.passed();
+}
+
+/**
+ * 添加一个区域
+ */
+
+ 
+ 
+</script>
+{include file="pagefooter.htm"}

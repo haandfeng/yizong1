@@ -1,0 +1,12 @@
+<ul id="fullScreenSlides" class="full-screen-slides" style="height: 424px;"><!---->
+  <!--{foreach from=$flash name=myflash item=flash}-->
+  <li style=" background:url({$flash.src}) center no-repeat;{if !$smarty.foreach.myflash.first}display: none; {else} display:list-item{/if}"> 
+  	<a href="supplier.php?suppId=0" target="_blank" title="{$flash.title}">&nbsp;</a> 
+  </li>
+  <!--{/foreach}-->
+</ul>
+<ul class="full-screen-slides-pagination">
+	<!--{foreach from=$flash name=myflash item=flash}-->
+	<li {if $smarty.foreach.myflash.first}class="current"{/if}><a href="javascript:;">{$smarty.foreach.myflash.iteration}</a></li>
+    <!--{/foreach}-->
+</ul>

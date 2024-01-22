@@ -1,0 +1,110 @@
+/*页面body的背景色*/
+.body_bg{ background:#E5E5E5}
+.body_bj{ background:#EEEEEE}
+/*iphone手机的input的样式问题*/
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+-webkit-appearance: none;
+}
+/*css初始值*/
+body {margin:0px;font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size: 14px;line-height: 180%;color: #333333; min-width:320px;}
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td {margin: 0;padding: 0;list-style-type: none;}
+img { border:0px}
+a:link {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:14px;color: #333333;text-decoration: none;}
+a:visited {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:14px;color:#333333;text-decoration: none;}
+/*a:hover {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:14px;color:#E24615;text-decoration: none;*/}
+input[type=number] {    -moz-appearance:textfield;}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {    -webkit-appearance: none;}
+.main{ width:100%; overflow:hidden; margin:0; padding:0;}
+table { border-collapse: collapse; border-spacing: 0; empty-cells: show; font-size: 14px }
+fieldset, img { border: 0 }
+cite, em, s, i, b { font-style: normal }
+input, button, textarea, select { font-size:12px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; }
+body, input, button, textarea, select, option { font-size: normal }
+a, input, textarea { text-decoration: none; outline: 0 }
+li, img, label, input { vertical-align: middle }
+var { font-style: normal }
+ins { text-decoration: none }
+body { font-size: 16px }
+
+.container{ width:100%; padding:0; overflow:hidden; margin:auto; max-width: 720px;background: url(../images/user_level/level_bg.gif) repeat-x center top; background-size: 100%;}
+/*header*/
+.header{width: auto; height: 30px; margin: 3% 0;}
+.back{display:block; float: left; width: 12%; height: 100%; margin:auto; background: url(../images/user_level/back.png) no-repeat center center;}
+.header span{display:block; float: left; width: 76%; height: 100%; line-height: 30px; text-align: center; margin: 0 auto; color: #FFF; font-size: 1.4rem;}
+.setting{display: block; float: left; width: 12%; height: 100%; background: url(../images/user_level/setting.png) no-repeat center center; background-size: 64%; max-width: 48px;}
+/*box*/
+.box{width: 100%; height: auto; overflow: hidden;  background-color: #FFF;}
+.box-title{text-align: center; }
+.box-title span{font-size: 1.5rem; line-height: 1.5rem; margin-left: 3%;}
+/*user card*/
+.card {margin-bottom: 3%; margin-left: 15%; width: 78%; height: auto; overflow: hidden; max-width: 680px; margin-top: 50%; position: relative; }
+.card img{border-radius: 4%; -moz-border-radius: 4%; -webkit-border-radius: 4%; max-height: 100%; height: 100%;}
+.card-code{width: 18%; height: 1.4rem; position: absolute; right: 0; top: 0;}
+.card-code span{display: block; line-height: 1.4rem; margin-left: 10%; font-size: 0.6rem; color: #FFF}
+.card-thumb{display: block; width: 8rem; height: 8rem; top: 15%; left: 5%; position: absolute; font-size: 2em; font-weight: bold; }
+.card-thumb img{border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; border: 2px solid #FFF; max-width: 100%; background-color: #FFF;}
+.card-name{display: block; top: 30%; left: 38%; position: absolute; font-size: 1.5em; color: #5e2011}
+.birday{display: block; top: 40%; left: 38%; position: absolute; font-size: 1em; color: #5e2011}
+.card-num{width: 25%; height: 2rem; background: #b38c3f; position: absolute; bottom: 10%; right: 5%; border: 2px solid #8d6d31; border-radius: 10%/50%; -moz-border-radius: 10%/50%; -webkit-border-radius: 10%/50%;}
+.card-num span{display: block; font-size: 1rem; color: #FFF; text-align: center; margin-top: 2%;}
+.card-num span b{margin-left: 3%;}
+.card-star{width: 25%; height: auto; overflow: hidden; position: absolute; bottom: 23%; right: 5%; text-align: center}
+.card-star i{display: block; float: left; width: 2.3rem; height: 2.3rem; background: url(../images/user_level/star.png) no-repeat center center; background-size: 100%; text-align: center}
+.card-star span{display: inline-block; width: auto; height: 100%; margin: 0 auto;}
+/*user level*/
+.level{width: 95%; height: auto; overflow: hidden; margin: 0 0 7% 5%;background-color:#FAFAFA;}
+.level-all{width: 100%; height: auto; overflow: hidden; }
+.level-box1{  background: url(../images/user_level/level_01.gif) no-repeat center center;float: left; width: 18%; height: 139px; margin: 0 5%; padding: 0 2%; text-align: center;  position: relative;}
+.level-box2{  background: url(../images/user_level/level_02.gif) no-repeat center center;float: left; width: 18%; height: 139px; margin: 0 5%; padding: 0 2%; text-align: center;  position: relative;}
+.level-box3{  background: url(../images/user_level/level_03.gif) no-repeat center center;float: left; width: 18%; height: 139px; margin: 0 5%; padding: 0 2%; text-align: center;  position: relative;}
+.level-box{ float: left; width: 18%; height: 2.5rem; margin: 0 5%; padding: 0 2%; background-color: #ecab4e; border-radius: 10%/50%; -moz-border-radius: 10%/50%; -webkit-border-radius: 10%/50%; text-align: center;  position: relative;}
+.level-box span{display: inline-block; text-align: center; margin: 0 auto; padding-top: 3%;}
+.level-box i{display: block; float: left; width: 2rem; height: 2rem; background: url(../images/user_level/star.png) no-repeat center center; background-size: 100%; text-align: center;}
+.star-m{display: block; width: 13%; height: 2rem; background: url(../images/user_level/star.png) no-repeat left center; background-size: 50%; position: absolute; top: 30%; left: 0; font-size: 1.5rem; color: #8BE2EB;}
+.star-m span{font-size: 1.8rem; float: right; font-weight: bold; font-style:italic; position: absolute; top: 0 ; right: 3%;}
+.star-m b{font-size: 1.5rem; font-style:italic;}
+.star-m-r{display: block; width: 13%; height: 2rem; background: url(../images/user_level/star.png) no-repeat left center; background-size: 50%; position: absolute; top: 30% ; right: 5%; font-size: 1.5rem; color: #8BE2EB;}
+.star-m-r span{font-size: 1.8rem; float: right; font-weight: bold; font-style:italic; position: absolute; top: 0 ; right: 3%;}
+.star-m-r b{font-size: 1.5rem; font-style:italic;}
+.level-upgrade{width: 100%; height: auto; overflow: hidden;  }
+.level-upgrade span{display: block; float: left; width: 22%; text-align: center; font-size: 1rem;  margin: 0 5%; color: #9d824e}
+.level-progress{width: 100%; height: auto; overflow: hidden; min-height: 3rem; position: relative;}
+#progress{width: 56%; height: 0.3rem; float: left; background-color: #e1e1e1; position: absolute; bottom: 10%; left: 20%;}
+#progress_now{display: block; float: left; width: 0; height: 0.3rem; background-color: #8CE2EB; position: absolute; bottom: 0; left: 0;}
+#progress_now i{display: block; width: 1rem; height: 1.5rem; background: url(../images/user_level/progress_s.png) no-repeat center right; background-size: 100%; position: absolute; bottom: -100%; right: -2%;}
+#progress_now b{display: inline-block; width: 15rem; height: 1.5rem; text-align: center; font-size: 1.0rem; font-weight: normal; color: #624816; position: absolute; top: -117%; left: -200%;}
+.levelup-num{padding: 2% 0 0 2%; color: #535353; font-size: 1.3rem; }
+/*user power*/
+.power{width: 100%; height: auto; overflow: hidden; padding-bottom: 7%;}
+.power-form{width: 92%; height: auto; overflow: hidden; margin: 0 4%;}
+.power-btn{display:block; float: left; width: 33%; height: auto; position: relative;}
+.power-btn img{width: 64%; margin: 18% 0 5% 18%;}
+.power-btn span{display: block; text-align: center; margin: 5% auto 0 auto; font-size: 1.4rem;}
+.power-qa{display:none; float: left; width: 86%; height: auto; margin: 3% 0 0 2%; padding:  5%; overflow: hidden; background-color: #f3f3f3; color: #888888; border-radius: 2%; -moz-border-radius: 2%; -webkit-border-radius: 2%;}
+.power-qa label{display: block; width: 100%; border-bottom: 1px solid #b6b6b6; font-weight: bold; font-size: 1.2rem; margin-bottom: 1%;}
+.big{font-weight:bold;}
+#select{display: block; width: 60px; height: 15px; background: url(../images/user_level/top.png) no-repeat left center; position: absolute; bottom: -10%; left: 38%;}
+.power-more{width: 90%; height: auto; overflow: hidden;}
+.power-more a{display: block; float: right; color: #FFF; background-color: #009899; padding: 0 1% 0 2%; border-radius: 15%/45%; -moz-border-radius: 15%/45%; -webkit-border-radius: 15%/45%;  margin: 0 0 0 0}
+/*user gift*/
+.gift{width: 100%; height: auto; overflow: hidden; padding-bottom: 5%;/* border-bottom: 2px solid #b38c3f;*/}
+.gift-btnc{margin-bottom:20px; margin-left:20px; } 
+.gift-btn{display:block; float: left; width: 85%; height: auto; overflow: hidden; border-radius: 5%/10%; -moz-border-radius: 5%/10%; -webkit-border-radius: 5%/10%;   padding: 2%; margin: 0 0 2% 5%; position: relative;}
+.gift-l{float: left; width: 45%; height: 100%; overflow: hidden;}
+.gift-l img{max-width: 100%;} 
+.gift-r{display: block; float: left; width: 45%; height: 100%; overflow: hidden; margin-left: 5%;background-color: #F7F7F9;}
+.gift-r label{color: #5F5F5F; border-top: 2px solid #A9A9A9; border-bottom: 2px solid #A9A9A9;background-color: #F7F7F9;display: block; float: left; text-align: center; font-size: 1.2rem; width: 100%; line-height: 1.5rem; max-height :6rem; margin-top: 10%; overflow: hidden;}
+.gift-r .s1{margin-left:10px;background-color: #F7F7F9;color:#4ECBCD;display: block; float: left; text-align: left; font-size: 0.8rem; width: 100%; line-height: 1.5rem; max-height :6rem; margin-top: 10%; overflow: hidden;}
+.gift-r span{margin-left:10px;background-color: #F7F7F9;color:#4ECBCD;display: block; float: left; text-align: left; font-size: 1.2rem; width: 100%; line-height: 1.5rem; max-height :6rem; margin-top: 2%;  margin-bottom:2%; overflow: hidden;}
+/*user mission*/
+#mission_points{float: right; font-size: 2rem; color: #f3b65f;}
+.mission{width: 100%; height: auto; overflow: hidden; padding-bottom: 5%;}
+.mission-box{ width:100%; height: 2.4rem; background-color: #f3b65f; margin-top: 1.5%;}
+.mission-box i{display: block; float: left; width: 5%; height: 2.4rem; background: url(../images/user_level/flag.png) no-repeat left center; background-size: 50%; margin-left: 5%;}
+.mission-box label{display: block; float: left; font-size: 1.2rem; line-height: 2.4rem; color: #FFF;}
+.mission-box span{display: block; float: right; width: 15%; height: 1.4rem; line-height: 1.4rem; margin: 0.6rem 3% 0 0; padding: 0 5%; font-size: 1rem; background-color: #FFF; text-align: center; color: #f3b65f;}
+.mission-over{background-color: #5a2b29 !important;}
+/*footer*/
+#footer{width: 100%; height: 50px;border-bottom: 25px solid #ffffff;}

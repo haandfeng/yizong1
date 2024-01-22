@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/user.css" />
+<link rel="stylesheet" href="themes/yshop100/pc/css/index.css">
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jquery.validate.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/messages_zh.js"></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js,user.js'}
+{if $action eq 'account_security' || $action eq 'order_detail'}
+<script lang='javascript' type='text/javascript'>
+var action = '';
+
+function open_surplus_window() {
+  if(action == 'close_surplus' || action == 'verify_surplus'){
+    if(action == 'close_surplus'){
+	document.getElementById("surplus_label2").style.display="none";
+	document.getElementById("surplus_password_input2").style.display="none";
+    }
+    document.getElementById("popup_window").style.display = "";
+  }
+  else if(action == 'open_surplus'){
+    document.getElementById("popup_window").style.display = "";
+    document.getElementById("surplus_label2").style.display = "";
+    document.getElementById("surplus_password_input2").style.display = "";
+  }
+}
+
+function close_surplus_window(){
+  document.getElementById("surplus_password_input1").value="";
+  document.getElementById("surplus_password_input2").value="";
+  document.getElementById("popup_window").style.display="none";
+  document.getElementById("surplus_label2").style.display="none";
+  document.getElementById("surplus_password_input2").style.display="none";
+  action = '';
+}
+
+function open_surplus(){
+  action = 'open_surplus';
+  open_surplus_window();
+}
+
+function close_surplus(){
+  action = 'close_surplus';
+  open_surplus_window();
+}
+
+function end_input_surplus(){
+  if(action == 'open_surplus'){
+    var pwd1 = document.getElementById("surplus_password_input1").value;
+    var pwd2 = document.getElementById("surplus_password_input2").value;
+    var msg = '';
+    if(pwd1 !== pwd2){
+      msg = "密码不匹配\n";
+    }
+    if(pwd1.length < 6){
+      msg = msg + "您输入的密码太短\n"
+    }
+
+    if(msg.length > 0){
+      alert(msg);
+    }else{
+      Ajax.call('user.php?act=open_surplus_password','surplus_password='+pwd1,open_surplus_response,'GET','TEXT',true,true);
+    }
+  }else if(action == 'close_surplus'){
+    var pwd1 = document.getElementById("surplus_password_input1").value;
+    Ajax.call('user.php?act=close_surplus_password','surplus_password='+pwd1,close_surplus_response,'GET','TEXT',true,true);
+  }else if(action == 'verify_surplus'){
+    var pwd1 = document.getElementById("surplus_password_input1").value;
+    Ajax.call('user.php?act=verify_surplus_password','surplus_password='+pwd1,verify_surplus_response,'GET','TEXT',true,true);
+  }
+}
+
+function cancel_input_surplus(){
+  close_surplus_window();
+}
+
+function open_surplus_response(obj){
+  if(obj == 1){
+    window.location="user.php?act=account_security";
+  }else{
+    close_surplus_window();
+    alert('开启失败！');
+  }
+}
+
+function close_surplus_response(obj){
+  if(obj == 1){
+    window.location="user.php?act=account_security";
+  }else{
+    close_surplus_window();
+    alert('关闭失败！');
+
+  }
+}
+
+function verify_surplus_response(result){
+  if(result == 1){
+    submit_surplus_form();
+  }else{
+    alert('密码错误！');
+  }
+}
+
+function check_surplus_open(form){
+  var surplus = form[0].value;
+  if(surplus > 0){
+	var order_amount=$("#order_amount").val();
+  	if(surplus>order_amount){
+		$('.pop-compare,.pop-mask').show();
+		$('.pop-compare .pop-text').html('输入的余额应小于等于应付款金额').css({'padding-top':20,'padding-bottom':20});
+		$('.pop-compare').css({'top':($(window).height()-$('.pop-compare').outerHeight())/2});	
+	   	//alert('输入的余额应小于等于应付款金额！');
+ 	 }else{
+		Ajax.call("user.php?act=check_surplus_open","",check_surplus_open_response,"GET",true,true);
+	 }
+   
+  }else{  
+  	$('.pop-compare,.pop-mask').show();
+	$('.pop-compare .pop-text').html('输入的余额必须大于零').css({'padding-top':20,'padding-bottom':20});
+	$('.pop-compare').css({'top':($(window).height()-$('.pop-compare').outerHeight())/2});	
+	//alert('输入的余额必须大于零！');
+  }
+  return false;
+}
+
+function check_surplus_open_response(result){
+  if(result == '1'){
+    action = 'verify_surplus';
+    open_surplus_window();
+  }else{
+    submit_surplus_form();
+  }
+}
+
+function submit_surplus_form(){
+  document.getElementById("formFee").submit();
+}
+</script>
+{/if}
+</head>
+<body>
+<!--文字提示框-->
+<div class="pop-mask"></div>
+<div class="pop-main pop-compare">
+	<div class="pop-header">
+    	<span>温馨提示</span>
+        <a class="pop-close" href="javascript:;" title="关闭"></a>
+    </div>
+    <div class="pop-con">
+    	<i class="pop-icon"></i>
+        <p class="pop-text"></p>
+        <a href="javascript:;" class="pop-sure main-bg-color">确定</a><a class="cancel-btn none">取消</a>
+    </div>
+</div>
+{if $action eq 'account_security' || $action eq 'order_detail'} 
+	<!-- #BeginLibraryItem "/library/balance_payment.lbi" --><!-- #EndLibraryItem -->
+{/if}
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="margin-w1210 clearfix"> 
+	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --> 
+    <div class="user-left">
+		<!-- #BeginLibraryItem "/library/user_info.lbi" --><!-- #EndLibraryItem --> 
+		<!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem --> 
+    </div>
+    <div class="user-right">
+    	<div class="box">
+    	<!-- 用户信息界面 start--> 
+        <!--{if $action eq 'shiming'}--> 
+          {insert_scripts files='utils.js'} 
+          <script type="text/javascript">
+          {foreach from=$lang.profile_js item=item key=key}
+            var {$key} = "{$item}";
+          {/foreach}
+          </script> 
+          <script type="text/javascript">
+			function setTabCatGoods(name,cursel,n){
+				for(i=1;i<=n;i++){
+					var menu=document.getElementById(name+i);
+					var con=document.getElementById("con_"+name+"_"+i);
+					con.style.display=i==cursel?"block":"none";
+					menu.className=i==cursel?"active":"";
+				}
+			}
+		  </script>
+          <div class="tabmenu">
+            <ul class="tab"> 
+              <li class="active" id="tab3" onClick="setTabCatGoods('tab',3,3)">实名认证</li>
+            </ul>
+          </div>
+    
+            <div class="ncm-default-form"  id="con_tab_3" > 
+              {insert_scripts files='transport.js,region.js,shopping_flow.js'} 
+              <script type="text/javascript">
+              region.isAdmin = false;
+              {foreach from=$lang.flow_js item=item key=key}
+              var {$key} = "{$item}";
+              {/foreach}
+              {literal}
+              onload = function() {
+                if (!document.all)
+                {
+                  document.forms['theForm'].reset();
+                }
+              }
+              {/literal}
+            </script>
+			<div id="find_pw" class="find_pw2">
+        <div class="find_con">
+          <div id="sflex04" class="stepflex">
+            <dl class="first doing">
+              <dt class="s-num">1</dt>
+              <dd class="s-text"> 身份认证 <s></s> <b></b> </dd>
+            </dl>
+            <dl class="last">
+              <dt class="s-num">&nbsp;</dt>
+              <dd class="s-text"> 完成 <s></s> <b></b> </dd>
+            </dl>
+          </div>
+          <div id="find-box" class="uc_box">
+            
+              <form name="formIdentity" action="user.php" method="post" onsubmit="return tjidentity()" enctype="multipart/form-data">
+               
+                    <div class="item" ><label class="con_un">真实姓名：</label><input type="text" name="real_name" value="{$profile.real_name}"  class="inputBg" onblur="checkgjz(this,1);"/>
+		    <div class="required-notice"><i class="notice-icon"></i><span class="notice-text people-name-notice"></span></div>
+			</div>
+                  <div class="item" ><label class="con_un">身份证号：</label><input type="text" name="card" value="{$profile.card}"  class="inputBg" onblur="checkgjz(this,2);"/>
+		    <div class="required-notice"><i class="notice-icon"></i><span class="notice-text people-num-notice"></span></div>
+			</div>
+			{if $profile.status eq 0 || $profile.status eq 3}
+                  <div class="item" ><label class="con_un">身份证证件照(正面)</label><input type="file" name="face_card" />
+                      <br />
+		      <div class="required-notice"><i class="notice-icon"></i><span class="notice-text people-card-notice"></span></div>
+			</div>
+                  <div class="item" ><label class="con_un">身份证证件照(反面)</label><input type="file" name="back_card" />
+                      <br />
+                   <div class="required-notice"><i class="notice-icon"></i><span class="notice-text people-card-notice"></span></div>
+			</div>
+			{/if}
+                  <div class="item"><label class="con_un">&nbsp;</label>
+                    	<input name="act" type="hidden" value="act_identity" />
+                        <input name="submit" type="submit" value="确认" class="main-btn main-btn-large" {if $profile.status eq 2} disabled="disabled" style="display:none"{/if}/>
+						{if $profile.status eq 2} 实名认证审核中，请耐心等待！{/if}
+                  </div> 
+              </form>
+          </div>
+        </div>
+      </div>
+            </div>
+          </div>
+        <!--{/if}--> 
+        <!-- 用户信息界面 end--> 
+        
+        </div>
+    </div>
+</div>
+<div class="site-footer">
+    <div class="footer-related">
+		<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> 
+        <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+</div>  
+<script>
+var isgjz1=true;
+	var isgjz2=true;
+	var isgjz3=true;
+	var isgjz4=true;
+
+	function checkgjz(field,i)
+	{
+		if(isNaN(field.value))
+		{
+			var str=field.value;
+			$.get("gjz.php?act=key&key="+str,function(data,status){
+				if(data=='false')
+				{
+					if(i==1)
+						isgjz1=false; 
+					if(i==2)
+						isgjz2=false;  
+					if(i==3)
+						isgjz3=false;  
+					if(i==4) 
+						isgjz4=false; 
+					field.value='';
+					alert("检测到屏蔽词,请重新输入！");
+					var onblurevent=field.onblur;
+					field.onblur = "";
+					setTimeout(function(){
+						field.focus();
+						field.onblur=onblurevent;
+					},0);
+				}
+				else
+				{
+					if(i==1)
+						isgjz1=true; 
+					if(i==2)
+						isgjz2=true;  
+					if(i==3)
+						isgjz3=true;  
+					if(i==4) 
+						isgjz4=true; 
+				}
+			}); 
+		}
+	}
+	function tjidentity()
+	{
+			if(!(isgjz1||isgjz2))
+			{
+				alert('检测到屏蔽词,请重新输入！');
+				return false;
+			}
+			else
+			{
+				return identity();
+			}
+	}
+</script>
+</body>
+  
+</html>

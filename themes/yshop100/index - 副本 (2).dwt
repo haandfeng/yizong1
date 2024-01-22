@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+<link rel="stylesheet" href="themes/yshop100/pc/css/index.css">
+<link rel="stylesheet" type="text/css" href="themes/yshop100/css/index.css" />
+<script type="text/javascript" src="themes/yshop100/js/jquery-1.9.1.min.js"></script>
+<script src="themes/yshop100/pc/js/kxbdSuperMarquee.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jump.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/tab.js"></script>
+<script type="text/javascript" src="themes/yshop100/js/jquery-lazyload.js" ></script>
+<script type="text/javascript">
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js,index.js'}
+</head>
+<body>{insert name='add_url_uid'}
+	<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="banner" style="height: 424px;">
+		<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+    </div>
+
+        <!-- <div class="hot">
+            <div class="main">
+                <div class="hot-top"><strong>热卖商品</strong>经典热卖</div>
+                <ul>
+                   <li>{$index_hot_img1}</li>
+                   <li>{$index_hot_img2}</li>
+                   <li class="three">
+                      {$index_hot_img3}
+                      {$index_hot_img4}
+                   </li>
+                </ul>
+            </div>
+        </div> -->
+
+
+<script type="text/javascript">
+	Move(".goD",".goU",".m_new","#marquee123","4");
+</script>
+
+
+
+        <div class="hot_2">
+            <div class="main">
+                <div class="hot-top"><strong>1F 促销商品</strong></div>
+                <div class="hot-bot">
+                    <!-- <div class="hot-bot-left">
+                    <?php
+                    	$GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div> -->
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$ziying item=goods name=ziying}-->
+                           {if $smarty.foreach.ziying.iteration < 11}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc && $goods.supplier_id eq 0}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+						<!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="hot-top"><strong>2F 数码家电</strong></div>
+                <div class="hot-bot">
+                    <!-- <div class="hot-bot-left">
+                    <?php
+                        $GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div> -->
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$jiadian item=goods name=jiadian}-->
+                           {if $smarty.foreach.jiadian.iteration < 11}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc && $goods.supplier_id eq 0}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+                        <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="hot-top"><strong>3F 家具日用</strong></div>
+                <div class="hot-bot">
+                    <!-- <div class="hot-bot-left">
+                    <?php
+                        $GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div> -->
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$jiaju item=goods name=jiaju}-->
+                           {if $smarty.foreach.jiaju.iteration < 11}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc && $goods.supplier_id eq 0}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+                        <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="hot-top" style="margin-top:20px;"><strong>4F 母婴用品</strong></div>
+                <div class="hot-bot">
+                    <!-- <div class="hot-bot-left">
+                    <?php
+                        $GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div> -->
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$muying item=goods name=muying}-->
+                           {if $smarty.foreach.muying.iteration < 11}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc && $goods.supplier_id eq 0}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+                        <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="hot-top" style="margin-top:20px;"><strong>5F 清洁卫生</strong></div>
+                <div class="hot-bot">
+                    <!-- <div class="hot-bot-left">
+                    <?php
+                        $GLOBALS['smarty']->assign('index_hot_sa',get_adv('首页热销-大图一'));
+                    ?>
+                    {$index_hot_sa}
+                    </div> -->
+                    <div class="hot-bot-right">
+                        <ul>
+                        <!--{foreach from=$weisheng item=goods name=weisheng}-->
+                           {if $smarty.foreach.weisheng.iteration < 11}
+                            <li>
+                                <div>
+                                    <a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">
+                                    <img data-original="{$goods.thumb}" src="{$goods.thumb}" alt="{$goods.name|escape:html}">
+                                    </a>
+                                 </div>
+                                <p><a target="_blank" href="{$goods.url}" title="{$goods.name|escape:html}">{if $goods.suppliers_desc && $goods.supplier_id eq 0}<b>【{$goods.suppliers_desc}】</b>{/if}{$goods.short_name}</a></p>
+                                <span>
+                                    <!-- {if $goods.promote_price neq ""} -->
+                                    {$goods.promote_price}
+                                    <!-- {else}-->
+                                    {$goods.shop_price}
+                                    <!--{/if}-->
+                                 </span>
+                            </li>
+                            {/if}
+                        <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+			<!-- TemplateBeginEditable name="商品分类楼层" -->
+
+<!-- TemplateEndEditable -->
+<style>
+.floor-bot>ul>li:last-child{margin-right:0;}
+</style>
+    <script type="text/javascript" src="themes/yshop100/js/indexPrivate.min.js"></script>
+    <!-- #BeginLibraryItem "/library/right_sidebar.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/arrive_notice.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/left_sidebar.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript" src="themes/yshop100/js/home_index.js"></script>
+
+<script type="text/javascript">
+	$(".brand-con").hover(function(){
+		var num = $(this).find("li").length;
+		if(num > 10){
+			$(this).find(".brand-btn").fadeTo('fast',0.4);	
+		}
+	},
+	function(){
+		$(this).find(".brand-btn").fadeTo('fast',0);	
+	})
+
+
+$("#marquee123").kxbdSuperMarquee({
+        isAuto:true,
+        distance:272,
+        time:3,
+        btnGo:{right:'.goU',left:'.goD'},
+        direction:'left'
+		
+    });
+{if $tishi == 1}
+    //alert('双十二活动注册红包补发通知：烦请于12.6-12.10期间注册的用户，联系客服领取注册红包。感谢大家的支持和信任。');
+	//alert('春节发货安排通知：为配合物流公司工作安排，1月17日起将会分地区逐步停止发货。恢复发货时间：2月11日（初七）。具体发货安排请联系客服或查看“文章资讯-关于我们-2019年春节发货安排通知”。期间如有采购需要请提前安排，谢谢您的理解和支持！【宜众易购·漢方杏林堂】');
+	//alert('温馨提示:应国家安全局反恐系统要求,所有快递和物流从2018年9月起,运单收件人必须显示姓名(全名),请维护收件信息,谢谢您的配合!【宜众易购·漢方杏林堂】');
+	//alert('上海地区国际进口博览会期间停止发货通货通知：为配合"进博会"安保工作，收货地址为上海地区的订单在2018.9.15-2018.11.15期间暂停配送，2018.11.16起恢复正常发货；上海以外地区不受影响。给您带来不便之处敬请谅解【宜众易购·漢方杏林堂】');
+	//alert('温馨提示:应国家安全局反恐系统要求,所有快递和物流从2018年9月起,运单收件人必须显示姓名(全名),请维护收件信息,谢谢您的配合!【宜众易购·漢方杏林堂】');
+	// alert('温馨提示:接快递通知，2019年4月22到5月22号期间受环京铁路管控治安和青岛重大活动的影响，北京、内蒙古、黑龙江、吉林、辽宁以上5省所有件均要拦截，如有不便敬请谅解！【宜众易购·漢方杏林堂】');
+{/if}
+    //代码
+
+
+</script>
+</html>

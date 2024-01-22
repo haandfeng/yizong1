@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" dir="ltr" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>宜众APP接口</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="date" content="2014-09-02T14:23:18+0800">
+<meta name="keywords" content="dqw,aiteshop,mobile_api_sp2">
+<link rel="stylesheet" media="screen" type="text/css" href="api_files/css.css">
+<link rel="stylesheet" media="all" type="text/css" href="api_files/css_003.css">
+<link rel="stylesheet" media="print" type="text/css" href="api_files/css_002.css">
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+var NS='dqw:aiteshop';var SIG=' --- //[[admin@dqw.me|dqw]] 2014/09/02 14:23//';var JSINFO = {"id":"dqw:aiteshop:mobile_api_sp2","namespace":"dqw:aiteshop"};
+//--><!]]></script>
+<script type="text/javascript" charset="utf-8" src="api_files/js.php"></script>
+<script type="text/javascript" charset="utf-8" src="api_files/admmenu.js"></script>
+<script type="text/javascript" charset="utf-8" src="api_files/indexmenu.js"></script>
+<script type="text/javascript" charset="utf-8"><!--//--><![CDATA[//><!--
+var indexmenu_ID='dqw:aiteshop:mobile_api_sp2'
+//--><!]]></script>
+</head>
+<body>
+  <div class="dokuwiki export">
+    <!-- TOC START -->
+    <div class="toc">
+      <div style="cursor: pointer;" class="tocheader toctoggle" id="toc__header"><span class="toc_close" id="toc__toggle"><span>−</span></span>目录</div>
+      <div id="toc__inside">
+        <ul class="toc">
+          <li class="level1">
+            <div class="li"><span class="li"><a href="#mobile_api" class="toc">手机接口</a></span></div>
+            <ul class="toc">
+
+              <li class="level2">
+                <div class="li"><span class="li"><a href="#mobile_api_style" class="toc">数据格式约定</a></span></div>
+                <ul class="toc">
+                  <li class="level3">
+                    <div class="li"><span class="li"><a href="#mobile_api_return" class="toc">返回值</a></span></div>
+                  </li>
+                </ul>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- TOC END -->
+
+    <h1 class="sectionedit1"><a id="mobile_api">手机接口</a></h1>
+    <div class="level1"> </div>
+    <!-- EDIT4 SECTION "二期" [319-719] -->
+    <h2 class="sectionedit5"><a id="mobile_api_style">数据格式约定</a></h2>
+    <div class="level2">
+      <p> 返回数据为json格式，code为200表示数据正常，data为返回的数据 </p>
+      <pre class="code">{code: 200, data: {}}</pre>
+    </div>
+    <!-- EDIT5 SECTION "数据格式约定" [720-859] -->
+    <h3 class="sectionedit6"><a id="mobile_api_return">返回值说明</a></h3>
+    <div class="level3"> </div>
+    <h4><a id="获取数据">获取数据</a></h4>
+    <div class="level4">
+      <pre class="code">
+        //有内容直接返回数组，无内容返回空数组[],hasmore为是否有下一页
+        {"code":200,"hasmore":true,"data":{"goods_list":[]}}
+      </pre>
+    </div>
+
+    <h4><a id="操作成功">操作成功</a></h4>
+    <div class="level4">
+      <pre class="code">
+        //操作成返回"true"
+        {"code":200,"data":{"true"}}
+      </pre>
+    </div>
+
+    <h4><a id="错误">错误</a></h4>
+    <div class="level4">
+      <pre class="code">
+        //出现错误返回error，error内为错误信息
+        {"code":301,"error":"参数错误"}
+      </pre>
+    </div>
+    <!-- EDIT6 SECTION "返回值" [860-1335] -->
+    <h2 class="sectionedit7"><a id="商城api">商城API</a></h2>
+    <div class="level2">
+      <pre class="code">说明：v1版本API对应商城2014v1版本。</pre>
+    </div>
+    <!-- EDIT7 SECTION "商城API" [1336-1407] -->
+    <h3 class="sectionedit8"><a id="首页">首页</a></h3>
+    <div class="level3"> </div>
+    <h4><a id="首页数据接口_get">首页数据接口(get)</a></h4>
+    <div class="level4">
+      <pre class="code">index.php</pre>
+    </div>
+    <h4><a id="请求参数">请求参数</a></h4>
+    <div class="level4">
+      <ul>
+      </ul>
+    </div>
+    <h4><a id="返回数据">返回数据</a></h4>
+    <div class="level4">
+      <ul>
+
+        <li class="level1">
+          <div class="li"> adv_list 轮播图（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> name 名称</div>
+            </li>
+            <li class="level2">
+              <div class="li"> url 跳转链接</div>
+            </li>
+            <li class="level2">
+              <div class="li"> image 图片地址</div>
+            </li>
+          </ul>
+        </li>
+        <li class="level1">
+          <div class="li"> nav_list 导航栏（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> id 导航ID</div>
+            </li>
+            <li class="level2">
+              <div class="li"> menu_name 导航名称</div>
+            </li>
+            <li class="level2">
+              <div class="li"> menu_img 图片地址</div>
+            </li>
+            <li class="level2">
+              <div class="li"> menu_url 跳转链接</div>
+            </li>
+          </ul>
+        </li>
+        <li class="level1">
+          <div class="li"> articles_list 导航栏下方最新动态（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> id 文章</div>
+            </li>
+            <li class="level2">
+              <div class="li"> title 文章标题</div>
+            </li>
+            <li class="level2">
+              <div class="li"> short_title 图片地址</div>
+            </li>
+          </ul>
+        </li>
+        <li class="level1">
+          <div class="li"> three_adv_list 导航栏下方广告图（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> left 左边广告位（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> right_top 右边广告位上部分（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> right_bottom 右边广告位下部分（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="level1">
+          <div class="li"> goods_adv_list 楼层下方广告图（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> best 精品推荐（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> new 新品上市（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> hot 热销商品（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> name 名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> image 图片地址</div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="level1">
+          <div class="li"> goods_list 商品列表（array）</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> best 精品推荐（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> id 商品ID</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> name 商品名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> brand_name 品牌</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> class_name 分类</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> final_price 人民币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> hkd_price 港币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> thumb 缩略图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> goods_img 图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> hot 热销商品（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> id 商品ID</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> name 商品名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> brand_name 品牌</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> class_name 分类</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> final_price 人民币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> hkd_price 港币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> thumb 缩略图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> goods_img 图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+              </ul>
+            </li>
+            <li class="level2">
+              <div class="li"> new 最新上市（array）二维</div>
+              <ul>
+                <li class="level3">
+                  <div class="li"> id 商品ID</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> name 商品名称</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> brand_name 品牌</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> class_name 分类</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> final_price 人民币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> hkd_price 港币价格</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> thumb 缩略图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> goods_img 图片</div>
+                </li>
+                <li class="level3">
+                  <div class="li"> url 跳转链接</div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+    <h5><a id="返回数据说明">返回数据说明</a></h5>
+    <div class="level5">
+      <ul>
+        <li class="level1">
+          <div class="li"> image 图片地址</div>
+        </li>
+        <li class="level1">
+          <div class="li"> type 操作类型</div>
+          <ul>
+            <li class="level2">
+              <div class="li"> keyword 搜索关键字</div>
+            </li>
+            <li class="level2">
+              <div class="li"> special 专题编号</div>
+            </li>
+            <li class="level2">
+              <div class="li"> goods 商品编号</div>
+            </li>
+            <li class="level2">
+              <div class="li"> url 地址</div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="level1">
+            <div class="li"> new_area &nbsp;&nbsp;&nbsp;选择地点（数组）</div>
+        </li>
+
+      </ul>
+    </div>
+    <!--商品列表 S-->
+    <h3 class="sectionedit8"><a id="商品列表">根据分类获取商品列表</a></h3>
+    <div class="level3"> </div>
+    <h4><a id="数据接口_get">数据接口(GET)</a></h4>
+    <div class="level4">
+      <pre class="code">category.php</pre>
+    </div>
+    <h4><a id="请求参数">请求参数</a></h4>
+    <div class="level4">
+      <ul>
+        <li class="level1">
+          <div class="li">id 筛选条件 分类ID</div>
+        </li>
+        <li class="level1">
+          <div class="li">brand 筛选条件 品牌ID</div>
+        </li>
+        <li class="level1">
+          <div class="li">price_max 筛选条件 上限价格</div>
+        </li>
+        <li class="level1">
+          <div class="li">price_min 筛选条件 下限价格</div>
+        </li>
+        <li class="level1">
+          <div class="li">page 当前页数</div>
+        </li>
+        <li class="level1">
+          <div class="li">page_size 每页显示多少条数据</div>
+        </li>
+      </ul>
+    </div>
+    <h4><a id="返回数据">返回数据</a></h4>
+    <div class="level4">
+      <ul>
+
+        <li class="level1">
+          <div class="li">goods_list 商品数组(array)</div>
+          <ul>
+            <li class="level2">
+              <div class="li">goods_id 商品ID</div>
+            </li>
+            <li class="level2">
+              <div class="li"> goods_name 商品名称</div>
+            </li>
+            <li class="level2">
+              <div class="li"> goods_thumb 商品图片</div>
+            </li>
+            <li class="level2">
+              <div class="li"> shop_price 商品价</div>
+            </li>
+            <li class="level2">
+              <div class="li"> market_price 市场价</div>
+            </li>
+            <!--<li class="level2">
+              <div class="li"> salenum 已售出数量</div>
+            </li>-->
+            <li class="level2">
+              <div class="li"> promote_price 促销价</div>
+            </li>
+            <!--<li class="level2">
+              <div class="li"> promote_start_date 促销起始日期</div>
+            </li>
+            <li class="level2">
+              <div class="li"> promote_start_date 促销结束日期</div>
+            </li>-->
+            <li class="level2">
+              <div class="li"> is_new  1 表示 新品</div>
+            </li>
+            <li class="level2">
+              <div class="li"> is_best 1 表示 精品</div>
+            </li>
+            <li class="level2">
+              <div class="li"> is_hot 1 表示 热销</div>
+            </li>
+            <!--<li class="level2">
+              <div class="li"> is_collet 1 表示已收藏</div>
+            </li>-->
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+    <!--分类列表 S-->
+    <h3 class="sectionedit8"><a id="分类列表">分类列表</a></h3>
+    <div class="level3"> </div>
+    <h4>数据接口(GET)</h4>
+    <div class="level4">
+      <pre class="code">catalog.php</pre>
+    </div>
+    <h4>请求参数</h4>
+    <div class="level4">
+      <ul>
+      </ul>
+    </div>
+    <h4>返回数据</h4>
+    <div class="level4">
+      <ul>
+
+        <li class="level1">
+          <div class="li">id 分类ID</div>
+        </li>
+        <li class="level1">
+          <div class="li"> name 分类名称</div>
+        </li>
+        <li class="level1">
+          <div class="li"> url 跳转链接</div>
+        </li>
+        <li class="level1">
+          <div class="li"> cat_id 下级分类</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
