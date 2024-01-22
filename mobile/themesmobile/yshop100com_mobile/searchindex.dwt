@@ -13,7 +13,6 @@
   <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jweixin-1.0.0.js"></script>
 	{insert_scripts files='jquery.json.js,transport.js'}
 <body>
-<header id="header"> <!-- #BeginLibraryItem "/library/page_header.lbi" --> <!-- #EndLibraryItem --> </header>
 <div id="search_hide" class="search_hide">
 <!--  <h2> <span class="close"><a href="index.php"><img src="themesmobile/yshop100com_mobile/images/close.png"></a></span>关键搜索</h2> -->
 
@@ -28,9 +27,11 @@
 	   		<input type='hidden' name='type' id="searchtype" value="{$smarty.request.type|default:0}" >
               <div class="mallSearch-input">
                 <div id="s-combobox-135">
-                    <input aria-haspopup="true" role="combobox" class="s-combobox-input" name="keywords" id="keyword" tabindex="9" accesskey="s" onkeyup="STip(this.value, event);" autocomplete="off"  value="{if $search_keywords}{$search_keywords|escape}{else}请输入关键词{/if}" onFocus="if(this.value=='请输入关键词'){this.value='';}else{this.value=this.value;}" onBlur="if(this.value=='')this.value='请输入关键词'" type="text">
+                    <span class="search-icon"></span> 
+                    <input aria-haspopup="true" role="combobox" class="s-combobox-input" name="keywords" id="keyword" tabindex="9" accesskey="s" onkeyup="STip(this.value, event);" autocomplete="off"  value="{if $search_keywords}{$search_keywords|escape}{else}商品/店铺搜索{/if}" onFocus="if(this.value=='请输入关键词'){this.value='';}else{this.value=this.value;}" onBlur="if(this.value=='')this.value='请输入关键词'" type="text">
+                    <input type="submit" value="搜索" class="button"  >
                 </div>
-                <input type="submit" value="" class="button"  >
+
               </div>
              
             
@@ -55,12 +56,15 @@
                             </div>
                             -->
 <div id="search_goods">
-<section class="mix_recently_search"><h3><i class="search_h1"></i><span>搜索记录</span><a href="javascript:del_session_search('search_goods')" class="Delete" style="color:#999;">删除</a> </h3>
+
+<section class="mix_recently_search"><h3><i class="search_h1"></i><span>历史搜索</span><a href="javascript:del_session_search('search_goods')" class="Delete" style="color:#999;"></a> </h3>
 <ul>
 </ul>
   </section>  
 </div>                              
-                            <section class="mix_recently_search"><h3>热门搜索</h3>
+<section class="hot_search"><h3>热门搜索 <a href="javascript:del_session_search('search_goods')" class="Refresh" style="color:#999;"></a> </h3></h3>
+
+<ul>
    {if $searchkeywords}
   <ul>
     {foreach from=$searchkeywords item=val}
@@ -69,16 +73,13 @@
    </li>
    {/foreach}
    </ul>
-
     {else}
     <div class="recently_search_null">没有搜索记录</div>
     {/if}
     </section>
-	 
-	
-                        </div>
+</div>
                         
-                        <script>
+<script>
 
 $('#scanQRCode').click(function() {
     document.location.href="./php/sample.php";

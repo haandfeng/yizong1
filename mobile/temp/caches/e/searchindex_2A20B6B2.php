@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:2:{i:0;s:82:"D:/phpstudy_pro/WWW/yizong1/mobile/themesmobile/yshop100com_mobile/searchindex.dwt";i:1;s:90:"D:/phpstudy_pro/WWW/yizong1/mobile/themesmobile/yshop100com_mobile/library/page_header.lbi";}s:7:"expires";i:1705942447;s:8:"maketime";i:1705938847;}<!DOCTYPE html >
+<?php exit;?>a:3:{s:8:"template";a:1:{i:0;s:82:"D:/phpstudy_pro/WWW/yizong1/mobile/themesmobile/yshop100com_mobile/searchindex.dwt";}s:7:"expires";i:1705945356;s:8:"maketime";i:1705941756;}<!DOCTYPE html >
 <html>
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -13,40 +13,6 @@
   <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jquery.js"></script>
   <script type="text/javascript" src="themesmobile/yshop100com_mobile/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="js/jquery.json.js"></script><script type="text/javascript" src="js/transport.js"></script><body>
-<header id="header"> <script type="text/javascript">
-var process_request = "正在处理您的请求...";
-</script>
-<script language="javascript"> 
-<!--
-/*屏蔽所有的js错误*/
-function killerrors() { 
-return true; 
-} 
-window.onerror = killerrors; 
-//-->
-function checkSearchForm()
-{
-    if(document.getElementById('searchtype').value == 0){
-        if(document.getElementById('keyword').value != '' && document.getElementById('keyword').value != '请输入关键词')
-        {
-            return true;
-        }
-        else
-        {
-             alert("请输入关键词！");
-            return false;
-        }
-    }else{
-        if(document.getElementById('keyword').value == '' || document.getElementById('keyword').value == '请输入关键词'){
-               document.getElementById('keyword').value = '';
-               return true; 
-        }
-    }
-}
-</script>
-<a href="index.php" class="top_bt"></a>
-<a href="flow.php" class='user_btn'></a>
-<span href="javascript:void(0)" class="logo">香港漢方杏林堂</span> </header>
 <div id="search_hide" class="search_hide">
 <!--  <h2> <span class="close"><a href="index.php"><img src="themesmobile/yshop100com_mobile/images/close.png"></a></span>关键搜索</h2> -->
  <div id="mallSearch" class="search_mid">
@@ -60,9 +26,10 @@ function checkSearchForm()
 	   		<input type='hidden' name='type' id="searchtype" value="0" >
               <div class="mallSearch-input">
                 <div id="s-combobox-135">
-                    <input aria-haspopup="true" role="combobox" class="s-combobox-input" name="keywords" id="keyword" tabindex="9" accesskey="s" onkeyup="STip(this.value, event);" autocomplete="off"  value="请输入关键词" onFocus="if(this.value=='请输入关键词'){this.value='';}else{this.value=this.value;}" onBlur="if(this.value=='')this.value='请输入关键词'" type="text">
+                    <span class="search-icon"></span> 
+                    <input aria-haspopup="true" role="combobox" class="s-combobox-input" name="keywords" id="keyword" tabindex="9" accesskey="s" onkeyup="STip(this.value, event);" autocomplete="off"  value="商品/店铺搜索" onFocus="if(this.value=='请输入关键词'){this.value='';}else{this.value=this.value;}" onBlur="if(this.value=='')this.value='请输入关键词'" type="text">
+                    <input type="submit" value="搜索" class="button"  >
                 </div>
-                <input type="submit" value="" class="button"  >
               </div>
              
             
@@ -86,12 +53,13 @@ function checkSearchForm()
                             </div>
                             -->
 <div id="search_goods">
-<section class="mix_recently_search"><h3><i class="search_h1"></i><span>搜索记录</span><a href="javascript:del_session_search('search_goods')" class="Delete" style="color:#999;">删除</a> </h3>
+<section class="mix_recently_search"><h3><i class="search_h1"></i><span>历史搜索</span><a href="javascript:del_session_search('search_goods')" class="Delete" style="color:#999;"></a> </h3>
 <ul>
 </ul>
   </section>  
 </div>                              
-                            <section class="mix_recently_search"><h3>热门搜索</h3>
+<section class="hot_search"><h3>热门搜索 <a href="javascript:del_session_search('search_goods')" class="Refresh" style="color:#999;"></a> </h3></h3>
+<ul>
      <ul>
        <li>
     <a href="search.php?keywords=%E4%BF%9D%E6%B5%8E%E4%B8%B8">保济丸</a>
@@ -122,11 +90,9 @@ function checkSearchForm()
    </li>
       </ul>
         </section>
-	 
-	
-                        </div>
+</div>
                         
-                        <script>
+<script>
 $('#scanQRCode').click(function() {
     document.location.href="./php/sample.php";
 });
