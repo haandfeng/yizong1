@@ -45,18 +45,7 @@ $(function(){
             </a>
         </div>
     </div>
-{else}
-    <!-- 轮播 S-->
-        <!-- #BeginLibraryItem "/library/index_ad.lbi" --> <!-- #EndLibraryItem -->
-    <!-- 轮播 E-->
 {/if}
-    {if $wap_menu_title}
-    <div style="width: 100%;height: auto;">
-        {foreach from=$wap_menu_title item=menu_ads name=wap_menu_title}
-        <a href="{$menu_ads.url}"><img src="{$menu_ads.image}" width="100%" /></a>
-        {/foreach}
-    </div>
-    {/if}
 
     {if $wap_menu_ads}
     <div class="menu-ads">
